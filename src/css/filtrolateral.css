@@ -1,0 +1,27 @@
+.type {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 30%;
+}
+
+.cadaTipo {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin: 1px;
+    padding: 8px;
+    background-color: #e1e1e1;
+    width: 100%;
+}
+
+.img-type {
+    width: 25%;
+}
+
+.text-type {
+    width: 80%;
+    padding-left: 10px;
+}

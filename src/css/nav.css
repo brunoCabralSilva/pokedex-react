@@ -1,0 +1,28 @@
+nav {
+    padding: 5px;
+    display: flex;
+    align-items: center;
+}
+
+.logo-nav {
+    width: 5%;
+}
+
+.ul-nav {
+    display: flex;
+    flex-direction: row;
+    flex-flow: wrap;
+    width: 100%;
+    justify-content: center;
+}
+
+.li-nav {
+    list-style-type: none;
+    padding: 10px 20px;
+}
+
+
+.a-nav {
+    color: black;
+    text-decoration: none;
+}
