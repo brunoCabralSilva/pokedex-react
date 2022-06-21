@@ -3,7 +3,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 30%;
+    width: 15%;
 }
 
 .cadaTipo {
@@ -12,16 +12,42 @@
     align-items: center;
     justify-content: space-between;
     margin: 1px;
-    padding: 8px;
-    background-color: #e1e1e1;
+    padding: 2%;
     width: 100%;
 }
 
 .img-type {
-    width: 25%;
+    width: 3vw;
+    padding-left: 1vw;
 }
 
 .text-type {
     width: 80%;
-    padding-left: 10px;
+    text-align: center;
+}
+
+scroll-container {
+    width: 100%;
+    height: 50vh;
+    overflow-y: scroll;
+    scroll-behavior: smooth;
+}
+
+scroll-page {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2vw;
+    margin-bottom: 0.1vw;
+    background-color: white;
+    transition-property: background-color;
+    transition-duration: 0.5s;
+    transition-timing-function: linear;
+}
+
+scroll-page:hover {
+    background-color: gray;
+    transition-property: background-color;
+    transition-duration: 0.5s;
+    transition-timing-function: linear;
 }

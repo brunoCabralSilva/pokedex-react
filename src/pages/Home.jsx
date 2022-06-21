@@ -1,4 +1,5 @@
 import React from 'react';
+import '../css/home.css';
 import { motion } from 'framer-motion';
 import data from '../fetchs';
 import Pokemon from '../components/Pokemon';
@@ -40,11 +41,7 @@ class Home extends React.Component {
     const { lista } = this.state;
     return (
       <div className="home">
-        <img
-          src={require("../imagens/Pokémon_logo.png")}
-          alt="logo Pokémon"
-          className="logo-pokemon" />
-        <div>
+        <div className="home-principal">
           <ContentHome />
           <FiltroLateral />
         </div>

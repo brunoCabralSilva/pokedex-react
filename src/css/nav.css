@@ -2,10 +2,8 @@ nav {
     padding: 5px;
     display: flex;
     align-items: center;
-}
-
-.logo-nav {
-    width: 5%;
+    background-color: #e1e1e1;
+    margin-bottom: 0.5vw;
 }
 
 .ul-nav {

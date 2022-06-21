@@ -1,0 +1,10 @@
+.home {
+    display: flex;
+    flex-direction: column;
+}
+
+.home-principal {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}

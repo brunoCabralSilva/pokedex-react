@@ -18,16 +18,14 @@ export default class FiltroLateral extends React.Component {
         return null;
       }
       return (
-        <div className="cadaTipo">
+        <scroll-page className="cadaTipo">
           {imageType(name)}
           <p className="text-type">{this.letraMaicuscula(name)}</p>
-        </div>
+        </scroll-page>
       );
     });
     this.setState({ list: typeList });
   }
-
-
 
   letraMaicuscula = (nome) => {
     let novoNome = nome[0].toUpperCase();
@@ -41,7 +39,9 @@ export default class FiltroLateral extends React.Component {
     const { list } = this.state;
     return (
       <div className="type">
-        {list}
+        <scroll-container>
+          {list}
+        </scroll-container>
       </div>
     );
 
