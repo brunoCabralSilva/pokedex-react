@@ -5,15 +5,16 @@ import { motion } from 'framer-motion';
 export default class Pokemon extends React.Component {
 
   retornaImagem = () => {
-    const { numeroDoPokemon, nome } = this.props;
-    if (numeroDoPokemon < 9) {
-      return (<img src={require(`../imagens/all/00${numeroDoPokemon + 1}.png`)} alt={nome} />);
+    const { poke } = this.props;
+    const { id, name } = poke;
+    if (id < 9) {
+      return (<img src={require(`../imagens/all/00${id}.png`)} alt={name} />);
     }
-    else if (numeroDoPokemon >= 9 && numeroDoPokemon <= 98) {
-      return (<img src={require(`../imagens/all/0${numeroDoPokemon + 1}.png`)} alt={nome} />);
+    else if (id >= 9 && id <= 98) {
+      return (<img src={require(`../imagens/all/0${id}.png`)} alt={name} />);
     }
     else {
-      return (<img src={require(`../imagens/all/${numeroDoPokemon + 1}.png`)} alt={nome} />);
+      return (<img src={require(`../imagens/all/${id}.png`)} alt={name} />);
     }
   }
   render() {
@@ -22,9 +23,8 @@ export default class Pokemon extends React.Component {
       visible: (index) => ({ opacity: 1, x: 0, transition: { delay: 0.1 * index, duration: 0.3 } }),
       exit: (index) => ({ opacity: 0, x: 20, transition: { delay: 0.1 * index, duration: 0.3 } }),
     };
-
-    const { numeroDoPokemon, nome, i, letraMaicuscula } = this.props;
-    console.log(i);
+    const { poke, letraMaicuscula, i } = this.props;
+    const { id, name } = poke;
     return (
       <motion.div
         className="flex flex-col items-center justify-center"
@@ -37,12 +37,12 @@ export default class Pokemon extends React.Component {
         {this.retornaImagem()}
         <p className="pb-3">
           {
-            (numeroDoPokemon + 1) < 10
-            ? `0${numeroDoPokemon + 1}`
-            : `${numeroDoPokemon + 1}`
+            (id + 1) < 10
+            ? `0${id + 1}`
+            : `${id + 1}`
           }
           {' - '}
-          {letraMaicuscula(nome)}
+          {letraMaicuscula(name)}
         </p>
       </motion.div>
     );

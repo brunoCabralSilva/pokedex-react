@@ -7,41 +7,19 @@ import Logo from '../components/Logo';
 import List from '../components/List';
 import Filter from '../components/Filter';
 
-const { getAllPokemon } = data;
+const { get6 } = data;
 
 class Home extends React.Component {
   state = {
-    dezPokemon: {},
-    numeroPokemon: 0,
-    primeiro: 0,
-    ultimo: 4,
-    lista: [],
+    listPokemon: [],
+    primeiro: 1,
+    ultimo: 6,
   }
 
   async componentDidMount() {
-    const { numeroPokemon, primeiro, ultimo } = this.state;
-    const todosOsPokemon = await getAllPokemon('https://pokeapi.co/api/v2/pokemon-species?offset=0&limit=20');
-    this.setState({ dezPokemon: todosOsPokemon });
-    if (todosOsPokemon.count) {
-      const { results } = todosOsPokemon;
-      let list = [];
-      for (let i = primeiro; i <= ultimo; i += 1) {
-        list.push
-        (<Pokemon
-            numeroDoPokemon={numeroPokemon + i}
-            nome={results[i].name}
-            i={i}
-            letraMaicuscula={ this.letraMaicuscula }
-          />
-        );
-      };
-      this.setState({
-        lista: list,
-        numeroPokemon: 10,
-        primeiro: 10,
-        ultimo: 19,
-      });
-    }
+    const { primeiro, ultimo } = this.state;
+    const poke6 = await get6(primeiro , ultimo);
+    this.setState({ listPokemon: poke6 });
   }
 
   letraMaicuscula = (nome) => {
@@ -53,7 +31,8 @@ class Home extends React.Component {
   }
 
   render() {
-    const { lista } = this.state;
+    const { listPokemon } = this.state;
+    console.log('list', listPokemon);
     return (
       <div className="flex flex-col w-full">
         <header className="flex justify-center w-full bg-gray-300">
@@ -63,7 +42,14 @@ class Home extends React.Component {
         <section className="w-full sm:w-4/5 flex flex-col justify-center items-center m-2">
           <Filter />
           <div className="w-full justify-center flex flex-col items-center sm:m-2 bg-gray-400">
-          <List lista={lista} />
+          {
+            listPokemon.length > 0 && listPokemon.map((poke) => (
+              <Pokemon
+                poke={ poke }
+                letraMaicuscula={ this.letraMaicuscula }
+              />
+            ))
+          }
           </div>
         </section>
         <aside className="hidden sm:flex sm:flex-col w-1/5 bg-gray-200 sm:mr-2 sm:my-2">
@@ -73,7 +59,7 @@ class Home extends React.Component {
       <section className="w-4/5 flex flex-col justify-center items-center m-2">
           <Filter />
           <div className="w-full justify-center flex flex-col items-center sm:m-2 bg-gray-400">
-          <List lista={lista} />
+          <List lista={listPokemon} />
           </div>
         </section>
       </div>
