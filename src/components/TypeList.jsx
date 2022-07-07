@@ -1,15 +1,16 @@
 import React from 'react';
-import imageType from './types';
-import '../css/filtrolateral.css';
+import PropTypes from 'prop-types';
+import imageType from './Types';
 import data from '../fetchs';
 const { allTypes } = data;
 
-export default class FiltroLateral extends React.Component {
+export default class TypeList extends React.Component {
   state = {
     list: 'vazio',
   }
 
   async componentDidMount() {
+    const { letraMaicuscula } = this.props;
     const types = await allTypes();
     const { results } = types;
     const typeList = await results.map((resultados) => {
@@ -18,32 +19,32 @@ export default class FiltroLateral extends React.Component {
         return null;
       }
       return (
-        <scroll-page className="cadaTipo">
+        <div className="snap-start">
+          <div className=" flex flex-row p-2 hover:font-bold">
+          <div className="">
           {imageType(name)}
-          <p className="text-type">{this.letraMaicuscula(name)}</p>
-        </scroll-page>
+          </div>
+          <p className="pl-2">{letraMaicuscula(name)}</p>
+        </div>
+        </div>
       );
     });
     this.setState({ list: typeList });
   }
 
-  letraMaicuscula = (nome) => {
-    let novoNome = nome[0].toUpperCase();
-    for (let i = 1; i < nome.length; i += 1) {
-      novoNome += nome[i];
-    }
-    return novoNome;
-  }
-
   render() {
     const { list } = this.state;
     return (
-      <div className="type">
-        <scroll-container>
+      <div className="">
+        <div className="snap-y overflow-y-scroll h-72">
           {list}
-        </scroll-container>
+        </div>
       </div>
     );
 
   }
 }
+
+TypeList.propTypes = {
+  letraMaicuscula: PropTypes.func.isRequired,
+};

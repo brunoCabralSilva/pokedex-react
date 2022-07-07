@@ -1,17 +1,19 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { motion } from 'framer-motion';
+
 export default class Pokemon extends React.Component {
 
   retornaImagem = () => {
     const { numeroDoPokemon, nome } = this.props;
     if (numeroDoPokemon < 9) {
-      return (<img src={require(`../images/00${numeroDoPokemon + 1}.png`)} alt={nome} />);
+      return (<img src={require(`../imagens/all/00${numeroDoPokemon + 1}.png`)} alt={nome} />);
     }
     else if (numeroDoPokemon >= 9 && numeroDoPokemon <= 98) {
-      return (<img src={require(`../images/0${numeroDoPokemon + 1}.png`)} alt={nome} />);
+      return (<img src={require(`../imagens/all/0${numeroDoPokemon + 1}.png`)} alt={nome} />);
     }
     else {
-      return (<img src={require(`../images/${numeroDoPokemon + 1}.png`)} alt={nome} />);
+      return (<img src={require(`../imagens/all/${numeroDoPokemon + 1}.png`)} alt={nome} />);
     }
   }
   render() {
@@ -21,24 +23,37 @@ export default class Pokemon extends React.Component {
       exit: (index) => ({ opacity: 0, x: 20, transition: { delay: 0.1 * index, duration: 0.3 } }),
     };
 
-    const { numeroDoPokemon, nome, i } = this.props;
+    const { numeroDoPokemon, nome, i, letraMaicuscula } = this.props;
     console.log(i);
     return (
       <motion.div
-        className="cada-pokemon"
+        className="flex flex-col items-center justify-center"
         initial="hidden"
         animate="visible"
         exit="exit"
         variants={pokemonCards}
         custom={i}
       >
-        <p>
-          {numeroDoPokemon + 1}
-          {' '}
-          {nome}
-        </p>
         {this.retornaImagem()}
+        <p className="pb-3">
+          {
+            (numeroDoPokemon + 1) < 10
+            ? `0${numeroDoPokemon + 1}`
+            : `${numeroDoPokemon + 1}`
+          }
+          {' - '}
+          {letraMaicuscula(nome)}
+        </p>
       </motion.div>
     );
   }
 }
+
+
+Pokemon.propTypes = {
+  letraMaicuscula: PropTypes.func.isRequired,
+  numeroDoPokemon: PropTypes.number.isRequired,
+  i: PropTypes.number.isRequired,
+  nome: PropTypes.string.isRequired,
+  lista: PropTypes.string.isRequired,
+};

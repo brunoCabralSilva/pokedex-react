@@ -13,6 +13,7 @@ function App() {
         <Switch location={location} key={location.key}>
           <Route exact path="/pokedex-react" component={Home} />
           <Route exact path="" component="" />
+          <Route exact path="*" component={Home} />
         </Switch>
       </AnimatePresence>
     </AnimateSharedLayout>
