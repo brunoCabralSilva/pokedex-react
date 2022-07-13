@@ -4,17 +4,6 @@ const getByType = async (tipo) => {
     return fetchJson;
 }
 
-const get6 = async (initial, final) => {
-    let array6 = [];
-    for(let i = initial; i<= final; i += 1) {
-        const fetchPoke = await fetch(`https://pokeapi.co/api/v2/pokemon/${Number(i)}`);
-        const fetchJson = await fetchPoke.json();
-        array6.push(fetchJson);
-
-    }
-    return array6;
-}
-
 const allTypes = async () => {
     const fetchType = await fetch(`https://pokeapi.co/api/v2/type`);
     const fetchJson = await fetchType.json();
@@ -27,8 +16,9 @@ const getByGeneration = async (gen) => {
     return fetchJson;
 }
 
-const getAllPokemon = async (twenty) => {
-    const fetchType = await fetch(twenty);
+const getAllPokemon = async (first) => {
+    const firstString = first.toString();
+    const fetchType = await fetch(`https://pokeapi.co/api/v2/pokemon-species/?offset=${firstString}&limit=%20`);
     const fetchJson = await fetchType.json();
     return fetchJson;
 }
@@ -45,6 +35,6 @@ const evolution = async (numero) => {
     return fetchJson;
 }
 
-const data = { get6, getByType, allTypes, getByGeneration, getByName, evolution, getAllPokemon };
+const data = { getByType, allTypes, getByGeneration, getByName, evolution, getAllPokemon };
 
 export default data;
