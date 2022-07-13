@@ -3,12 +3,7 @@ import PropTypes from 'prop-types';
 import { motion } from 'framer-motion';
 
 export default function Pokemon (props) {
-  const { number,  name, letraMaicuscula, id } = props;
-  
-  let position = number;
-  if(id !== undefined) {
-    position = id;
-  }
+  const { name, letraMaicuscula, id } = props;
 
   const pokemonCards = {
     hidden: { opacity: 0, x: 20 },
@@ -18,14 +13,14 @@ export default function Pokemon (props) {
   
 
   const retornaImagem = () => {    
-    if (position <= 9) {
-      return (<img src={require(`../imagens/all/00${position}.png`)} className="w-10/12" alt={name} />);
+    if (id <= 9) {
+      return (<img src={require(`../imagens/all/00${id}.png`)} className="w-10/12" alt={name} />);
     }
-    else if (position >= 10 && position <= 99) {
-      return (<img src={require(`../imagens/all/0${position}.png`)} alt={name} />);
+    else if (id >= 10 && id <= 99) {
+      return (<img src={require(`../imagens/all/0${id}.png`)} alt={name} />);
     }
     else {
-      return (<img src={require(`../imagens/all/${position}.png`)} alt={name} />);
+      return (<img src={require(`../imagens/all/${id}.png`)} alt={name} />);
     }
   }
     
@@ -36,14 +31,14 @@ export default function Pokemon (props) {
       animate="visible"
       exit="exit"
       variants={pokemonCards}
-      custom={number}
+      custom={id}
     >
       {retornaImagem()}
       <p className="pb-3 text-center text-1xl">
         {
-          (position) < 10
-          ? `0${position }`
-          : `${position}`
+          (id) < 10
+          ? `0${id }`
+          : `${id}`
         }
         {' - '}
         {letraMaicuscula(name)}

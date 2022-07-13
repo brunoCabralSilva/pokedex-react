@@ -13,13 +13,13 @@ export default class TypeList extends React.Component {
     const { letraMaicuscula } = this.props;
     const types = await allTypes();
     const { results } = types;
-    const typeList = await results.map((resultados) => {
+    const typeList = await results.map((resultados, index) => {
       const { name } = resultados;
       if (name === 'unknown' || name === 'shadow') {
         return null;
       }
       return (
-        <div className="snap-start">
+        <div className="snap-start" key={index}>
           <div className=" flex flex-row p-2 hover:font-bold">
           <div className="">
           {imageType(name)}

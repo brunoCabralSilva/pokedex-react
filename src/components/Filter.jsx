@@ -1,18 +1,20 @@
-import React, { useState, useRef } from 'react';
-import PropTypes from 'prop-types';
+import React, { useState, useContext } from 'react';
+import contexto from '../context';
 
-function Filter(props) {
-  const [name, setName] = useState('');
-  const [number, setNumber] = useState('');
-  const [generation, setGeneration] = useState('');
-  const { handle } = props;
+function Filter() {
+  const context = useContext(contexto);
+  const { searchByNameId, searchByGen } = context;
+
+  const [localName, setLocalName] = useState('');
+  const [localNumber, setLocalNumber] = useState('');
+  const [localGen, setLocalGen] = useState('1');
 
   const reset = () => {
-    setName('');
-    setNumber('');
-    setGeneration('');
+    setLocalName('');
+    setLocalNumber('');
+    setLocalGen('');
   }
-
+  
   return (
     <form className="justify-between sm:mx-2 lg:flex-nowrap flex-wrap flex sm:flex-row flex-col px-2 sm:px-0 pb-4 sm:pb-0 w-full">
       <label htmlFor="namePokemon" className="w-full mt-2 sm:mt-0 sm:w-45% lg:w-25% flex flex-col bg-gray-300 p-1 align-center sm:align-start">
@@ -23,17 +25,17 @@ function Filter(props) {
           id="namePokemon"
           className="p-2 m-2 w-9/12"
           name="name"
-          value={name}
+          value={localName}
           placeholder="Nome"
-          onChange={(e) => setName(e.target.value)}
+          onChange={(e) => setLocalName(e.target.value)}
         />
         <button
           type="button"
           className="w-2/12 bg-gray-500 p-2 my-2"
           onClick={
-            () => {
+            async () => {
+              await searchByNameId(localName);
               reset();
-              handle(name)
             }
           }
         >
@@ -49,17 +51,17 @@ function Filter(props) {
           id="numberPokemon"
           className="p-2 m-2 w-9/12"
           name="number"
-          value={number}
+          value={localNumber}
           placeholder="Número"
-          onChange={(e) => setNumber(e.target.value)}
+          onChange={(e) => setLocalNumber(e.target.value)}
         />
         <button
           type="button"
           className="w-2/12 bg-gray-500 p-2 my-2"
           onClick={
-            () => {
+            async () => {
+              await searchByNameId(localNumber);
               reset();
-              handle(number)
             }
           }
         >
@@ -72,7 +74,8 @@ function Filter(props) {
         <div className="flex flex-row w-full">
         <select
           className="p-2 m-2 w-9/12"
-          onClick={(e) =>  setGeneration(e.target.value)}>
+          onChange={(e) => setLocalGen(e.target.value)}
+        >
           <option disabled selected>Geração</option>
           <option value="1">1º Geração</option>
           <option value="2">2º Geração</option>
@@ -86,7 +89,7 @@ function Filter(props) {
         <button
           type="button"
           className="w-2/12 bg-gray-500 p-2 my-2"
-          onClick={(event) => console.log(event)}
+          onClick={ () => searchByGen(localGen) }
         >
           <i className="fa-solid fa-magnifying-glass text-white"></i>
         </button>
@@ -117,9 +120,5 @@ function Filter(props) {
      </form>
     );
   }
-
-Filter.propTypes = {
-    classImage: PropTypes.string.isRequired,
-}
 
 export default Filter;
