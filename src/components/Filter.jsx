@@ -13,10 +13,6 @@ function Filter(props) {
     setGeneration('');
   }
 
-  const selectChange = () => {
-    if(state) return true;
-  }
-
   return (
     <form className="justify-between sm:mx-2 lg:flex-nowrap flex-wrap flex sm:flex-row flex-col px-2 sm:px-0 pb-4 sm:pb-0 w-full">
       <label htmlFor="namePokemon" className="w-full mt-2 sm:mt-0 sm:w-45% lg:w-25% flex flex-col bg-gray-300 p-1 align-center sm:align-start">
@@ -77,7 +73,7 @@ function Filter(props) {
         <select
           className="p-2 m-2 w-9/12"
           onClick={(e) =>  setGeneration(e.target.value)}>
-          <option disabled selected={selectChange()}>Geração</option>
+          <option disabled selected>Geração</option>
           <option value="1">1º Geração</option>
           <option value="2">2º Geração</option>
           <option value="3">3º Geração</option>
