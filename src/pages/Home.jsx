@@ -1,41 +1,65 @@
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useEffect, useContext } from 'react';
 import contexto from '../context';
 import Pokemon from '../components/Pokemon';
 import TypeList from '../components/TypeList';
 import Logo from '../components/Logo';
 import Filter from '../components/Filter';
 import data from '../fetchs';
-// import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 
 const { getAllPokemon } = data;
 
 function Home() {
   const context = useContext(contexto);
-  const { listPokemon, setList, searchByGen } = context;
+  const { 
+    buttonOption, finish, listPokemon, moreTwenty,
+    setList, searchByGen, setButton, letraMaiuscula, searchByType,
+  } = context;
 
-  const [first, setFirst] = useState(0);
- 
   useEffect(() => {
     const firstCall = async () => {
       const call = await getAllPokemon(0);
       setList(call.results);
     };
+      setButton('all');
       return firstCall;
   }, []);
-   
-  function letraMaicuscula (nome) {
-    let novoNome = nome[0].toUpperCase();
-    for (let i = 1; i < nome.length; i += 1) {
-      novoNome += nome[i];
-    }
-    return novoNome;
-  }
 
-  const moreTwenty = async () => {
-    const newFirst = first + 20;
-    const call = await getAllPokemon(newFirst);
-    setFirst(newFirst);
-    setList([...listPokemon, ...call.results]);
+  const buttonReturn = () => {
+    if (buttonOption === 'hidden') {
+      return null
+    } else if(finish === false) {
+      if(buttonOption === 'all') {
+        return (
+          <button type="button" className="p-3 bg-gray-300 w-full" onClick={ moreTwenty }>
+              Mais Pokémon
+          </button>
+        );
+      } else if (buttonOption === 'generation') {
+        return (
+          <button type="button" className="p-3 bg-gray-300 w-full" onClick={ () => searchByGen('more20') }>
+            Mais Pokemon
+          </button>
+        );
+      } else if (buttonOption === 'type') {
+        return (
+          <button type="button" className="p-3 bg-gray-300 w-full" onClick={ () => searchByType('more20') }>
+            Mais Pokemon
+          </button>
+        );
+      } else {
+        return(
+          <button type="button" className="p-3 bg-gray-300 w-full" onClick={ () => window.scrollTo(0, 0) }>
+            Voltar ao topo
+          </button>
+        );
+      }
+     } else {
+      return(
+        <button type="button" className="p-3 bg-gray-300 w-full" onClick={ () => window.scrollTo(0, 0) }>
+          Voltar ao topo
+        </button>
+      );
+    }
   }
 
   const returnPokemonList = () => {
@@ -51,7 +75,7 @@ function Home() {
           className="snap-start w-30vw"
           name={ poke.name }
           id={ number }
-          letraMaicuscula={ letraMaicuscula }
+          letraMaiuscula={ letraMaiuscula }
         />
       );
     });
@@ -71,15 +95,10 @@ function Home() {
             { returnPokemonList() }
             </div>
           </div>
-          <button type="button" className="p-3 bg-gray-300" onClick={ moreTwenty }>
-            Mais Pokémon
-          </button>
-          <button type="button" className="p-3 bg-gray-300" onClick={ () => searchByGen('more20') }>
-            Mais da Geração
-          </button>
+          { buttonReturn() }
         </section>
         <aside className="hidden sm:flex sm:flex-col w-1/5 bg-gray-200 sm:mr-2 sm:my-2">
-          <TypeList letraMaicuscula={ letraMaicuscula } />
+          <TypeList />
         </aside>
       </div>
       </div>

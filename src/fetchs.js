@@ -44,15 +44,15 @@ const getByGeneration = async (gen) => {
           break;
         case 8:
           initial = 810;
-          final = 98;
+          final = 898;
           break; 
-        default: console.log('valor não numérico');
+        default: return null;
     }
     
     const fetchType = await fetch('https://pokeapi.co/api/v2/pokedex/1');
     const fetchJson = await fetchType.json();
     let arrayGen = [];
-    for (let i = initial - 1; i < final-1; i += 1) {
+    for (let i = initial - 1; i < final; i += 1) {
       const name = fetchJson.pokemon_entries[i].pokemon_species.name;
       const numero = fetchJson.pokemon_entries[i].pokemon_species.url.replace('https://pokeapi.co/api/v2/pokemon-species/', '');
       const number = numero.replace('/', '');

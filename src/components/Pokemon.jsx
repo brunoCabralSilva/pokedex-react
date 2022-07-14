@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { motion } from 'framer-motion';
 
 export default function Pokemon (props) {
-  const { name, letraMaicuscula, id } = props;
+  const { name, letraMaiuscula, id } = props;
 
   const pokemonCards = {
     hidden: { opacity: 0, x: 20 },
@@ -41,7 +41,7 @@ export default function Pokemon (props) {
           : `${id}`
         }
         {' - '}
-        {letraMaicuscula(name)}
+        {letraMaiuscula(name)}
       </p>
     </motion.div>
   );
@@ -49,7 +49,7 @@ export default function Pokemon (props) {
 
 
 Pokemon.propTypes = {
-  letraMaicuscula: PropTypes.func.isRequired,
+  letraMaiuscula: PropTypes.func.isRequired,
   numeroDoPokemon: PropTypes.number.isRequired,
   index: PropTypes.number.isRequired,
   nome: PropTypes.string.isRequired,
