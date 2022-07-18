@@ -7,9 +7,10 @@ const { allTypes } = data;
 
 export default function TypeList() {
     const context = useContext(contexto);
-    const { letraMaiuscula, firstCall, searchByType } = context;
+    const { letraMaiuscula, arrayTypes, changeArrayTypes,
+      firstCall, searchByType, selectedType, cleanArrayTypes, addTypes} = context;
     const [list, setList] = useState('Carregando...');
-    const [type, setType] = useState('');
+    let array = [];
 
   useEffect(() => {
     const init = async () => {
@@ -22,12 +23,12 @@ export default function TypeList() {
         }
         return (
           <div className="snap-start" key={index}>
-            <div className=" flex flex-row p-2 hover:font-bold" onClick={() => setType(imageType(name).type)}>
+            <button className=" flex flex-row p-2 hover:font-bold" onClick={() => addTypes(imageType(name).type)}>
               <div className="">
                 {imageType(name).image}
               </div>
               <p className="pl-2">{letraMaiuscula(name)}</p>
-            </div>
+            </button>
           </div>
         );
       });
@@ -51,7 +52,14 @@ export default function TypeList() {
       </div>
       <div>
         <button className=" flex flex-row p-2 hover:font-bold">
-          <p className="text-center" onClick={() => searchByType(type)}>Buscar</p>
+          <p className="text-center" onClick={() => {
+            searchByType('init');
+            cleanArrayTypes();
+            console.log('array tipos', arrayTypes);
+          }}
+        >
+          Buscar
+        </p>
         </button>
       </div>
     </div>

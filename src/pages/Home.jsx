@@ -18,6 +18,7 @@ function Home() {
   useEffect(() => {
     const firstCall = async () => {
       const call = await getAllPokemon(0);
+      console.log(call);
       setList(call.results);
     };
       setButton('all');
