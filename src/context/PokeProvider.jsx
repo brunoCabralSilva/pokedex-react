@@ -6,40 +6,16 @@ const { getByName, getByType, getByGeneration, getAllPokemon } = data;
 export default function PokeProvider({ children }) {
   const [listPokemon, setListPokemon] = useState([]);
   const [pokeGen, setPokeGen] = useState([]);
-  const [selectedTypeList, setSelectedTypeList] = useState('...aguardando');
   const [buttonOption, setButtonOption] = useState('all');
   const [ultimo, setUltimo] = useState([0]);
   const [finish, setFinish] = useState(false);
   const [first, setFirst] = useState(0);
-  const [ultimaTentativa, setUltimaTentativa] = useState();
-  let arrayTypes = [];
+  const [ultimaTentativa, setUltimaTentativa] = useState([]);
 
-  const changeArrayTypes = (value) => {
-    arrayTypes.push(value);
-    setSelectedTypeList(arrayTypes);
-    console.log('selectedTypeLis', selectedTypeList);
-  };
-
-  const cleanArrayTypes = () => {
-    arrayTypes.length = 0;
-    setSelectedTypeList([]);
-    console.log('selectedTypeLis', selectedTypeList);
-    console.log('array tipos', arrayTypes);
-  };
-
-  const addTypes = (tipo) => {
-    console.log('entrando no botão', arrayTypes);
-    if (arrayTypes.includes(tipo)) {
-      const position = arrayTypes.indexOf(tipo);
-      arrayTypes.splice(position, 1);
-      setSelectedTypeList(arrayTypes);
-    } else if(arrayTypes.length >= 2) {
-      global.alert('Não existem pokémon com três tipos');
-    } else {
-      changeArrayTypes(tipo);
-      console.log('array tipos', arrayTypes);
-    }
-  }
+  // const cleanArrayTypes = () => {
+  //  setUltimaTentativa([]);
+  // };
+    
 
   const twentyExibition = async (response, array, buttonMessage) => {
      if(response !== 'more20' ) {
@@ -72,11 +48,11 @@ export default function PokeProvider({ children }) {
       setButtonOption(buttonMessage);
   }
 
-  const searchByType = async (t) => {
+  const searchByType = async (t, list) => {
     if(t !== 'more20' ) {
-      if(selectedTypeList.length !== 1) {
-        const type1 = await getByType(selectedTypeList[0]);
-        const type2 = await getByType(selectedTypeList[1]);
+      if(list.length !== 1) {
+        const type1 = await getByType(list[0]);
+        const type2 = await getByType(list[1]);
         if(type1) {
         const pokemonTwoTypes = type1.pokemon.filter((x) => {
           const pokemonType2 = type2.pokemon.find((f) => f.pokemon.name === x.pokemon.name);
@@ -97,7 +73,7 @@ export default function PokeProvider({ children }) {
               setListPokemon(arrayTipos);
         }
       } else {
-        const allByType = await getByType(selectedTypeList[0]);
+        const allByType = await getByType(list[0]);
         const all = allByType.pokemon.map((poke) => {
           const numero = poke.pokemon.url.replace("https://pokeapi.co/api/v2/pokemon/", '');
           const number = numero.replace('/', '');
@@ -113,11 +89,14 @@ export default function PokeProvider({ children }) {
       }} else {
         twentyExibition(t, null, 'type');
   }
-  cleanArrayTypes();
 }
   
   const setList = (list) => {
     setListPokemon(list);
+  }
+
+  const setFirstValor = (valor) => {
+    setFirst(valor);
   }
 
   const setButton = (alternative) => {
@@ -189,10 +168,10 @@ export default function PokeProvider({ children }) {
 
   return(
     <contexto.Provider value={{
-      listPokemon, pokeGen, buttonOption, arrayTypes, finish,
+      listPokemon, pokeGen, buttonOption, ultimaTentativa, finish,
       searchByNameId, letraMaiuscula, setList, searchByGen,
       setButton, firstCall, moreTwenty, searchByType,
-      addTypes, changeArrayTypes, cleanArrayTypes,
+      setFirstValor,
       }}
     >
       {children}

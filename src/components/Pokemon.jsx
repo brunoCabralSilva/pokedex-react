@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
 export default function Pokemon (props) {
@@ -25,25 +26,30 @@ export default function Pokemon (props) {
   }
     
   return (
-    <motion.div
-      className="snap-start flex flex-col items-center justify-center w-30vw bg-gray-300 hover:bg-gray-600 transition duration-1000 m-1 w-fullVh sm2:w-24% sm:w-24% md2:w-24%"
-      initial="hidden"
-      animate="visible"
-      exit="exit"
-      variants={pokemonCards}
-      custom={id}
+    <Link
+      to={`/pokemon/${id}`}
+      className="snap-start flex flex-col items-center justify-center w-30vw hover:bg-gray-600 transition duration-1000 m-1 w-fullVh sm2:w-24% sm:w-24% md2:w-24%"
     >
-      {retornaImagem()}
-      <p className="pb-3 text-center text-1xl">
-        {
-          (id) < 10
-          ? `0${id }`
-          : `${id}`
-        }
-        {' - '}
-        {letraMaiuscula(name)}
-      </p>
-    </motion.div>
+      <motion.div
+        className="snap-start flex flex-col items-center justify-center bg-gray-300 hover:bg-gray-600 transition duration-1000"
+        initial="hidden"
+        animate="visible"
+        exit="exit"
+        variants={pokemonCards}
+        custom={id}
+      >
+        {retornaImagem()}
+        <p className="pb-3 text-center text-1xl">
+          {
+            (id) < 10
+            ? `0${id }`
+            : `${id}`
+          }
+          {' - '}
+          {letraMaiuscula(name)}
+        </p>
+      </motion.div>
+    </Link>
   );
 }
 
