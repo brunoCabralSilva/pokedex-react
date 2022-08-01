@@ -6,10 +6,30 @@ module.exports = {
   theme: {
     screens: {
       'sm2': '420px',
+      'sm3':'520px',
       'sm': '640px',
+      'md':'768px',
       'md2': '820px',
+      'lg':	'1024px',
+      'xl':'1280px',
+      '2xl':'1536px',
     },
     extend: {
+      colors: {
+          'yellow-pokemon': '#FFCC01',
+          'blue-space': '#273860',
+          'hTransp': 'rgb(0,0,0,0.8)',
+          'transp': 'rgb(0,0,0,0)',
+          'half-transp': 'rgb(0,0,0,0.8)',
+          'min-transp': 'rgb(0,0,0,0.6)',
+          'lilas': '#363775',
+        },
+      backgroundImage: {
+        'wallpaper-lilas':"url('../src/imagens/wallpaper/wallpaper.jpg')",
+      },
+      rotate: {
+        '45deg': '-45deg',
+      },
       spacing: {
         '25%': '24.4%',
         '24%': '23.9%',
@@ -18,14 +38,16 @@ module.exports = {
         '25vw': '18vw',
         '50vw': '35vw',
         'fullVh': '60vw',
+        '20vh': '20vh',
+        '60vh': '60vh',
+        '40vh': '40vh',
+        '50vh': '50vh',
+        '85vh': '85vh',
+        '120vh': '120vh',
         'brown-mewtwo': '#201211',
         'light-mewtwo': '#674C37',
 
       },
-      backgroundImage: {
-        'mewtwo': "url('https://wallpaperaccess.com/full/493965.jpg')",
-        'gradient-mewtwo': "url('../src/imagens/gradient.png')",
-      }
     },
     plugins: []
   }

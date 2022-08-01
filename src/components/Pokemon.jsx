@@ -15,23 +15,23 @@ export default function Pokemon (props) {
 
   const retornaImagem = () => {    
     if (id <= 9) {
-      return (<img src={require(`../imagens/all/00${id}.png`)} className="w-10/12" alt={name} />);
+      return (<img src={require(`../imagens/all/00${id}.png`)} className="w-8/12" alt={name} />);
     }
     else if (id >= 10 && id <= 99) {
-      return (<img src={require(`../imagens/all/0${id}.png`)} alt={name} />);
+      return (<img src={require(`../imagens/all/0${id}.png`)} className="w-8/12" alt={name} />);
     }
     else {
-      return (<img src={require(`../imagens/all/${id}.png`)} alt={name} />);
+      return (<img src={require(`../imagens/all/${id}.png`)} className="w-8/12" alt={name} />);
     }
   }
     
   return (
     <Link
       to={`/pokemon/${id}`}
-      className="snap-start flex flex-col items-center justify-center w-30vw hover:bg-gray-600 transition duration-1000 m-1 w-fullVh sm2:w-24% sm:w-24% md2:w-24%"
+      className="p-1 flex flex-col items-center justify-center w-1/2 sm:w-1/3 md:w-1/4 transition duration-1000"
     >
       <motion.div
-        className="snap-start flex flex-col items-center justify-center bg-gray-300 hover:bg-gray-600 transition duration-1000"
+        className="w-full flex flex-col items-center justify-center bg-lilas hover:bg-gray-600"
         initial="hidden"
         animate="visible"
         exit="exit"

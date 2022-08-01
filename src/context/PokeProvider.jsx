@@ -12,11 +12,6 @@ export default function PokeProvider({ children }) {
   const [first, setFirst] = useState(0);
   const [ultimaTentativa, setUltimaTentativa] = useState([]);
 
-  // const cleanArrayTypes = () => {
-  //  setUltimaTentativa([]);
-  // };
-    
-
   const twentyExibition = async (response, array, buttonMessage) => {
      if(response !== 'more20' ) {
       setPokeGen(array);
@@ -168,7 +163,7 @@ export default function PokeProvider({ children }) {
 
   return(
     <contexto.Provider value={{
-      listPokemon, pokeGen, buttonOption, ultimaTentativa, finish,
+      listPokemon, pokeGen, buttonOption, finish,
       searchByNameId, letraMaiuscula, setList, searchByGen,
       setButton, firstCall, moreTwenty, searchByType,
       setFirstValor,

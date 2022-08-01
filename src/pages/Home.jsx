@@ -1,9 +1,10 @@
 import React, { useEffect, useContext } from 'react';
 import contexto from '../context';
 import Pokemon from '../components/Pokemon';
-import TypeList from '../components/TypeList';
 import Logo from '../components/Logo';
 import Filter from '../components/Filter';
+import Slider from '../components/Slider';
+import Nav from '../components/Nav';
 import data from '../fetchs';
 
 const { getAllPokemon } = data;
@@ -12,7 +13,7 @@ function Home() {
   const context = useContext(contexto);
   const { 
     buttonOption, finish, listPokemon, moreTwenty,
-    setList, searchByGen, setButton, letraMaiuscula, searchByType,
+    setList, searchByGen, setButton, letraMaiuscula,
   } = context;
 
   useEffect(() => {
@@ -35,15 +36,9 @@ function Home() {
               Mais Pokémon
           </button>
         );
-      } else if (buttonOption === 'generation') {
+      } else if (buttonOption === 'generation' || buttonOption === 'type') {
         return (
           <button type="button" className="p-3 bg-gray-300 w-full" onClick={ () => searchByGen('more20') }>
-            Mais Pokemon
-          </button>
-        );
-      } else if (buttonOption === 'type') {
-        return (
-          <button type="button" className="p-3 bg-gray-300 w-full" onClick={ () => searchByType('more20') }>
             Mais Pokemon
           </button>
         );
@@ -84,13 +79,35 @@ function Home() {
   }
 
     return (
-      <div className="flex flex-col w-full bg-gradient-mewtwo bg-cover">
-        <header className="flex justify-center w-full h-80 bg-mewtwo">
-          <Logo classImage="w-2/5" />
-        </header>
+      <div className="flex flex-col w-full">
+        <Nav className="fixed"/>       
+            {/* <Logo classImage="w-4/5 sm:w-3/5 md:w-2/5" /> */}
       <div className="flex flex-row items-center justify-center sm:items-start sm:justify-between w-full">
-        <section className="w-full sm:w-4/5 flex flex-col justify-center items-center m-2">
+        <section className="w-full flex flex-col justify-center items-center">
           <Filter />
+          <div className="grid grid-cols-4 w-full">
+            <div className="h-85vh row-span-2 col-span-4 p-1">
+              <Slider list={['01.jpg','02.jpg','03.jpg','04.jpg','05.jpg']} />
+            </div>
+            <div className="row-span-1 h-60vh p-1">
+              <Slider list={['venusaur.jpg','charizard.jpg','clefable.jpg','muk.jpg','hydreigon.jpg']} />
+            </div>
+            <div className="row-span-2 h-120vh p-1">
+              <Slider list={['mew.png','exeggutor.png','greninja.jpg','Lycanroc.jpeg','tyrantrum.jpg']} />
+            </div>
+            <div className="col-span-2 h-60vh p-1">
+              <Slider list={['salamence.jpg','suicune.jpg','entei.jpg','lugiajpg','aurorus.jpeg']} />
+            </div>
+            <div className="row-span-1 h-60vh p-1">
+              <Slider list={['garchomp.jpg','haxorus.jpg','steelix.jpg','rhydon.jpg', 'ninetales.jpg']} />
+            </div>
+            <div className="row-span-1 h-60vh p-1">
+              <Slider list={['dragonite.jpg','nidoking.png','umbreon.jpg','Noctowl.jpeg','mewtwo.jpg']} />
+            </div>
+            <div className="row-span-2 h-60vh p-1">
+              <Slider list={['alakazam.jpg','espeon.png','Carracosta.jpeg','lycanrock2.jpg','snorlax.jpg']} />
+            </div>
+          </div>
           <div className="w-full flex flex-row items-center justify-evenly sm:m-2">
             <div className={`w-full flex flex-row flex-wrap items-center justify-between `}>
             { returnPokemonList() }
@@ -98,9 +115,6 @@ function Home() {
           </div>
           { buttonReturn() }
         </section>
-        <aside className="hidden sm:flex sm:flex-col w-1/5 bg-gray-200 sm:mr-2 sm:my-2">
-          <TypeList />
-        </aside>
       </div>
       </div>
     );
