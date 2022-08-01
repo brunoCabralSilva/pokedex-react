@@ -96,7 +96,7 @@ function Home() {
               <Slider list={['mew.png','exeggutor.png','greninja.jpg','Lycanroc.jpeg','tyrantrum.jpg']} />
             </div>
             <div className="col-span-2 h-60vh p-1">
-              <Slider list={['salamence.jpg','suicune.jpg','entei.jpg','lugiajpg','aurorus.jpeg']} />
+              <Slider list={['salamence.jpg','suicune.jpg','entei.jpg','lugia.jpg','aurorus.jpeg']} />
             </div>
             <div className="row-span-1 h-60vh p-1">
               <Slider list={['garchomp.jpg','haxorus.jpg','steelix.jpg','rhydon.jpg', 'ninetales.jpg']} />
