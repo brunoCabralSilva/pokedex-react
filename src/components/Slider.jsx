@@ -9,13 +9,15 @@ import 'swiper/css/autoplay';
 import 'swiper/css';
 
 export default function Slider(props) {
-  const { list } = props;
+  const { list, direction, delay, reverseDirection } = props;
   return(
     <Swiper 
         modules={[Autoplay]} 
         loop={true}
-        autoplay={{delay: 5000 }}
+        autoplay={{delay: delay }}
         className="z-30 w-full h-full"
+        direction={direction}
+        reverseDirection={ true }
     > 
     {
       list.map((item) => (

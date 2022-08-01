@@ -22,6 +22,7 @@ module.exports = {
           'transp': 'rgb(0,0,0,0)',
           'half-transp': 'rgb(0,0,0,0.8)',
           'min-transp': 'rgb(0,0,0,0.6)',
+          'mini-transp': 'rgb(0,0,0,0.4)',
           'lilas': '#363775',
         },
       backgroundImage: {
@@ -39,6 +40,7 @@ module.exports = {
         '50vw': '35vw',
         'fullVh': '60vw',
         '20vh': '20vh',
+        '30vh': '30vh',
         '60vh': '60vh',
         '40vh': '40vh',
         '50vh': '50vh',
