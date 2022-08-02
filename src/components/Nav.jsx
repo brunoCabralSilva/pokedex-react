@@ -45,7 +45,7 @@ export default function Nav() {
   }
 
     return (
-      <nav className="w-full z-40 font-andika text-base absolute 2xl:text-xl leading-6">
+      <nav className="w-full font-andika text-base absolute 2xl:text-xl leading-6 z-50">
         <div className={`fixed right-0 top-0 z-40 mr-4 mt-4 flex flex-col ${returnItemsMenu()}`} onClick={menu}>
             <div className={`h-2 w-10 mb-1 z-40 bg-yellow-pokemon border-2 border-black ${barra1()}`}> </div>
             <div className={`h-2 w-10 mb-1 z-40 bg-yellow-pokemon border-2 border-black ${barra2()}`}> </div>
@@ -60,28 +60,28 @@ export default function Nav() {
             <li className={returnLiMenu()}>
               <Link
                 to="/"
-                className="text-white hover:text-crepusculo transition duration-1000 sm:px-2"
+                className="text-white hover:text-yellow-pokemon transition duration-1000 sm:px-2"
               >
                 Início
               </Link>
             </li>
             <li className={returnLiMenu()}>
               <Link to="/"
-                className="text-white hover:text-crepusculo transition duration-1000 sm:px-2"
+                className="text-white hover:text-yellow-pokemon transition duration-1000 sm:px-2"
               >
                 Catálogo
               </Link>
             </li>
             <li className={returnLiMenu()}>
               <Link to="/"
-                className="text-white hover:text-crepusculo transition duration-1000 sm:px-2"
+                className="text-white hover:text-yellow-pokemon transition duration-1000 sm:px-2"
               >
                 Sobre
               </Link>
             </li>
             <li className={returnLiMenu()}>
               <Link to="/"
-                className="text-white hover:text-crepusculo transition duration-1000 sm:px-2"
+                className="text-white hover:text-yellow-pokemon transition duration-1000 sm:px-2"
               >
                 Contato
               </Link>
