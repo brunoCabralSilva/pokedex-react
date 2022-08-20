@@ -2,4 +2,4 @@
 
 <h3 align="center">https://brunocabralsilva.github.io/pokedex-react/</h3>
 
-<img src=src/images/wallpaper/03.jpg) alt="lapras" />
+<img src=src/imagens/wallpaper/03.jpg) alt="lapras" />
