@@ -15,6 +15,9 @@ module.exports = {
       '2xl':'1536px',
     },
     extend: {
+      transitionProperty: {
+        'width': 'width',
+      },
       colors: {
           'yellow-pokemon': '#FFCC01',
           'blue-space': '#273860',
@@ -26,7 +29,7 @@ module.exports = {
           'lilas': '#363775',
         },
       backgroundImage: {
-        'wallpaper-lilas':"url('../src/imagens/wallpaper/wallpaper.jpg')",
+        'wallpaper-lilas':"url('../src/imagens/wallpaper/03.jpg')",
       },
       rotate: {
         '45deg': '-45deg',
@@ -38,6 +41,8 @@ module.exports = {
         '25%': '24.4%',
         '24%': '23.9%',
         '45%': '49.5%',
+        '24vh': '24vh',
+        '48vh': '48vh',
         '95%': '95%',
         '25vw': '18vw',
         '50vw': '35vw',
@@ -46,8 +51,10 @@ module.exports = {
         '30vh': '30vh',
         '60vh': '60vh',
         '40vh': '40vh',
+        '45vh':'45vh',
         '50vh': '50vh',
         '85vh': '85vh',
+        '95vh': '95vh',
         '120vh': '120vh',
         'brown-mewtwo': '#201211',
         'light-mewtwo': '#674C37',

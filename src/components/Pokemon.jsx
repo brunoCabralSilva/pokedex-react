@@ -31,7 +31,7 @@ export default function Pokemon (props) {
       className="p-1 flex flex-col items-center justify-center w-1/2 sm:w-1/3 md:w-1/4 transition duration-1000"
     >
       <motion.div
-        className="w-full flex flex-col items-center justify-center bg-lilas hover:bg-gray-600"
+        className="w-full flex flex-col items-center justify-center bg-half-transp hover:bg-min-transp transition duration-500"
         initial="hidden"
         animate="visible"
         exit="exit"
@@ -39,7 +39,7 @@ export default function Pokemon (props) {
         custom={id}
       >
         {retornaImagem()}
-        <p className="pb-3 text-center text-1xl">
+        <p className="pb-3 text-center text-1xl text-white font-bold">
           {
             (id) < 10
             ? `0${id }`
@@ -52,7 +52,6 @@ export default function Pokemon (props) {
     </Link>
   );
 }
-
 
 Pokemon.propTypes = {
   letraMaiuscula: PropTypes.func.isRequired,
