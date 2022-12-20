@@ -28,7 +28,7 @@ export default function Pokemon (props) {
   return (
     <Link
       to={`/pokemon/${id}`}
-      className="p-1 flex flex-col items-center justify-center w-1/2 sm:w-1/3 md:w-1/4 transition duration-1000"
+      className="p-1 flex flex-col items-center justify-center transition duration-1000"
     >
       <motion.div
         className="w-full flex flex-col items-center justify-center bg-half-transp hover:bg-min-transp transition duration-500"

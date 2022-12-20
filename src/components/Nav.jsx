@@ -3,7 +3,8 @@ import { useDispatch } from 'react-redux';
 import actionMenu from '../redux/action';
 import Menu from '../components/Menu';
 
-export default function Nav() {
+
+export default function Nav({ color }) {
   const [ showMenu, setShowMenu] = useState(false);
   const dispatch = useDispatch();
   const returnItemMenu = () => {
@@ -14,16 +15,16 @@ export default function Nav() {
   return (
     <nav className="w-full font-andika text-base absolute 2xl:text-xl leading-6 z-50">
       <div
-        className={`fixed right-0 top-0 z-40 mr-3 mt-3 flex flex-col ${ showMenu ? 'items-center justify-center' : 'items-end' }`}
+        className={`fixed right-0 top-0 z-40 mr-2 mt-3 flex flex-col ${ showMenu ? 'items-center justify-center' : 'items-end' }`}
         onClick={
           () => {
           setShowMenu(!showMenu);
           dispatch(actionMenu(showMenu));
         }}
       >
-          <div className={`h-1 w-7 mb-1 z-40 transition duration-500 ${ showMenu ? 'rotate-45deg translate-y-2 bg-white' : 'rotate-0 bg-black' }`} />
-          <div className={`h-1 w-7 mb-1 z-40 transition duration-500 ${showMenu ? 'rotate-45 bg-white' : 'bg-black rotate-0'}`} />
-          <div className={`h-1 w-7 z-40 transition duration-500 ${ showMenu ? 'opacity-0 bg-white' : 'opacity-1 bg-black'}`}> </div>
+          <div className={`h-1 w-7 mb-1 z-40 transition duration-500 ${ showMenu ? 'rotate-45deg translate-y-2 bg-white' : `rotate-0 bg-${color}` }`} />
+          <div className={`h-1 w-7 mb-1 z-40 transition duration-500 ${showMenu ? 'rotate-45 bg-white' : `bg-${color} rotate-0`}`} />
+          <div className={`h-1 w-7 z-40 transition duration-500 ${ showMenu ? 'opacity-0 bg-white' : `opacity-1 bg-${color}`}`}> </div>
         <ul
           className={`${returnItemMenu()}`}
           initial={{ x: 30, opacity: 0 }}

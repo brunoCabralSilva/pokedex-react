@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay } from 'swiper';
 import { Link } from  'react-router-dom';
 import { useSelector } from 'react-redux';
+import contexto from '../context';
 
 import 'swiper/css';
 import 'swiper/css/pagination';
@@ -12,6 +13,9 @@ import 'swiper/css';
 export default function Menu() {
   const globalState = useSelector((state) => state);
   const { showMenu } = globalState;
+  const context = useContext(contexto);
+  const {setList} = context;
+
   const arrayMenu = [
     {
       grid: 'row-span-1 h-24vh md:h-45vh',
@@ -64,8 +68,8 @@ export default function Menu() {
       direction: 'horizontal',
       reverseDirection: false,
       delay: 5000,
-      name: 'Cards',
-      link: '/cards',
+      name: 'Home',
+      link: '/pokedex-react',
     },
   ];
 
@@ -102,7 +106,11 @@ export default function Menu() {
             </a>
           )}
           return (
-            <Link to={item.link} className={`${item.grid} relative ${ showMenu ? 'flex' : 'hidden' }`}>
+            <Link
+              to={item.link}
+              className={`${item.grid} relative ${ showMenu ? 'flex' : 'hidden' }`}
+              onClick={() => setList([])}
+              >
               <div className="w-full h-full absolute z-20 flex items-end">
                 <p className="text-white w-full text-xl font-bold ml-2 mb-2 mr-2 p-1 pl-2 md:p-3 z-10 bg-gradient-to-t from-half-transp to-transp">
                   {item.name}

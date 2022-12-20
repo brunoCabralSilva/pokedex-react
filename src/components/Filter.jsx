@@ -20,8 +20,8 @@ function Filter() {
   
   return (
     <form className="justify-between lg:flex-nowrap flex flex-col items-center px-2 sm:px-0 pb-4 sm:pb-0 w-full">
-      <div className="justify-between lg:flex-nowrap flex sm:flex-row flex-col items-center px-2 sm:px-0 pb-4 sm:pb-0 w-full text-white font-bold">
-        <label htmlFor="namePokemon" className="w-full justify-center mt-2 sm:mt-0 mx-1 flex flex-row p-1 align-center sm:align-start">
+      <div className="grid grid-cols-4 px-2 sm:px-0 pb-4 sm:pb-0 w-full text-white font-bold">
+        <label htmlFor="namePokemon" className="w-full justify-center mt-2 sm:mt-0 mx-1 flex flex-row py-3 align-center sm:align-start">
           <input type="radio" id="namePokemon" name="search" onClick={ () => setInputSearch('name') } />
           <span className="pl-2">Buscar por Nome</span>
         </label>

@@ -6,7 +6,7 @@ import Header from '../components/Header';
 function Home() {
     return (
       <div className="flex flex-col w-full">
-        <Nav className="fixed"/>       
+        <Nav color="black" className="fixed"/>       
         <section className="w-full flex flex-col justify-center items-center">
           <Header />
         </section>
