@@ -11,39 +11,66 @@ const { getAllPokemon } = data;
 export default function Search() {
   const context = useContext(contexto);
   const {
-    buttonOption, finish, listPokemon, moreTwenty,
-    setList, setButton, letraMaiuscula,
+    setList,
+    listPokemon,
+    letraMaiuscula,
+    moreTwentyForAll,
+    buttonOption,
+    finish,
+    first,
+    setButton,
+    searchByType,
   } = context;
   const history = useHistory();
 
   useEffect(() => {
+    setButton('all');
     const firstCall = async () => {
-      const call = await getAllPokemon(0);
-      setList(call.results);
+      const call = await getAllPokemon(first);
+      if (listPokemon.length <= 20) {
+        if (first + 20 < 898) {
+          setList(call.results);
+        } else {
+          let last898 = [];
+          for (let i = 0; i < 898 - first; i += 1) {
+            last898.push(call.results[i]);
+          }
+          setList(last898);
+        }
+      }
     };
     firstCall();
-    setButton('all');
   }, []);
 
-  const buttonReturn = () => {
-    let message = '';
-    if (buttonOption === 'hidden') {
-      return null
-    } else if (finish === false) {
-      if (buttonOption === 'all' || buttonOption === 'generation' || buttonOption === 'type') {
-        message = 'Mais Pokémon';
-      } else {
-        message = 'Voltar ao topo';
-      }
-    } else {
-      message = 'Voltar ao topo';
-    }
+console.log(buttonOption);
 
-    return (
-      <button type="button" className="p-3 bg-half-transp w-11/12 hover:border-2 hover:border-white" onClick={moreTwenty}>
-        { message }
-      </button>
-    );
+  const buttonReturn = () => {
+    if (finish) {
+      return (
+        <button type="button" className="p-3 bg-half-transp w-11/12 hover:border-2 hover:border-white" onClick={() => window.scrollTo(0, 0)}>
+          Voltar ao Topo
+        </button>
+      );
+    }
+    if (buttonOption === 'hidden') {
+      return null;
+    } 
+    
+    if (buttonOption === 'all') {
+      return (
+        <button type="button" className="p-3 bg-half-transp w-11/12 hover:border-2 hover:border-white" onClick={moreTwentyForAll}>
+          Mais Pokémon
+        </button>
+      );
+    } 
+    
+    if (buttonOption === 'generation' || buttonOption === 'type') {
+      return (
+        <button type="button" className="p-3 bg-half-transp w-11/12 hover:border-2 hover:border-white" onClick={() => searchByType('more20')}>
+          Mais Pokémon
+        </button>
+      );
+    }
   }
 
   const numberPokemon = (poke) => {

@@ -14,9 +14,12 @@ export default function InputSearch(props) {
     letraMaiuscula,
     searchByType,
     firstCall,
+    setList,
+    setAllItemsList,
+    type,
+    addType,
   } = context;
 
-  const [type, setType] = useState([]);
   const [result, setResult] = useState([]);
   const [localName, setLocalName] = useState('');
   const [localNumber, setLocalNumber] = useState('');
@@ -43,34 +46,7 @@ export default function InputSearch(props) {
       firstCall();
       setButton('all');
     } else {
-      searchByType('init', type);
-      setType([]);
-    }
-  }
-
-  const addType = (name) => {
-    if (name === 'all') {
-      if(type.includes('all')) {
-        const removeAll = type.filter((t) => t !== 'all');
-        setType(removeAll);
-      } else {
-        setType(['all']);
-      }
-    } else {
-        const removeAll = type.filter((t) => t !== 'all');
-        setType(removeAll);
-        if(type.includes(imageType(name).type.toString())) {
-          if (type.length === 1) {
-            setType([]);
-          } else {
-            const att = type.filter((f) => (f) !== imageType(name).type.toString());
-            setType(att);
-          }
-      } else if (type.length >= 2) {
-        global.alert('Não existem pokémon com três tipos: Remova um dos dois tipos selecionados ou realize a pesquisa com os dois tipos já escolhidos.');
-      } else {
-        setType(prevState => [...prevState, imageType(name).type.toString()]);
-      }
+      searchByType('type');
     }
   }
 
@@ -117,7 +93,7 @@ export default function InputSearch(props) {
                 }
                 return (
                   <div className="p-1 w-1/3 h-18 sm:w-1/4 lg:w-2/12">
-                    <div className="flex flex-row p-2 items-center sm3:justify-start justify-center hover:font-bold p-2 bg-gray-400 w-full h-full" key={index} onClick={() => addType(name)}>
+                    <div className="flex flex-row items-center sm3:justify-start justify-center hover:font-bold p-2 bg-gray-400 w-full h-full" key={index} onClick={() => addType(name)}>
                       {imageType(name).image}
                       <p className="hidden sm3:flex pl-2">{letraMaiuscula(name)}</p>
                     </div>
@@ -126,7 +102,7 @@ export default function InputSearch(props) {
               })
             }
             <div className="p-1 w-1/3 h-18 sm:w-1/4 lg:w-2/12">
-              <div className="flex flex-row p-2 items-center hover:font-bold p-2 bg-gray-400 w-full" onClick={() => addType('all')}>
+              <div className="flex flex-row items-center hover:font-bold p-2 bg-gray-400 w-full" onClick={() => addType('all')}>
                 <img src={require('../imagens/pokebola.png')} alt="pokebola" className="w-12 object-contain sm:py-1" />
                 <p className="hidden sm3:flex pl-2">{letraMaiuscula('todos os Pokémon')}</p>
               </div>
@@ -135,8 +111,12 @@ export default function InputSearch(props) {
           <button
             type="button"
             className="w-2/12 bg-gray-500 p-2 my-2"
-            onClick={ searchButton }
-          >
+            onClick={ () => {
+              searchButton();
+              setAllItemsList([]);
+              setList([]);
+            }}
+            >
             <i className="fa-solid fa-magnifying-glass text-white"></i>
           </button>
         </div>

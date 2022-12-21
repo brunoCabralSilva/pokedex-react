@@ -71,7 +71,7 @@ export default function Details(props) {
         animate="visible"
         exit="exit"
       >
-        <Nav className="z-50" />
+        <Nav className="z-50" color="white" />
         <div className="bg-half-transp">
           <div className="w-full h-full flex flex-col items-center justify-center sm:justify-center ">
             <img src={require('../imagens/Pokémon_logo.png')} className='w-10/12 sm:w-2/3 md:w-2/5 transition-all pt-5' alt="" />
@@ -107,23 +107,23 @@ export default function Details(props) {
             }
             </div>
           </div>
-          <div className="grid grid-cols-5 py-4 text-lg bg-white text-center font-bold">
-            <div>
+          <div className="grid grid-cols-5 px-2 gap-2 text-lg text-center font-bold">
+            <div className="bg-white py-4">
               Experiência base
-              <span className="px-2">{ ' - ' }</span>
+              <span className="px-2 ">{ ' - ' }</span>
               { dataPokemon.base_experience }
             </div>
-            <div>
+            <div className="bg-white py-4">
               Peso
               <span className="px-2">{ ' - ' }</span>
               { dataPokemon.weight }
             </div>
-            <div>
+            <div className="bg-white py-4">
               Altura
               <span className="px-2">{ ' - ' }</span>
               { dataPokemon.height }
             </div>
-            <div className=" col-span-2">
+            <div className="bg-white col-span-2 py-4">
               <span>Habilidades</span>
               <span className="px-2">-</span>
               { 
