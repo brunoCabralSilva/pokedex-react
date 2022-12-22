@@ -33,13 +33,13 @@ export default function Details(props) {
   const retornaImagem = () => { 
     if (dataPokemon.id)  {
     if (dataPokemon.id <= 9) {
-      return (<img src={require(`../imagens/all/00${dataPokemon.id}.png`)} className="w-1/2" alt={dataPokemon.name} />);
+      return (<img src={require(`../imagens/all/00${dataPokemon.id}.png`)} className="w-2/3 sm:w-1/2" alt={dataPokemon.name} />);
     }
     else if (dataPokemon.id >= 10 && dataPokemon.id <= 99) {
-      return (<img src={require(`../imagens/all/0${dataPokemon.id}.png`)} className="w-1/2" alt={dataPokemon.name} />);
+      return (<img src={require(`../imagens/all/0${dataPokemon.id}.png`)} className="w-2/3 sm:w-1/2" alt={dataPokemon.name} />);
     }
     else {
-      return (<img src={require(`../imagens/all/${dataPokemon.id}.png`)} className="w-1/2" alt={dataPokemon.name} />);
+      return (<img src={require(`../imagens/all/${dataPokemon.id}.png`)} className="w-2/3 sm:w-1/2" alt={dataPokemon.name} />);
     }
   }
   }
@@ -90,7 +90,7 @@ export default function Details(props) {
           <IoIosArrowBack />
         </div>
         <div className="bg-half-transp">
-          <div className="w-full h-full flex flex-col items-center justify-center sm:justify-center ">
+          <div className="w-full pt-10 sm:pt-0 h-full flex flex-col items-center justify-center sm:justify-center ">
             <img src={require('../imagens/Pokémon_logo.png')} className='w-10/12 sm:w-2/3 md:w-2/5 transition-all pt-5' alt="" />
           </div>
           <p className="text-3xl font-white pt-10 pb-3 text-center font-bold text-white m-1">
@@ -98,7 +98,7 @@ export default function Details(props) {
             <span className="px-2">{ ' - ' }</span>
             { dataPokemon.name && letraMaiuscula(dataPokemon.name) }
           </p>
-          <div className="flex w-full gap-3 px-5 pb-5">
+          <div className="flex flex-col sm:flex-row w-full gap-3 px-5 pb-5">
             <div className="w-full flex flex-col items-center justify-center bg-gradient-to-l via-white/5 from-white to-transparent m-1">
               { retornaImagem() }
               <div className="flex pb-10">
@@ -124,7 +124,7 @@ export default function Details(props) {
             }
             </div>
           </div>
-          <div className="grid grid-cols-5 px-2 gap-2 text-lg text-center font-bold">
+          <div className="grid grid-cols-1 sm:grid-cols-5 px-2 gap-2 text-lg text-center font-bold">
             <div className="bg-white py-4">
               Experiência base
               <span className="px-2 ">{ ' - ' }</span>
@@ -140,7 +140,7 @@ export default function Details(props) {
               <span className="px-2">{ ' - ' }</span>
               { dataPokemon.height }
             </div>
-            <div className="bg-white col-span-2 py-4">
+            <div className="bg-white sm:col-span-2 py-4">
               <span>Habilidades</span>
               <span className="px-2">-</span>
               { 
@@ -159,7 +159,7 @@ export default function Details(props) {
             </div>
           </div>
           <p className="text-3xl font-white pt-10 pb-3 text-center font-bold text-white m-1">Lista de Movimentos</p>
-          <div className="grid grid-cols-5">
+          <div className="grid grid-cols-2 sm:grid-cols-5">
             { 
               dataPokemon.moves && dataPokemon.moves.sort((a, b) => {
                 if (a.move.name < b.move.name) return -1;
