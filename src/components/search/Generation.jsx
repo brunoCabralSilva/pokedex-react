@@ -54,12 +54,12 @@ export default function Generation() {
   };
 
   return(
-      <div className="w-full sm:w-full mx-auto px-1">
-        <div className="bg-black/75 min-h-75vh w-full py-10 flex flex-col justify-center items-start">
-          <div className="w-full flex items-start justify-center">
+      <div className="w-full mx-auto px-1">
+        <div className="bg-black/75 min-h-75vh w-full flex flex-col justify-start items-center">
+          <div className="w-11/12 sm:w-9/12 flex items-start justify-center">
             <select
               id="select-generation"
-              className="p-2 my-2 mr-2 ml-0 sm:ml-2 w-10/12 sm:w-9/12 text-center"
+              className="p-2 my-2 mr-2 ml-0 sm:ml-2 w-full text-center"
               onChange={(e) => setGen(e.target.value)}
             >
               <option disabled selected>Geração</option>
@@ -80,7 +80,7 @@ export default function Generation() {
               <i className="fa-solid fa-magnifying-glass text-white"></i>
             </button>
           </div>
-          <div className="w-full grid grid-cols-4">
+          <div className="w-full grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4">
             {
               listGeneration.length > 0 && listGeneration.map((poke, index) => (
                 <Pokemon

@@ -63,7 +63,7 @@ export default function AllPokemon() {
 
   return(
     <div>
-      <div className="w-full grid grid-cols-4">
+      <div className="w-full grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4">
         {
           list.length !== 1
             ? list.length > 0 && list.map((poke, index) => (

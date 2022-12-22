@@ -139,7 +139,7 @@ export default function Type() {
   return (
     <div className="flex flex-col w-full min-h-75vh">
       <div
-        className={`px-1 py-2 w-full grid grid-cols-4 ${hiddeTypes && 'hidden'}`}
+        className={`px-1 py-2 w-full grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 ${hiddeTypes && 'hidden'}`}
         onChange={(e) => setType(e.target.value)}
       >
         {
@@ -185,12 +185,12 @@ export default function Type() {
         className="w-full p-2 mb-2"
         onClick={ searchByType }
         >
-          <div className="bg-black/70 text-white text-xl p-4 font-bold hover:border-2 hover:border-white w-full h-full flex items-center justify-between">
+          <div className="bg-black/70 text-white text-xl p-4 font-bold hover:border-2 hover:border-white w-full h-full flex flex-col sm:flex-row items-center justify-between">
             { returnMessageButton() }
-            <i className="fa-solid fa-magnifying-glass"></i>
+            <i className="fa-solid fa-magnifying-glass hidden sm:flex"></i>
           </div>
       </button>
-      <div className="w-full grid grid-cols-4">
+      <div className="w-full grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4">
         {
           listType.length !== 1
             ? listType.length > 0 && listType.map((poke, index) => (

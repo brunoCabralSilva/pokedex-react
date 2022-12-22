@@ -12,10 +12,10 @@ export default function NameNumber() {
   return(
       <div className="w-full sm:w-full mx-auto px-1">
         <div className="bg-black/75 h-75vh w-full py-10 flex flex-row justify-center ">
-          <div className="w-full h-full flex items-start justify-center">
+          <div className="w-11/12 sm:w-9/12 h-full flex items-start justify-center">
             <input
               type="text"
-              className="p-2 my-2 mr-2 ml-0 sm:ml-2 w-10/12 sm:w-1/2 text-center"
+              className="p-2 my-2 mr-2 ml-0 sm:ml-2 w-full text-center"
               value={localNameNumber}
               placeholder={`Digite o Nome ou o Número do Pokémon:`}
               onChange={(e) => setLocalNameNumber(e.target.value) }
