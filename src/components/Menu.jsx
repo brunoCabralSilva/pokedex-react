@@ -109,13 +109,8 @@ export default function Menu() {
             <Link
               to={item.link}
               className={`${item.grid} relative ${ showMenu ? 'flex' : 'hidden' }`}
-              onClick={() => { 
-                setList([]);
-                setFirstValor(0);
-                setButton('all');
-                setTheFinish(false);
-              }}
               >
+                {console.log(item.link)}
               <div className="w-full h-full absolute z-20 flex items-end">
                 <p className="text-white w-full text-xl font-bold ml-2 mb-2 mr-2 p-1 pl-2 md:p-3 z-10 bg-gradient-to-t from-half-transp to-transp">
                   {item.name}

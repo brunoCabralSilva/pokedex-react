@@ -13,7 +13,7 @@ export default function Nav({ color }) {
     } else return 'bg-transp opacity-0 w-0 transition-opacity h-screen items-end p-3 transition duration-500 text-white';
   }
   return (
-    <nav className="w-full font-andika text-base absolute 2xl:text-xl leading-6 z-50">
+    <nav className="w-full font-andika text-base absolute 2xl:text-xl leading-6 z-30">
       <div
         className={`fixed right-0 top-0 z-40 mr-2 mt-3 flex flex-col ${ showMenu ? 'items-center justify-center' : 'items-end' }`}
         onClick={
@@ -32,7 +32,7 @@ export default function Nav({ color }) {
           transition={{ delay: 0.5, duration: 0.5 }}
           exit={{ y: -30, opacity: 0, transition: { duration: 0.5 } }}
         >
-          <Menu />
+          <Menu className="z-50" />
         </ul>
       </div>
     </nav> 
