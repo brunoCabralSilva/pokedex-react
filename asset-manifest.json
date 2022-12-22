@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/pokedex-react/static/css/main.f1cf216a.css",
-    "main.js": "/pokedex-react/static/js/main.02f6deb3.js",
+    "main.css": "/pokedex-react/static/css/main.8e062b64.css",
+    "main.js": "/pokedex-react/static/js/main.05c811e4.js",
     "static/media/espeon.png": "/pokedex-react/static/media/espeon.9ef470889024c841dc12.png",
     "static/media/mew.png": "/pokedex-react/static/media/mew.e1144529d0fd3456923a.png",
     "static/media/nidoking.png": "/pokedex-react/static/media/nidoking.2c75792dd06def914b81.png",
@@ -959,11 +959,11 @@
     "static/media/fighting.png": "/pokedex-react/static/media/fighting.369e0ec67ce5c409d513.png",
     "static/media/278.png": "/pokedex-react/static/media/278.792132396e6a244597bf.png",
     "index.html": "/pokedex-react/index.html",
-    "main.f1cf216a.css.map": "/pokedex-react/static/css/main.f1cf216a.css.map",
-    "main.02f6deb3.js.map": "/pokedex-react/static/js/main.02f6deb3.js.map"
+    "main.8e062b64.css.map": "/pokedex-react/static/css/main.8e062b64.css.map",
+    "main.05c811e4.js.map": "/pokedex-react/static/js/main.05c811e4.js.map"
   },
   "entrypoints": [
-    "static/css/main.f1cf216a.css",
-    "static/js/main.02f6deb3.js"
+    "static/css/main.8e062b64.css",
+    "static/js/main.05c811e4.js"
   ]
 }
