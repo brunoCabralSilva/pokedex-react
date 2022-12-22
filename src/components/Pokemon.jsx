@@ -2,9 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import letraMaiuscula from '../utils/Utilitaries';
+
 
 export default function Pokemon (props) {
-  const { name, letraMaiuscula, id } = props;
+  const { name, id } = props;
 
   const pokemonCards = {
     hidden: { opacity: 0, x: 20 },

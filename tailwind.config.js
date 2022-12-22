@@ -4,6 +4,9 @@ module.exports = {
     "./src/**/*.{js,jsx,ts,tsx}",
   ],
   theme: {
+    minHeight: {
+      '75vh': '75vh',
+    },
     screens: {
       'sm2': '420px',
       'sm3':'520px',
@@ -51,6 +54,7 @@ module.exports = {
         '20vh': '20vh',
         '30vh': '30vh',
         '60vh': '60vh',
+        '75vh': '75vh',
         '40vh': '40vh',
         '45vh':'45vh',
         '50vh': '50vh',

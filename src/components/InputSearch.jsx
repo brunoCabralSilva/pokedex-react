@@ -46,7 +46,7 @@ export default function InputSearch(props) {
       firstCall();
       setButton('all');
     } else {
-      searchByType('type');
+      searchByType();
     }
   }
 
@@ -78,7 +78,8 @@ export default function InputSearch(props) {
           </button>
           </div>
       );
-    } else if (input === 'type') {
+    }
+    if (input === 'type') {
       return (
         <div className="flex flex-col w-full">
           <div
@@ -121,26 +122,23 @@ export default function InputSearch(props) {
           </button>
         </div>
       );
-    } else {
+    }
+    if (input === 'text') {
       return(
         <div className="flex flex-row justify-center align-center sm:align-start w-full sm:w-7/12 mx-auto my-5 sm:my-10">
           <input
-            type={input}
+            type="text"
             className="p-2 my-2 mr-2 ml-0 sm:ml-2 w-10/12 sm:w-9/12 text-center"
-            value={input==="text" ? localName : localNumber}
-            placeholder={`Digite o ${input === 'text' ? 'Nome' : 'Número'} do Pokémon:`}
-            onChange={(e) => input==="text" ? setLocalName(e.target.value) : setLocalNumber(e.target.value)}
+            value={localName}
+            placeholder={`Digite o Nome do Pokémon:`}
+            onChange={(e) => setLocalName(e.target.value) }
           />
           <button
             type="button"
             className="w-2/12 bg-gray-500 p-2 my-2"
             onClick={
-              async () => {
-                if (input === 'text') {
-                  await searchByNameId(localName);
-                } else {
-                  await searchByNameId(localNumber);
-                }
+              () => { 
+                searchByNameId(localName);
                 reset();
               }
             }
@@ -149,7 +147,31 @@ export default function InputSearch(props) {
           </button>
         </div>
       );
-    }
+    } 
+    return (
+      <div className="flex flex-row justify-center align-center sm:align-start w-full sm:w-7/12 mx-auto my-5 sm:my-10">
+          <input
+            type="number"
+            className="p-2 my-2 mr-2 ml-0 sm:ml-2 w-10/12 sm:w-9/12 text-center"
+            value={localNumber}
+            placeholder={`Digite o Número do Pokémon:`}
+            onChange={(e) => setLocalNumber(e.target.value) }
+          />
+          <button
+            type="button"
+            className="w-2/12 bg-gray-500 p-2 my-2"
+            onClick={
+              () => { 
+                searchByNameId(localNumber);
+                reset();
+              }
+            }
+          >
+            <i className="fa-solid fa-magnifying-glass text-white"></i>
+          </button>
+        </div>
+    )
+    
   }
     return(
       <div className="w-full">{ returnInput() }</div>

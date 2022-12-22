@@ -4,6 +4,9 @@ import contexto from '../context';
 import dataPokemon from '../fetchs';
 import imagemType from '../components/Types';
 import Nav from '../components/Nav';
+import { useHistory } from 'react-router-dom';
+import { IoIosArrowBack } from "react-icons/io";
+
 const { getByName } = dataPokemon;
 
 export default function Details(props) {
@@ -12,12 +15,17 @@ export default function Details(props) {
   const { id } = params;
   const [dataPokemon, setDataPokemon] = useState({});
   const context = useContext(contexto);
-  const { letraMaiuscula } = context;
+  const { letraMaiuscula, setListType } = context;
+  const history = useHistory();
 
   useEffect(() => {
     const fetch = async () => {
-      const search = await getByName(id);
-      setDataPokemon(search);
+      try {
+        const search = await getByName(id);
+        setDataPokemon(search);
+      } catch(error) {
+        window.alert("Não foi possível encontrar este Pokémon! Reveja o número ou nome inserido ou tente novamente mais tarde!");
+      }
     }
     fetch();
   }, []);
@@ -72,6 +80,15 @@ export default function Details(props) {
         exit="exit"
       >
         <Nav className="z-50" color="white" />
+        <div
+          className="absolute text-white text-4xl p-2"
+          onClick={ () => { 
+            setListType([]);
+            history.push('/search');
+          } }
+        >
+          <IoIosArrowBack />
+        </div>
         <div className="bg-half-transp">
           <div className="w-full h-full flex flex-col items-center justify-center sm:justify-center ">
             <img src={require('../imagens/Pokémon_logo.png')} className='w-10/12 sm:w-2/3 md:w-2/5 transition-all pt-5' alt="" />

@@ -1,5 +1,5 @@
 const imagemType = (tipo) => {
-    const widthImage = 'w-10';
+    const widthImage = 'w-16 pb-5';
     switch (tipo) {
         case 'normal':
             return {
