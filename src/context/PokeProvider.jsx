@@ -3,9 +3,13 @@ import contexto from './index';
 
 export default function PokeProvider({ children }) {
   const [list, setList] = useState([]);
+  const [gen, setGen] = useState('1');
+  const[lastSelectedGen, setLastSelectedGen] = useState('');
   const [listGeneration, setListGeneration] = useState([]);
   const [listType, setListType] = useState([]);
+  const [type, setType] = useState([]);
   const [allPokemonGeneration, setAllPokeOfGeneration] = useState([]);
+  const [search, setSearch] = useState('ALL');
   
   function letraMaiuscula (nome) {
     let novoNome = nome[0].toUpperCase();
@@ -28,6 +32,10 @@ export default function PokeProvider({ children }) {
       listGeneration, setListGeneration,
       allPokemonGeneration, setAllPokeOfGeneration,
       listType, setListType,
+      type, setType,
+      search, setSearch,
+      lastSelectedGen, setLastSelectedGen,
+      gen, setGen,
       letraMaiuscula,
       numberPokemon,
       }}

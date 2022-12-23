@@ -6,6 +6,7 @@ module.exports = {
   theme: {
     minHeight: {
       '75vh': '75vh',
+      '70vh': '70vh',
     },
     screens: {
       'sm2': '420px',
@@ -57,6 +58,7 @@ module.exports = {
         '75vh': '75vh',
         '40vh': '40vh',
         '45vh':'45vh',
+        '47vh':'47vh',
         '50vh': '50vh',
         '85vh': '85vh',
         '95vh': '95vh',

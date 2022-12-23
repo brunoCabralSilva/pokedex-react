@@ -6,81 +6,73 @@ import Pokemon from '../Pokemon';
 const { getByGeneration } = data;
 
 export default function Generation() {
-  const [gen, setGen] = useState([]);
-  const [first, setFirst] = useState(0);
-  const [finish, setFinish] = useState(false);
+  const[dataGen, setDataGen] = useState('');
   const context = useContext(contexto);
   const {
+    gen,
+    setGen,
+    lastSelectedGen,
+    setLastSelectedGen,
     listGeneration,
     setListGeneration,
     numberPokemon,
-    setAllPokeOfGeneration,
-    allPokemonGeneration,
   } = context;
 
   const searchByGen = async () => {
-      let arrayGen = [];
       const call = await getByGeneration(gen);
-      setAllPokeOfGeneration(call);
-      for(let i = 0; i <= 19; i += 1){
-        arrayGen.push(call[i]);
-      }
-      setListGeneration(arrayGen);
-      setFirst(20);
-      setFinish(false);
+      setListGeneration(call);
       const selectGeneration = document.getElementById('select-generation');
       selectGeneration.selectedIndex = '1';
+      setLastSelectedGen(gen);
       setGen('1');
   };
 
-  const moreTwentyForGen = () => {
-    if (first + 20 < allPokemonGeneration.length) {
-      let arrayGen = [];
-      for (let i = first; i < first + 20; i += 1) {
-        arrayGen.push(allPokemonGeneration[i]);
-      }
-      setListGeneration([...listGeneration, ...arrayGen]);
-      setFirst( first + 20);
-      setFinish(false);
-    } else {
-      let arrayGen = [];
-      for (let i = first; i < allPokemonGeneration.length; i += 1) {
-        arrayGen.push(allPokemonGeneration[i]);
-      }
-      setFirst(allPokemonGeneration.length);
-      setListGeneration([...listGeneration, ...arrayGen]);
-      setFinish(true);
+  const showDataGeneration = () => {
+    if (lastSelectedGen !== '') {
+      return (
+        <div className="w-full py-1">
+          <p className="bg-black/70 text-white w-full h-full flex flex-col sm:flex-row items-center justify-center text-4xl py-10 font-bold text-center">
+            { `Total de Pokémon da ${lastSelectedGen}ª Geração: ${listGeneration.length}` }
+          </p>
+        </div>
+      );
     }
-  };
+  }
 
   return(
       <div className="w-full mx-auto px-1">
-        <div className="bg-black/75 min-h-75vh w-full flex flex-col justify-start items-center">
-          <div className="w-11/12 sm:w-9/12 flex items-start justify-center">
-            <select
-              id="select-generation"
-              className="p-2 my-2 mr-2 ml-0 sm:ml-2 w-full text-center"
-              onChange={(e) => setGen(e.target.value)}
-            >
-              <option disabled selected>Geração</option>
-              <option value="1">1º Geração</option>
-              <option value="2">2º Geração</option>
-              <option value="3">3º Geração</option>
-              <option value="4">4º Geração</option>
-              <option value="5">5º Geração</option>
-              <option value="6">6º Geração</option>
-              <option value="7">7º Geração</option>
-              <option value="8">8º Geração</option>
-            </select>
-            <button
-              type="button"
-              className="w-2/12 bg-gray-500 p-2 my-2"
-              onClick={ () => searchByGen() }
-            >
-              <i className="fa-solid fa-magnifying-glass text-white"></i>
-            </button>
+        <div className="bg-black/75 w-full flex flex-col justify-start items-center">
+          <div className="py-9 w-full flex flex-col items-start justify-center mb-2">
+            <div className="w-full flex justify-center">
+              <select
+                id="select-generation"
+                className="w-9/12 sm:w-7/12 p-2 my-2 mr-2 ml-0 sm:ml-2 text-center"
+                onChange={(e) => setGen(e.target.value)}
+              >
+                <option disabled selected>Geração</option>
+                <option value="1">1º Geração</option>
+                <option value="2">2º Geração</option>
+                <option value="3">3º Geração</option>
+                <option value="4">4º Geração</option>
+                <option value="5">5º Geração</option>
+                <option value="6">6º Geração</option>
+                <option value="7">7º Geração</option>
+                <option value="8">8º Geração</option>
+              </select>
+              <button
+                type="button"
+                className="w-2/12 bg-gray-500 p-2 my-2"
+                onClick={ () => searchByGen() }
+              >
+                <i className="fa-solid fa-magnifying-glass text-white"></i>
+              </button>
+            </div>
+            { listGeneration.length === 0 && <div className="h-50vh w-full" /> }
           </div>
-          <div className="w-full grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4">
+        </div>
+        <div>
+          { showDataGeneration() }
+          <div className="w-full gap-1 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4">
             {
               listGeneration.length > 0 && listGeneration.map((poke, index) => (
                 <Pokemon
@@ -92,19 +84,11 @@ export default function Generation() {
               ))
             }
           </div>
-          <div className={`w-full grid grid-cols-1 ${listGeneration.length === 0 && 'hidden'}`}>
+        </div>
+          <div className="w-full">
             <button
               type="button"
-              className={`p-1 w-full mt-2 ${ finish && 'hidden' }`}
-              onClick={ moreTwentyForGen }
-            >
-              <div className="bg-black/70 text-white text-xl p-4 font-bold hover:border-2 hover:border-white w-full h-full">
-                Mais Pokémon
-              </div>
-            </button>
-            <button
-              type="button"
-              className="p-1 w-full mb-4"
+              className="py-1 w-full mb-1"
               onClick={ () => window.scrollTo(0, 0) }
             >
               <div className="bg-black/70 text-white text-xl p-4 font-bold hover:border-2 hover:border-white w-full h-full">
@@ -112,7 +96,6 @@ export default function Generation() {
               </div>
             </button>
           </div>
-        </div>
       </div>
     );
   }

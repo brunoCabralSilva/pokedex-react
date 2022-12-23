@@ -8,15 +8,17 @@ const { allTypes, getByType } = data;
 
 export default function Type() {
   const [allTheTypes, setAllTheTypes] = useState([]);
-  const [type, setType] = useState([]);
   const [hiddeTypes, setHiddeTypes] = useState(false);
   const history = useHistory();
+  const [messageTypes, setMessageTypes] = useState('');
   const context = useContext(contexto);
   const {
     letraMaiuscula,
     setListType,
     listType,
     numberPokemon,
+    type,
+    setType,
   } = context;
 
   useEffect(() => {
@@ -35,7 +37,7 @@ export default function Type() {
       const message = `Buscar Pokémon do tipo ${returnTypeByNumber(type[0])} e ${returnTypeByNumber(type[1])}`;
       return message;
     } else return 'Buscar';
-  }
+  };
 
   const addType = (name) => {
     if(type.includes(imageType(name).type.toString())) {
@@ -92,7 +94,7 @@ export default function Type() {
         return 'Fada';
       default: return null;
     }
-  }
+  };
 
   const searchByType = async () => {
     setHiddeTypes(true);
@@ -134,12 +136,21 @@ export default function Type() {
       setListType(arrayTipos);
     }
     setType([]);
+    returnMessageSearch();
+  };
+
+  const returnMessageSearch = () => {
+    if (type.length === 1) {
+      setMessageTypes(`Total de Pokémon do tipo ${returnTypeByNumber(type[0])}:`);
+    } else if (type.length === 2) {
+      setMessageTypes(`Total de Pokémon do tipo ${returnTypeByNumber(type[0])} e ${returnTypeByNumber(type[1])}:`);
+    }
   };
 
   return (
-    <div className="flex flex-col w-full min-h-75vh">
+    <div className={`flex flex-col w-full ${hiddeTypes && 'min-h-70vh'}`}>
       <div
-        className={`px-1 py-2 w-full grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 ${hiddeTypes && 'hidden'}`}
+        className={`px-1 py-1 gap-1 w-full grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 ${hiddeTypes && 'hidden'}`}
         onChange={(e) => setType(e.target.value)}
       >
         {
@@ -150,7 +161,7 @@ export default function Type() {
               return null;
             }
             return (
-              <div className="p-1 w-full">
+              <div className="w-full">
                 <div
                   className={`flex flex-col items-center sm3:justify-start justify-center text-white font-bold p-2 w-full h-full ${type.includes(id) ? 'bg-black border-2 border-white' : 'bg-black/60 hover:bg-black/70'} `}
                   key={index}
@@ -166,7 +177,7 @@ export default function Type() {
       </div>
       <button
         type="button"
-        className="w-full px-2 mt-2"
+        className="w-full px-1 mt-1"
         onClick={ () => setHiddeTypes(!hiddeTypes) }
         >
           <div
@@ -182,7 +193,7 @@ export default function Type() {
       </button>
       <button
         type="button"
-        className="w-full p-2 mb-2"
+        className="w-full p-1"
         onClick={ searchByType }
         >
           <div className="bg-black/70 text-white text-xl p-4 font-bold hover:border-2 hover:border-white w-full h-full flex flex-col sm:flex-row items-center justify-between">
@@ -190,7 +201,22 @@ export default function Type() {
             <i className="fa-solid fa-magnifying-glass hidden sm:flex"></i>
           </div>
       </button>
-      <div className="w-full grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4">
+      <div className="w-full px-1">
+          { listType.length === 0
+            ? messageTypes !== '' 
+              ? 
+                <p className="bg-black/70 text-white w-full h-47vh flex flex-col sm:flex-row items-center justify-center text-4xl py-10 font-bold text-center">
+                  Não existem Pokémon que possuam ambos os tipos selecionados
+                </p>
+              : 
+                ''
+            : 
+              <p className="bg-black/70 text-white w-full h-full flex flex-col sm:flex-row items-center justify-center text-4xl py-10 font-bold text-center">
+                { `${messageTypes} ${listType.length} ` }
+              </p>
+          }
+      </div>
+      <div className="p-1 w-full gap-1 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4">
         {
           listType.length !== 1
             ? listType.length > 0 && listType.map((poke, index) => (
@@ -204,10 +230,10 @@ export default function Type() {
             : history.push(`/pokemon/${listType[0].id}`)
           }
         </div>
-          <div className={`w-full grid grid-cols-1 ${listType.length < 20 && 'hidden'}`}>
+          <div className="w-full">
             <button
               type="button"
-              className="p-1 w-full mb-4"
+              className="p-1 w-full mb-1"
               onClick={ () => window.scrollTo(0, 0) }
             >
               <div className="bg-black/70 text-white text-xl p-4 font-bold hover:border-2 hover:border-white w-full h-full">

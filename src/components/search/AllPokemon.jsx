@@ -63,7 +63,7 @@ export default function AllPokemon() {
 
   return(
     <div>
-      <div className="w-full grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4">
+      <div className="w-full p-1 gap-1 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4">
         {
           list.length !== 1
             ? list.length > 0 && list.map((poke, index) => (
@@ -77,10 +77,10 @@ export default function AllPokemon() {
             : history.push(`/pokemon/${list[0].id}`)
         }
       </div>
-      <div className="w-full grid grid-cols-1">
+      <div className="w-full">
         <button
           type="button"
-          className={`p-1 w-full mt-2 ${ finish && 'hidden' }`}
+          className={`px-1 w-full ${ finish && 'hidden' }`}
           onClick={ moreTwentyForAll }
         >
           <div className="bg-black/70 text-white text-xl p-4 font-bold hover:border-2 hover:border-white w-full h-full">
@@ -89,7 +89,7 @@ export default function AllPokemon() {
         </button>
         <button
           type="button"
-          className="p-1 w-full mb-4"
+          className="p-1 w-full mb-1"
           onClick={ () => window.scrollTo(0, 0) }
         >
           <div className="bg-black/70 text-white text-xl p-4 font-bold hover:border-2 hover:border-white w-full h-full">

@@ -1,13 +1,15 @@
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
 import Filter from '../components/Filter';
 import Nav from '../components/Nav';
+import contexto from '../context';
 import NameNumber from '../components/search/NameNumber';
 import Type from '../components/search/Type';
 import Generation from '../components/search/Generation';
 import AllPokemon from '../components/search/AllPokemon';
 
 export default function Search() {
-  const [search, setSearch] = useState('ALL');
+  const context = useContext(contexto);
+  const { search } = context;
 
   const returnSearch = () => {
     switch (search) {
@@ -29,7 +31,7 @@ export default function Search() {
         <div className="">
           <p className="text-6xl text-white text-center pt-4 pb-10 font-bold w-full">Busca</p>
         </div>
-        <Filter search={ setSearch } />
+        <Filter />
       </div>
       <div className="flex flex-row items-left justify-center">
         <div className="w-full">
