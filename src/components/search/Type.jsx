@@ -201,7 +201,7 @@ export default function Type() {
             <i className="fa-solid fa-magnifying-glass hidden sm:flex"></i>
           </div>
       </button>
-      <div className="w-full px-1">
+      <div className="w-full px-1 my-1 sm:my-0">
           { listType.length === 0
             ? messageTypes !== '' 
               ? 
@@ -211,7 +211,7 @@ export default function Type() {
               : 
                 ''
             : 
-              <p className="bg-black/70 text-white w-full h-full flex flex-col sm:flex-row items-center justify-center text-4xl py-10 font-bold text-center">
+              <p className="bg-black/70 text-white w-full h-full flex flex-col sm:flex-row items-center justify-center text-xl sm:text-2xl md:text-4xl py-5 p-2 sm:p-0 sm:py-10 font-bold text-center">
                 { `${messageTypes} ${listType.length} ` }
               </p>
           }
@@ -233,7 +233,7 @@ export default function Type() {
           <div className="w-full">
             <button
               type="button"
-              className="p-1 w-full mb-1"
+              className="px-1 w-full mb-1"
               onClick={ () => window.scrollTo(0, 0) }
             >
               <div className="bg-black/70 text-white text-xl p-4 font-bold hover:border-2 hover:border-white w-full h-full">

@@ -40,6 +40,7 @@ module.exports = {
       },
       spacing: {
         '1%': '2%',
+        '19vh': '19vh',
         '99%':'98.5%',
         '98.7%':'98.7%',
         '98%':'98%',
@@ -48,12 +49,14 @@ module.exports = {
         '45%': '49.5%',
         '24vh': '24vh',
         '48vh': '48vh',
+        '49vh': '49vh',
         '95%': '95%',
         '25vw': '18vw',
         '50vw': '35vw',
         'fullVh': '60vw',
         '20vh': '20vh',
         '30vh': '30vh',
+        '35vh': '34vh',
         '60vh': '60vh',
         '75vh': '75vh',
         '40vh': '40vh',
@@ -65,7 +68,6 @@ module.exports = {
         '120vh': '120vh',
         'brown-mewtwo': '#201211',
         'light-mewtwo': '#674C37',
-
       },
     },
     plugins: []

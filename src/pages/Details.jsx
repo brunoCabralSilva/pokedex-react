@@ -6,6 +6,7 @@ import imagemType from '../components/Types';
 import Nav from '../components/Nav';
 import { useHistory } from 'react-router-dom';
 import { IoIosArrowBack } from "react-icons/io";
+import Charts from '../components/Charts';
 
 const { getByName } = dataPokemon;
 
@@ -30,47 +31,43 @@ export default function Details(props) {
     fetch();
   }, []);
 
+  const returnZero = () => {
+    if (dataPokemon.id)  {
+      if (dataPokemon.id <= 9) {
+        return '00';
+      }
+      else if (dataPokemon.id >= 10 && dataPokemon.id <= 99) {
+        return '0';
+      }
+      else {
+        return '';
+      }
+    }
+  }
+
   const retornaImagem = () => { 
     if (dataPokemon.id)  {
-    if (dataPokemon.id <= 9) {
-      return (<img src={require(`../imagens/all/00${dataPokemon.id}.png`)} className="w-2/3 sm:w-1/2" alt={dataPokemon.name} />);
-    }
-    else if (dataPokemon.id >= 10 && dataPokemon.id <= 99) {
-      return (<img src={require(`../imagens/all/0${dataPokemon.id}.png`)} className="w-2/3 sm:w-1/2" alt={dataPokemon.name} />);
-    }
-    else {
-      return (<img src={require(`../imagens/all/${dataPokemon.id}.png`)} className="w-2/3 sm:w-1/2" alt={dataPokemon.name} />);
-    }
-  }
-  }
-
-  const returnStats = (statName) => {
-    switch(statName) {
-      case 'hp':
-        return 'Hp';
-      case 'attack':
-        return 'Ataque';
-      case 'defense':
-        return 'Defesa';
-      case 'special-attack':
-        return 'Ataque Especial';
-      case 'special-defense':
-        return 'Defesa Especial';
-      case 'speed':
-        return 'Velocidade';
-      default:
-    return null;
+      if (dataPokemon.id <= 9) {
+        return (<img src={require(`../imagens/all/00${dataPokemon.id}.png`)} className="w-2/3 sm:w-1/2" alt={dataPokemon.name} />);
+      }
+      else if (dataPokemon.id >= 10 && dataPokemon.id <= 99) {
+        return (<img src={require(`../imagens/all/0${dataPokemon.id}.png`)} className="w-2/3 sm:w-1/2" alt={dataPokemon.name} />);
+      }
+      else {
+        return (<img src={require(`../imagens/all/${dataPokemon.id}.png`)} className="w-2/3 sm:w-1/2" alt={dataPokemon.name} />);
+      }
     }
   }
 
-  const returnallDivs = (number) => {
-    const statNumber = Number(number);
-    let divs = [];
-    for (let i = 0; i < statNumber; i += 3) {
-      divs.push(<div className="w-1% h-10 bg-white" />);
+  const returnColor = (data) => {
+    if (data) {
+      if (data.length === 1) {
+        return [imagemType(data[0].type.name).color, 'black'];
+      } else {
+        return [imagemType(data[0].type.name).color, imagemType(data[1].type.name).color];
+      }
     }
-    return divs;
-  }
+  };
 
   return (
     <motion.div
@@ -81,7 +78,7 @@ export default function Details(props) {
       >
         <Nav className="z-50" color="white" />
         <div
-          className="absolute text-white text-4xl p-2"
+          className="absolute text-black text-4xl p-2"
           onClick={ () => { 
             setListType([]);
             history.push('/search');
@@ -89,17 +86,14 @@ export default function Details(props) {
         >
           <IoIosArrowBack />
         </div>
-        <div className="bg-half-transp">
-          <div className="w-full pt-10 sm:pt-0 h-full flex flex-col items-center justify-center sm:justify-center ">
-            <img src={require('../imagens/Pokémon_logo.png')} className='w-10/12 sm:w-2/3 md:w-2/5 transition-all pt-5' alt="" />
-          </div>
-          <p className="text-3xl font-white pt-10 pb-3 text-center font-bold text-white m-1">
-            { dataPokemon.id }
+        <div className="px-1">
+        <p className="bg-black/70 pt-20 text-white w-full h-full flex flex-col sm:flex-row items-center justify-center text-xl sm:text-2xl md:text-4xl py-5 p-2 sm:p-0 sm:py-10 font-bold text-center">
+            { `${returnZero()}${dataPokemon.id}` }
             <span className="px-2">{ ' - ' }</span>
             { dataPokemon.name && letraMaiuscula(dataPokemon.name) }
           </p>
           <div className="flex flex-col sm:flex-row w-full gap-3 px-5 pb-5">
-            <div className="w-full flex flex-col items-center justify-center bg-gradient-to-l via-white/5 from-white to-transparent m-1">
+            <div className="w-full flex flex-col items-center justify-center bg-gradient-to-l via-black/80 from-black/80 to-black/20 m-1 border-2 border-white">
               { retornaImagem() }
               <div className="flex pb-10">
                 { 
@@ -111,36 +105,27 @@ export default function Details(props) {
                 }
               </div>
             </div>
-            <div className="w-full grid grid-rows-6">
-              { 
-              dataPokemon.stats && dataPokemon.stats.map((stat, index) => (
-                <div key={ index } className="relative w-full font-bold flex items-center justify-start my-1">
-                  <span className="pl-3 absolute text-lg">{ returnStats(stat.stat.name) }</span>
-                  <div className="w-40 sm:w-28 md:w-20 lg:w-20 h-10 bg-white" />
-                  { returnallDivs(stat.base_stat) }
-                  <span className="pl-3 text-white">{ stat.base_stat }</span>
-                </div>
-              ))
-            }
+            <div className="w-full bg-gradient-to-r via-black/80 from-black/80 to-black/20 my-1 border-2 border-white">
+              <Charts data={dataPokemon.stats} color={returnColor(dataPokemon.types)} />
             </div>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-5 px-2 gap-2 text-lg text-center font-bold">
-            <div className="bg-white py-4">
+            <div className="bg-black py-4">
               Experiência base
               <span className="px-2 ">{ ' - ' }</span>
               { dataPokemon.base_experience }
             </div>
-            <div className="bg-white py-4">
+            <div className="bg-black py-4">
               Peso
               <span className="px-2">{ ' - ' }</span>
               { dataPokemon.weight }
             </div>
-            <div className="bg-white py-4">
+            <div className="bg-black py-4">
               Altura
               <span className="px-2">{ ' - ' }</span>
               { dataPokemon.height }
             </div>
-            <div className="bg-white sm:col-span-2 py-4">
+            <div className="bg-black sm:col-span-2 py-4">
               <span>Habilidades</span>
               <span className="px-2">-</span>
               { 
