@@ -6,3 +6,15 @@
   -webkit-text-stroke-width: 1px;
   -webkit-text-stroke-color: black;
 }
+
+.hidden-element {
+  display: none !important;
+  color: black !important;
+  background-color: black !important;
+}
+
+.swiper-button-next::after {
+  color: black;
+  font-size: 60px;
+  font-weight: bolder;
+}

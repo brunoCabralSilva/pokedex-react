@@ -1,11 +1,14 @@
 import React, { useEffect, useState, useContext } from 'react';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation } from 'swiper';
+import 'swiper/css';
+import 'swiper/css/navigation';
 import { motion } from 'framer-motion';
 import contexto from '../context';
 import dataPokemon from '../fetchs';
 import imagemType from '../components/Types';
 import Nav from '../components/Nav';
 import { useHistory } from 'react-router-dom';
-import { IoIosArrowBack } from "react-icons/io";
 import Charts from '../components/Charts';
 
 const { getByName } = dataPokemon;
@@ -20,6 +23,8 @@ export default function Details(props) {
   const history = useHistory();
 
   useEffect(() => {
+    const classSwiper = document.getElementsByClassName('swiper-button-prev');
+      classSwiper[0].classList.add('hidden-element');
     const fetch = async () => {
       try {
         const search = await getByName(id);
@@ -76,24 +81,30 @@ export default function Details(props) {
         animate="visible"
         exit="exit"
       >
-        <Nav className="z-50" color="white" />
-        <div
-          className="absolute text-black text-4xl p-2"
-          onClick={ () => { 
-            setListType([]);
-            history.push('/search');
-          } }
-        >
-          <IoIosArrowBack />
-        </div>
-        <div className="px-1">
-        <p className="bg-black/70 pt-20 text-white w-full h-full flex flex-col sm:flex-row items-center justify-center text-xl sm:text-2xl md:text-4xl py-5 p-2 sm:p-0 sm:py-10 font-bold text-center">
-            { `${returnZero()}${dataPokemon.id}` }
-            <span className="px-2">{ ' - ' }</span>
-            { dataPokemon.name && letraMaiuscula(dataPokemon.name) }
-          </p>
-          <div className="flex flex-col sm:flex-row w-full gap-3 px-5 pb-5">
-            <div className="w-full flex flex-col items-center justify-center bg-gradient-to-l via-black/80 from-black/80 to-black/20 m-1 border-2 border-white">
+        <div className="p-1">
+          <Nav className="z-50" color="white" />
+          <div className="bg-black/70 pt-20 text-white w-full h-full flex flex-col sm:flex-row items-center justify-center text-xl sm:text-2xl md:text-4xl py-5 sm:p-0 sm:py-10 font-bold text-center relative">
+          <div
+            className="text-black text-4xl p-2 absolute w-full flex justify-left"
+            onClick={ () => { 
+              setListType([]);
+              history.push('/search');
+            } }
+          >
+            <img
+              src={ require('../imagens/arrow-left.png') }
+              alt="seta"
+              className="w-1/12"
+            />
+          </div>
+            <p className="pt-20 text-white w-full h-full flex flex-col sm:flex-row items-center justify-center text-xl sm:text-2xl md:text-4xl py-5 sm:p-0 sm:py-10 font-bold text-center">
+              { `${returnZero()}${dataPokemon.id}` }
+              <span className="px-2">{ ' - ' }</span>
+              { dataPokemon.name && letraMaiuscula(dataPokemon.name) }
+            </p>
+          </div>
+          <div className="flex flex-col my-1 sm:flex-row w-full gap-1">
+            <div className="w-1/2 flex flex-col items-center justify-center bg-gradient-to-l via-black/80 from-black/80 to-black/20">
               { retornaImagem() }
               <div className="flex pb-10">
                 { 
@@ -105,55 +116,70 @@ export default function Details(props) {
                 }
               </div>
             </div>
-            <div className="w-full bg-gradient-to-r via-black/80 from-black/80 to-black/20 my-1 border-2 border-white">
-              <Charts data={dataPokemon.stats} color={returnColor(dataPokemon.types)} />
-            </div>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-5 px-2 gap-2 text-lg text-center font-bold">
-            <div className="bg-black py-4">
-              Experiência base
-              <span className="px-2 ">{ ' - ' }</span>
-              { dataPokemon.base_experience }
-            </div>
-            <div className="bg-black py-4">
-              Peso
-              <span className="px-2">{ ' - ' }</span>
-              { dataPokemon.weight }
-            </div>
-            <div className="bg-black py-4">
-              Altura
-              <span className="px-2">{ ' - ' }</span>
-              { dataPokemon.height }
-            </div>
-            <div className="bg-black sm:col-span-2 py-4">
-              <span>Habilidades</span>
-              <span className="px-2">-</span>
-              { 
-                dataPokemon.abilities && dataPokemon.abilities.map((ability, index) => (
-                  index < dataPokemon.abilities.length -1
-                  ? <span key={ index }>
-                      { letraMaiuscula(ability.ability.name) }
-                      <span className="pr-1">,</span>
-                    </span>
-                  : <span key={ index }>
-                      { letraMaiuscula(ability.ability.name) }
-                      <span>.</span>
-                    </span>
-                )) 
-              }
-            </div>
-          </div>
-          <p className="text-3xl font-white pt-10 pb-3 text-center font-bold text-white m-1">Lista de Movimentos</p>
-          <div className="grid grid-cols-2 sm:grid-cols-5">
-            { 
-              dataPokemon.moves && dataPokemon.moves.sort((a, b) => {
-                if (a.move.name < b.move.name) return -1;
-                else return 1 }).map((move, index) => (
-                <div key={ index } className="p-5 m-2 flex items-center justify-center bg-black/50 text-white font-bold">
-                  { letraMaiuscula(move.move.name) }
+            <Swiper className="w-1/2"
+              loop={true}
+              modules={[Navigation]}
+              navigation={true}
+              slidesPerView={1}
+            >
+              <SwiperSlide className="w-full bg-gradient-to-r via-black/80 from-black/80 to-black/20 pr-5">
+                <p className="text-3xl font-white pt-5 text-center font-bold text-white m-1">
+                  Estatísticas
+                </p>
+                <Charts data={dataPokemon.stats} color={returnColor(dataPokemon.types)} />
+              </SwiperSlide>
+              <SwiperSlide className="w-full bg-gradient-to-r via-black/80 from-black/80 to-black/20 flex flex-col items-center justify-center text-white font-bold">
+                <div className="py-4">
+                  Experiência base
+                  <span className="px-2 ">{ ' - ' }</span>
+                  { dataPokemon.base_experience }
                 </div>
-              ))
-            }
+                <div className="py-4">
+                  Peso
+                  <span className="px-2">{ ' - ' }</span>
+                  { dataPokemon.weight }
+                </div>
+                <div className="py-4">
+                  Altura
+                  <span className="px-2">{ ' - ' }</span>
+                  { dataPokemon.height }
+                </div>
+                <div className="sm:col-span-2 py-4">
+                <span>Habilidades</span>
+                <span className="px-2">-</span>
+                { 
+                  dataPokemon.abilities && dataPokemon.abilities.map((ability, index) => (
+                    index < dataPokemon.abilities.length -1
+                    ? <span key={ index }>
+                        { letraMaiuscula(ability.ability.name) }
+                        <span className="pr-1">,</span>
+                      </span>
+                    : <span key={ index }>
+                        { letraMaiuscula(ability.ability.name) }
+                        <span>.</span>
+                      </span>
+                  )) 
+                }
+              </div>
+              </SwiperSlide>
+              <SwiperSlide className="w-full bg-gradient-to-r via-black/80 from-black/80 to-black/20 px-5">
+              <p className="text-3xl font-white pt-5 pb-3 text-center font-bold text-white m-1">
+                Lista de Movimentos
+              </p>
+              <div className="px-5 text-white">
+                { 
+                  dataPokemon.moves && dataPokemon.moves.sort((a, b) => {
+                    if (a.move.name < b.move.name) return -1;
+                    else return 1 }).map((move, index) => (
+                    <span key={ index } className="">
+                      { letraMaiuscula(move.move.name) }
+                      {' , '}
+                    </span>
+                  ))
+                }
+              </div>
+              </SwiperSlide>
+            </Swiper>
           </div>
         </div>
       </motion.div>

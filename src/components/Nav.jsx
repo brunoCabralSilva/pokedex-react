@@ -26,7 +26,7 @@ export default function Nav({ color }) {
           <div className={`h-1 w-7 mb-1 z-40 transition duration-500 ${showMenu ? 'rotate-45 bg-white' : `bg-${color} rotate-0`}`} />
           <div className={`h-1 w-7 z-40 transition duration-500 ${ showMenu ? 'opacity-0 bg-white' : `opacity-1 bg-${color}`}`}> </div>
         <ul
-          className={`${returnItemMenu()}`}
+          className={`${returnItemMenu()} ${ showMenu ? '' : 'hidden'}`}
           initial={{ x: 30, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
           transition={{ delay: 0.5, duration: 0.5 }}
