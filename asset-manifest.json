@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/pokedex-react/static/css/main.ee9ba92a.css",
-    "main.js": "/pokedex-react/static/js/main.779b820e.js",
+    "main.js": "/pokedex-react/static/js/main.956aad23.js",
     "static/media/espeon.png": "/pokedex-react/static/media/espeon.9ef470889024c841dc12.png",
     "static/media/mew.png": "/pokedex-react/static/media/mew.e1144529d0fd3456923a.png",
     "static/media/nidoking.png": "/pokedex-react/static/media/nidoking.2c75792dd06def914b81.png",
@@ -672,6 +672,7 @@
     "static/media/441.png": "/pokedex-react/static/media/441.422675144ff071fb1e3b.png",
     "static/media/252.png": "/pokedex-react/static/media/252.273aa2cd63fc2d188384.png",
     "static/media/408.png": "/pokedex-react/static/media/408.2da2509549b5f21a2436.png",
+    "static/media/172.png": "/pokedex-react/static/media/172.3e0cf0a98b6ee9ff1150.png",
     "static/media/238.png": "/pokedex-react/static/media/238.aa65f0c6c754292905b4.png",
     "static/media/186.png": "/pokedex-react/static/media/186.a2f8a2c5d87a34b611bc.png",
     "static/media/286.png": "/pokedex-react/static/media/286.3dedb415b5d44232fb67.png",
@@ -863,7 +864,6 @@
     "static/media/769.png": "/pokedex-react/static/media/769.7522e66061c1d8b278ea.png",
     "static/media/239.png": "/pokedex-react/static/media/239.c7ed292f6b9ce510db74.png",
     "static/media/118.png": "/pokedex-react/static/media/118.f557bf47c4bb981c2b21.png",
-    "static/media/172.png": "/pokedex-react/static/media/172.5283638137adf50f1a96.png",
     "static/media/707.png": "/pokedex-react/static/media/707.f75560b6727e2c0df8dc.png",
     "static/media/093.png": "/pokedex-react/static/media/093.1c3988b939e275722c3a.png",
     "static/media/013.png": "/pokedex-react/static/media/013.b16e1624e1c8f3d8de3a.png",
@@ -964,10 +964,10 @@
     "static/media/278.png": "/pokedex-react/static/media/278.792132396e6a244597bf.png",
     "index.html": "/pokedex-react/index.html",
     "main.ee9ba92a.css.map": "/pokedex-react/static/css/main.ee9ba92a.css.map",
-    "main.779b820e.js.map": "/pokedex-react/static/js/main.779b820e.js.map"
+    "main.956aad23.js.map": "/pokedex-react/static/js/main.956aad23.js.map"
   },
   "entrypoints": [
     "static/css/main.ee9ba92a.css",
-    "static/js/main.779b820e.js"
+    "static/js/main.956aad23.js"
   ]
 }
