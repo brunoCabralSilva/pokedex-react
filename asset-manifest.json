@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/pokedex-react/static/css/main.b4d12010.css",
-    "main.js": "/pokedex-react/static/js/main.8d5bce32.js",
+    "main.css": "/pokedex-react/static/css/main.ee9ba92a.css",
+    "main.js": "/pokedex-react/static/js/main.779b820e.js",
     "static/media/espeon.png": "/pokedex-react/static/media/espeon.9ef470889024c841dc12.png",
     "static/media/mew.png": "/pokedex-react/static/media/mew.e1144529d0fd3456923a.png",
     "static/media/nidoking.png": "/pokedex-react/static/media/nidoking.2c75792dd06def914b81.png",
@@ -16,6 +16,9 @@
     "static/media/exeggutor.png": "/pokedex-react/static/media/exeggutor.64ce608c361c521fc29d.png",
     "static/media/Carracosta.jpeg": "/pokedex-react/static/media/Carracosta.ab980cf8139d1acd230f.jpeg",
     "static/media/tyrantrum.jpg": "/pokedex-react/static/media/tyrantrum.4eeeb1a1a14b76335af7.jpg",
+    "static/media/pokeball.png": "/pokedex-react/static/media/pokeball.1e5c4498a4e60dfb063e.png",
+    "static/media/shadow.png": "/pokedex-react/static/media/shadow.1e5c4498a4e60dfb063e.png",
+    "static/media/unknown.png": "/pokedex-react/static/media/unknown.1e5c4498a4e60dfb063e.png",
     "static/media/greninja.jpg": "/pokedex-react/static/media/greninja.08f99c258364e9342e03.jpg",
     "static/media/charizard.jpg": "/pokedex-react/static/media/charizard.1783272cd1988f7bf82a.jpg",
     "static/media/clefable.jpg": "/pokedex-react/static/media/clefable.8ba348fb58741e3d859c.jpg",
@@ -438,6 +441,7 @@
     "static/media/405.png": "/pokedex-react/static/media/405.c2d7b5a5fde40f5ef4a4.png",
     "static/media/094.png": "/pokedex-react/static/media/094.bdc0bffce8ebba699c88.png",
     "static/media/469.png": "/pokedex-react/static/media/469.c9d59b49011b0a3b58b1.png",
+    "static/media/arrow-left.png": "/pokedex-react/static/media/arrow-left.4d7b6b4a43d0b81bdbf7.png",
     "static/media/491.png": "/pokedex-react/static/media/491.769df29fb9d3fbc1669f.png",
     "static/media/347.png": "/pokedex-react/static/media/347.fd59f1d8c398f2979ed3.png",
     "static/media/533.png": "/pokedex-react/static/media/533.efec8efa5a1c9c11954e.png",
@@ -959,11 +963,11 @@
     "static/media/fighting.png": "/pokedex-react/static/media/fighting.369e0ec67ce5c409d513.png",
     "static/media/278.png": "/pokedex-react/static/media/278.792132396e6a244597bf.png",
     "index.html": "/pokedex-react/index.html",
-    "main.b4d12010.css.map": "/pokedex-react/static/css/main.b4d12010.css.map",
-    "main.8d5bce32.js.map": "/pokedex-react/static/js/main.8d5bce32.js.map"
+    "main.ee9ba92a.css.map": "/pokedex-react/static/css/main.ee9ba92a.css.map",
+    "main.779b820e.js.map": "/pokedex-react/static/js/main.779b820e.js.map"
   },
   "entrypoints": [
-    "static/css/main.b4d12010.css",
-    "static/js/main.8d5bce32.js"
+    "static/css/main.ee9ba92a.css",
+    "static/js/main.779b820e.js"
   ]
 }
