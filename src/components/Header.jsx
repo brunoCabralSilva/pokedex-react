@@ -11,7 +11,7 @@ export default function Header() {
         />
       </div>
       <img
-        src={require('../imagens/wallpaper/YoutTeam.jpg')}
+        src={require(`../imagens/wallpaper/YourTeam.jpg`)}
         alt=""
         className="py-10vh sm:py-0 h-full sm:h-4/5 object-cover object-left sm:object-center mb-10"
       />

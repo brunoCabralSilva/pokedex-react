@@ -7,7 +7,6 @@ import { motion } from 'framer-motion';
 import contexto from '../context';
 import { getByName } from '../fetchs';
 import AllDataTypes from '../components/AllDataTypes';
-import Nav from '../components/Nav';
 import { useHistory } from 'react-router-dom';
 import Charts from '../components/Charts';
 
@@ -78,7 +77,6 @@ export default function Details(props) {
         exit="exit"
       >
         <div className="p-1">
-          <Nav className="z-50" color="white" />
           <div className="bg-black/70 pt-20 text-white w-full h-full flex flex-col sm:flex-row items-center justify-center text-xl sm:text-2xl md:text-4xl py-5 sm:p-0 sm:py-10 font-bold text-center relative">
           <div
             className="text-black text-4xl p-2 absolute w-full flex justify-left"

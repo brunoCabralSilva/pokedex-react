@@ -1,6 +1,5 @@
 import React, { useContext } from 'react';
 import Filter from '../components/Filter';
-import Nav from '../components/Nav';
 import contexto from '../context';
 import NameNumber from '../components/search/NameNumber';
 import Type from '../components/search/Type';
@@ -27,7 +26,6 @@ export default function Search() {
   return (
     <div className="bg-wallpaper-lilas bg-fixed bg-cover pt-2 min-h-screen">
       <div className="bg-black/75 mx-1 p-2">
-        <Nav color="white" />
         <div className="">
           <p className="text-6xl text-white text-center pt-4 pb-10 font-bold w-full">Busca</p>
         </div>
