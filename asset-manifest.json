@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/pokedex-react/static/css/main.f00b8b90.css",
-    "main.js": "/pokedex-react/static/js/main.374e2e0e.js",
+    "main.js": "/pokedex-react/static/js/main.4af0a1e7.js",
     "static/media/001.jpg": "/pokedex-react/static/media/001.44cbdd117c9739efdc2d.jpg",
     "static/media/003.jpg": "/pokedex-react/static/media/003.6e9a3f4f3c11cc7ec989.jpg",
     "static/media/002.jpg": "/pokedex-react/static/media/002.7ea40fc2199ea2985747.jpg",
@@ -10,7 +10,7 @@
     "static/media/pokeball.png": "/pokedex-react/static/media/pokeball.1e5c4498a4e60dfb063e.png",
     "static/media/shadow.png": "/pokedex-react/static/media/shadow.1e5c4498a4e60dfb063e.png",
     "static/media/unknown.png": "/pokedex-react/static/media/unknown.1e5c4498a4e60dfb063e.png",
-    "static/media/YoutTeam.jpg": "/pokedex-react/static/media/YoutTeam.851e062e168c5aea01a7.jpg",
+    "static/media/YourTeam.jpg": "/pokedex-react/static/media/YourTeam.851e062e168c5aea01a7.jpg",
     "static/media/Pokémon_logo.png": "/pokedex-react/static/media/Pokémon_logo.4a256f2f7ac8ae10b265.png",
     "static/media/arrow-left.png": "/pokedex-react/static/media/arrow-left.4d7b6b4a43d0b81bdbf7.png",
     "static/media/arrow-down.png": "/pokedex-react/static/media/arrow-down.f1328be3e4f27857d594.png",
@@ -36,10 +36,10 @@
     "static/media/pokeball.jpg": "/pokedex-react/static/media/pokeball.020026a9dc71083d4dcb.jpg",
     "index.html": "/pokedex-react/index.html",
     "main.f00b8b90.css.map": "/pokedex-react/static/css/main.f00b8b90.css.map",
-    "main.374e2e0e.js.map": "/pokedex-react/static/js/main.374e2e0e.js.map"
+    "main.4af0a1e7.js.map": "/pokedex-react/static/js/main.4af0a1e7.js.map"
   },
   "entrypoints": [
     "static/css/main.f00b8b90.css",
-    "static/js/main.374e2e0e.js"
+    "static/js/main.4af0a1e7.js"
   ]
 }
