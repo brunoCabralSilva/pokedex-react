@@ -7,7 +7,6 @@ import Search from './pages/Search';
 import Team from './pages/Team';
 import Favorites from './pages/Favorites';
 import Cards from './pages/Cards';
-import { Provider } from 'react-redux';
 import Footer from './components/Footer';
 import Nav from './components/Nav';
 

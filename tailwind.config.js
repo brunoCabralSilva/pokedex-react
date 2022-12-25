@@ -83,6 +83,7 @@ module.exports = {
         '86vh': '86vh',
         '95vh': '95vh',
         '120vh': '120vh',
+        '93vh': '93vh',
         'brown-mewtwo': '#201211',
         'light-mewtwo': '#674C37',
       },

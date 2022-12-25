@@ -4,7 +4,7 @@ import { Link } from  'react-router-dom';
 export default function Nav() {
   const [ showMenu, setShowMenu] = useState(false);
   return (
-    <nav className="w-full h-7vh bg-white 2xl:text-xl leading-6 flex flex-col justify-center items-end px-4">
+    <nav className="w-full h-7vh bg-white 2xl:text-xl leading-6 flex flex-col justify-center items-end px-2 sm:px-4">
       <div
         onClick={ () => { setShowMenu(!showMenu) }}
         className={`z-50 ${showMenu ? 'fixed' : ''}`}
@@ -15,49 +15,59 @@ export default function Nav() {
       </div>
       {
         showMenu && 
-        <div className="pt-7vh top-0 right-0 fixed w-full sm:w-2/5 md:w-3/12 bg-anil/80 h-screen z-40 border-l-2 border-marinho flex flex-col items-center justify-between">
-          <div className="w-full flex flex-col items-center justify-center pt-7vh text-marinho">
+        <div className="sm:pt-7vh top-0 right-0 fixed w-full sm:w-2/5 md:w-3/12 bg-anil/80 h-screen z-40 border-l-2 border-marinho flex flex-col items-center justify-center">
+          <div className="w-full flex flex-col items-center justify-center pt-7vh text-marinho text-lg">
             <Link
-              to=""
+              to="/pokedex-react"
+              onClick={ () => setShowMenu(false) }
               className="mt-5 py-2 font-bold w-full text-center hover:bg-marinho/50 hover:text-black transition-colors flex items-center justify-center"
             >
               Home
             </Link>
             <Link
-              to=""
+              to="/search"
+              onClick={ () => setShowMenu(false) }
               className="py-2 font-bold w-full text-center hover:bg-marinho/50 hover:text-black  transition-colors flex items-center justify-center"
             >
               Buscar
             </Link>
             <Link
-              to=""
+              to="/favorites"
+              onClick={ () => setShowMenu(false) }
               className="py-2 font-bold w-full text-center hover:bg-marinho/50 hover:text-black  transition-colors flex items-center justify-center"
             >
               Favoritos
             </Link>
             <Link
-              to=""
+              to="/team"
+              onClick={ () => setShowMenu(false) }
               className="py-2 font-bold w-full text-center hover:bg-marinho/50 hover:text-black  transition-colors flex items-center justify-center"
             >
               Meu Time
             </Link>
-            <Link
-              to=""
+            <a
+              href="https://github.com/brunoCabralSilva"
+              target="_blank"
+              rel="noreferrer"
+              onClick={ () => setShowMenu(false) }
               className="py-2 font-bold w-full text-center hover:bg-marinho/50 hover:text-black  transition-colors flex items-center justify-center"
             >
               Sobre o Autor
-            </Link>
-            <Link
-              to=""
+            </a>
+            <a
+              href="https://www.pokemon.com/br/"
+              target="_blank"
+              rel="noreferrer"
+              onClick={ () => setShowMenu(false) }
               className="py-2 font-bold w-full text-center hover:bg-marinho/50 hover:text-black  transition-colors flex items-center justify-center"
             >
               Site Oficial
-            </Link>
+            </a>
           </div>
           <img
               src={ require('../imagens/wallpaper/pokeball.jpg') } 
               alt="pokébola"
-              className="w-20vw sm:w-5vw py-5"
+              className="w-20vw sm:w-5vw py-5 pt-10"
             />
         </div>
       }
