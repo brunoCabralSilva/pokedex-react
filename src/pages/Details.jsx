@@ -5,13 +5,11 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import { motion } from 'framer-motion';
 import contexto from '../context';
-import dataPokemon from '../fetchs';
+import { getByName } from '../fetchs';
 import imagemType from '../components/Types';
 import Nav from '../components/Nav';
 import { useHistory } from 'react-router-dom';
 import Charts from '../components/Charts';
-
-const { getByName } = dataPokemon;
 
 export default function Details(props) {
   const { match } = props;
@@ -48,21 +46,19 @@ export default function Details(props) {
         return '';
       }
     }
-  }
+  };
 
   const retornaImagem = () => { 
     if (dataPokemon.id)  {
-      if (dataPokemon.id <= 9) {
-        return (<img src={require(`../imagens/all/00${dataPokemon.id}.png`)} className="w-2/3 sm:w-1/2" alt={dataPokemon.name} />);
-      }
-      else if (dataPokemon.id >= 10 && dataPokemon.id <= 99) {
-        return (<img src={require(`../imagens/all/0${dataPokemon.id}.png`)} className="w-2/3 sm:w-1/2" alt={dataPokemon.name} />);
-      }
-      else {
-        return (<img src={require(`../imagens/all/${dataPokemon.id}.png`)} className="w-2/3 sm:w-1/2" alt={dataPokemon.name} />);
-      }
+      return (
+        <img
+          src={Object.values(dataPokemon.sprites.other)[2].front_default}
+          className="w-2/3 sm:w-1/2"
+          alt={dataPokemon.name}
+        />
+      );
     }
-  }
+  };
 
   const returnColor = (data) => {
     if (data) {
@@ -137,12 +133,14 @@ export default function Details(props) {
                 <div className="py-4">
                   Peso
                   <span className="px-2">{ ' - ' }</span>
-                  { dataPokemon.weight }
+                  { dataPokemon.weight/10 }
+                  { ' kg' }
                 </div>
                 <div className="py-4">
                   Altura
                   <span className="px-2">{ ' - ' }</span>
-                  { dataPokemon.height }
+                  { dataPokemon.height/10 }
+                  { ' m' }
                 </div>
                 <div className="sm:col-span-2 py-4">
                 <span>Habilidades</span>

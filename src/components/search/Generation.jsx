@@ -1,9 +1,7 @@
 import React, { useState, useContext } from 'react';
 import contexto from '../../context';
-import data from '../../fetchs';
+import { getByGeneration } from '../../fetchs';
 import Pokemon from '../Pokemon';
-
-const { getByGeneration } = data;
 
 export default function Generation() {
   const context = useContext(contexto);
@@ -18,6 +16,7 @@ export default function Generation() {
   } = context;
 
   const searchByGen = async () => {
+      setListGeneration([]);
       const call = await getByGeneration(gen);
       setListGeneration(call);
       const selectGeneration = document.getElementById('select-generation');
@@ -66,7 +65,7 @@ export default function Generation() {
                 <i className="fa-solid fa-magnifying-glass text-white"></i>
               </button>
             </div>
-            { listGeneration.length === 0 && <div className="h-19vh sm:h-49vh w-full" /> }
+            { listGeneration.length === 0 && <div className="h-19vh sm:h-screen w-full" /> }
           </div>
         </div>
         <div>
@@ -79,6 +78,7 @@ export default function Generation() {
                   className="w-full"
                   name={poke.name}
                   id={numberPokemon(poke)}
+                  dataPokemon={poke}
                 />
               ))
             }

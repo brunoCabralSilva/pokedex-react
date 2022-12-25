@@ -30,6 +30,7 @@ module.exports = {
           'half-transp': 'rgb(0,0,0,0.8)',
           'min-transp': 'rgb(0,0,0,0.6)',
           'mini-transp': 'rgb(0,0,0,0.4)',
+          'lightGray': '#F2F2F2',
           'lilas': '#363775',
         },
       backgroundImage: {

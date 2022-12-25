@@ -10,6 +10,9 @@ export default function PokeProvider({ children }) {
   const [type, setType] = useState([]);
   const [allPokemonGeneration, setAllPokeOfGeneration] = useState([]);
   const [search, setSearch] = useState('ALL');
+  const [listFavorites, setListFavorites] = useState([]);
+  const [countPokemon, setCountPokemon] = useState(0);
+  const [messageTypes, setMessageTypes] = useState('');
   
   function letraMaiuscula (nome) {
     let novoNome = nome[0].toUpperCase();
@@ -24,7 +27,7 @@ export default function PokeProvider({ children }) {
       const numero = poke.url.replace('https://pokeapi.co/api/v2/pokemon-species/', '');
       return numero.replace('/', '');
     } return poke.id;
-  }
+  };
 
   return(
     <contexto.Provider value={{
@@ -35,6 +38,9 @@ export default function PokeProvider({ children }) {
       type, setType,
       search, setSearch,
       lastSelectedGen, setLastSelectedGen,
+      listFavorites, setListFavorites,
+      countPokemon, setCountPokemon,
+      messageTypes, setMessageTypes,
       gen, setGen,
       letraMaiuscula,
       numberPokemon,

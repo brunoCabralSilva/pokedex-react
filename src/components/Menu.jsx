@@ -1,9 +1,8 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay } from 'swiper';
 import { Link } from  'react-router-dom';
 import { useSelector } from 'react-redux';
-import contexto from '../context';
 
 import 'swiper/css';
 import 'swiper/css/pagination';
@@ -13,15 +12,12 @@ import 'swiper/css';
 export default function Menu() {
   const globalState = useSelector((state) => state);
   const { showMenu } = globalState;
-  const context = useContext(contexto);
-  const {setList, setFirstValor, setButton, setTheFinish } = context;
 
   const arrayMenu = [
     {
       grid: 'row-span-1 h-24vh md:h-45vh',
       list: ['venusaur.jpg','charizard.jpg','clefable.jpg','muk.jpg','hydreigon.jpg'],
       direction: 'vertical',
-      reverseDirection: true,
       delay: 6000,
       name: 'Seu Time',
       link: '/team',
@@ -30,7 +26,6 @@ export default function Menu() {
       grid: 'row-span-2 h-48vh md:h-full',
       list: ['mew.png','exeggutor.png','greninja.jpg','Lycanroc.jpeg','tyrantrum.jpg'],
       direction: 'horizontal',
-      reverseDirection: false,
       delay: 4000,
       name: 'Sobre Mim',
       link: 'https://github.com/brunoCabralSilva',
@@ -39,7 +34,6 @@ export default function Menu() {
       grid: 'col-span-1 md:col-span-2 h-24vh md:h-45vh',
       list: ['salamence.jpg','suicune.jpg','lugia.jpg','aurorus.jpeg'],
       direction: 'vertical',
-      reverseDirection: true,
       delay: 5000,
       name: 'Busca',
       link: '/search',
@@ -48,7 +42,6 @@ export default function Menu() {
       grid: 'row-span-1 col-span-2 md:col-span-1 h-24vh md:h-45vh',
       list: ['dragonite.jpg','nidoking.png','umbreon.jpg','Noctowl.jpeg','mewtwo.jpg'],
       direction: 'horizontal',
-      reverseDirection: false,
       delay: 6000,
       name: 'Site Oficial',
       link: 'https://www.pokemon.com/br/',
@@ -57,7 +50,6 @@ export default function Menu() {
       grid: 'row-span-1 h-24vh md:h-45vh',
       list: ['garchomp.jpg','haxorus.jpg','steelix.jpg','rhydon.jpg', 'ninetales.jpg'],
       direction: 'vertical',
-      reverseDirection: true,
       delay: 4000,
       name: 'Favoritos',
       link: '/favorites',
@@ -66,7 +58,6 @@ export default function Menu() {
       grid: 'row-span-2 h-24vh md:h-45vh',
       list: ['alakazam.jpg','espeon.png','Carracosta.jpeg','lycanrock2.jpg','snorlax.jpg'],
       direction: 'horizontal',
-      reverseDirection: false,
       delay: 5000,
       name: 'Home',
       link: '/pokedex-react',
@@ -74,7 +65,7 @@ export default function Menu() {
   ];
 
   return (
-    <div className="grid grid-cols-2 md:grid-cols-4 w-11/12 mx-auto items-center">
+    <div className="grid grid-cols-2 md:grid-cols-4 w-11/12 mx-auto items-center z-50">
       {
         arrayMenu.map((item) => {
           if (item.name === "Site Oficial" || item.name === "Sobre Mim") {
@@ -91,7 +82,6 @@ export default function Menu() {
                 autoplay={{delay: item.delay }}
                 className="z-30 w-full h-full"
                 direction={ item.direction }
-                reverseDirection={ item.reverseDirection }
               > 
               {
                 item.list.map((item) => (
@@ -121,7 +111,6 @@ export default function Menu() {
                 autoplay={{delay: item.delay }}
                 className="z-30 w-full h-full"
                 direction={ item.direction }
-                reverseDirection={ item.reverseDirection }
               > 
               {
                 item.list.map((item) => (

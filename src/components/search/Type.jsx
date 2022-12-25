@@ -2,15 +2,13 @@ import React, { useState, useContext, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import contexto from '../../context';
 import imageType from '../Types';
-import data from '../../fetchs';
+import { getAllTypes, getByType } from '../../fetchs';
 import Pokemon from '../Pokemon';
-const { allTypes, getByType } = data;
 
 export default function Type() {
   const [allTheTypes, setAllTheTypes] = useState([]);
   const [hiddeTypes, setHiddeTypes] = useState(false);
   const history = useHistory();
-  const [messageTypes, setMessageTypes] = useState('');
   const context = useContext(contexto);
   const {
     letraMaiuscula,
@@ -19,11 +17,14 @@ export default function Type() {
     numberPokemon,
     type,
     setType,
+    countPokemon,
+    messageTypes,
+    setMessageTypes,
   } = context;
 
   useEffect(() => {
     const listTypes = async () => {
-      const types = await allTypes();
+      const types = await getAllTypes();
       setAllTheTypes(types.results);
     };
     listTypes();
@@ -97,6 +98,7 @@ export default function Type() {
   };
 
   const searchByType = async () => {
+    setListType([]);
     setHiddeTypes(true);
     if(type.length !== 1) {
     const type1 = await getByType(type[0]);
@@ -117,7 +119,7 @@ export default function Type() {
           };
           return objPokemon;
         });
-        const arrayTipos = all.filter((tipo) => Number(tipo.id) <= 898);
+        const arrayTipos = all.filter((tipo) => Number(tipo.id) <= countPokemon);
         setListType(arrayTipos);
       }
     } else {
@@ -132,7 +134,7 @@ export default function Type() {
         };
         return objPokemon;
       });
-      const arrayTipos = all.filter((tipo) => Number(tipo.id) <= 898);
+      const arrayTipos = all.filter((tipo) => Number(tipo.id) <= countPokemon);
       setListType(arrayTipos);
     }
     setType([]);
@@ -225,22 +227,25 @@ export default function Type() {
                 className="w-full"
                 name={poke.name}
                 id={numberPokemon(poke)}
+                dataPokemon={poke}
               />
             ))
             : history.push(`/pokemon/${listType[0].id}`)
           }
         </div>
-          <div className="w-full">
-            <button
-              type="button"
-              className="px-1 w-full mb-1"
-              onClick={ () => window.scrollTo(0, 0) }
-            >
-              <div className="bg-black/70 text-white text-xl p-4 font-bold hover:border-2 hover:border-white w-full h-full">
-                Voltar ao Topo
-              </div>
-            </button>
-          </div>
+          { listType.length > 10 &&
+            <div className="w-full">
+              <button
+                type="button"
+                className="px-1 w-full mb-1"
+                onClick={ () => window.scrollTo(0, 0) }
+              >
+                <div className="bg-black/70 text-white text-xl p-4 font-bold hover:border-2 hover:border-white w-full h-full">
+                  Voltar ao Topo
+                </div>
+              </button>
+            </div>
+          }
     </div>
   );
   }

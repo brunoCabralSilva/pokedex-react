@@ -21,7 +21,6 @@ export default function Charts({ data, color }) {
     return null;
     }
   });
-console.log(color);
   const arrayValores = data && data.map((d) => d.base_stat);
 
   const series = [{

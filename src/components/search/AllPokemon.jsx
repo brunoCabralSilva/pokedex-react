@@ -1,10 +1,8 @@
 import { useState, useEffect, useContext } from "react";
 import contexto from '../../context';
-import data from '../../fetchs';
+import { getAllPokemon, getNumberOfPokemon } from '../../fetchs';
 import { useHistory } from "react-router-dom";
 import Pokemon from "../Pokemon";
-
-const { getAllPokemon } = data;
 
 export default function AllPokemon() {
   const [first, setFirst] = useState(0);
@@ -15,21 +13,29 @@ export default function AllPokemon() {
     setList,
     list,
     numberPokemon,
+    countPokemon,
+    setCountPokemon,
   } = context;
 
   useEffect(() => {
     const firstCall = async () => {
+      let count = countPokemon;
+      if (countPokemon === 0) {
+        const number = await getNumberOfPokemon();
+        setCountPokemon(number.count);
+        count = number.count;
+      }
       if(list.length === 0) {
         const call = await getAllPokemon(first);
         if (list.length <= 20) {
-          if (first + 20 < 898) {
+          if (first + 20 < count) {
             setList(call.results);
           } else {
-            let last898 = [];
-            for (let i = 0; i < 898 - first; i += 1) {
-              last898.push(call.results[i]);
+            let last = [];
+            for (let i = 0; i < count - first; i += 1) {
+              last.push(call.results[i]);
             }
-            setList(last898);
+            setList(last);
           }
         }
       } else if (list.length === 20) {
@@ -46,17 +52,17 @@ export default function AllPokemon() {
   const moreTwentyForAll = async () => {
     const newFirst = first + 20;
     const call = await getAllPokemon(newFirst);
-      if (newFirst + 20 < 898) {
+      if (newFirst + 20 < countPokemon) {
         setFirst(newFirst);
         setList([...list, ...call.results]);
         setFinish(false);
       } else {
-        let last898 = [];
-        for (let i = 0; i < 898 - newFirst; i += 1) {
-          last898.push(call.results[i]);
+        let last = [];
+        for (let i = 0; i < countPokemon - newFirst; i += 1) {
+          last.push(call.results[i]);
         }
         setFirst(newFirst);
-        setList([...list, ...last898]);
+        setList([...list, ...last]);
         setFinish(true);
       }
   };
@@ -72,6 +78,7 @@ export default function AllPokemon() {
                 className="w-full"
                 name={poke.name}
                 id={numberPokemon(poke)}
+                dataPokemon={poke}
               />
             ))
             : history.push(`/pokemon/${list[0].id}`)
