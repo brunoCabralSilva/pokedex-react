@@ -2,15 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
-.contorno {
-  -webkit-text-stroke-width: 1px;
-  -webkit-text-stroke-color: black;
-}
-
 .hidden-element {
   display: none !important;
   color: black !important;
   background-color: black !important;
+}
+
+.index50 {
+	z-index: 50;
 }
 
 .swiper-button-next::after {

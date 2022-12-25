@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import contexto from '../../context';
-import imageType from '../Types';
+import AllDataTypes from '../AllDataTypes';
 import { getAllTypes, getByType } from '../../fetchs';
 import Pokemon from '../Pokemon';
 
@@ -41,17 +41,17 @@ export default function Type() {
   };
 
   const addType = (name) => {
-    if(type.includes(imageType(name).type.toString())) {
+    if(type.includes(AllDataTypes(name).type.toString())) {
       if (type.length === 1) {
         setType([]);
       } else {
-        const att = type.filter((f) => (f) !== imageType(name).type.toString());
+        const att = type.filter((f) => (f) !== AllDataTypes(name).type.toString());
         setType(att);
       }
     } else if (type.length >= 2) {
       global.alert('Não existem pokémon com três tipos: Remova um dos dois tipos selecionados ou realize a pesquisa com os dois tipos já escolhidos.');
     } else {
-      setType(prevState => [...prevState, imageType(name).type.toString()]);
+      setType(prevState => [...prevState, AllDataTypes(name).type.toString()]);
     }
   };
 
@@ -169,7 +169,7 @@ export default function Type() {
                   key={index}
                   onClick={() => addType(name)}
                 >
-                  { imageType(name).image }
+                  { AllDataTypes(name).image }
                   <p className="hidden sm3:flex pl-2">{letraMaiuscula(name)}</p>
                 </div>
               </div>

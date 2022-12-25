@@ -9,6 +9,7 @@ import Favorites from './pages/Favorites';
 import Cards from './pages/Cards';
 import store from './redux/store';
 import { Provider } from 'react-redux';
+import Footer from './components/Footer';
 
 function App() {
   const location = useLocation();
@@ -25,6 +26,7 @@ function App() {
             <Route exact path="/pokemon/:id" component={Details} />
             {/* <Route exact path="*" component={Home} /> */}
           </Switch>
+          <Footer />
         </Provider>
       </AnimatePresence>
     </AnimateSharedLayout>

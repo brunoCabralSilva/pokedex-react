@@ -2,7 +2,6 @@ import React, { useEffect, useState, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import contexto from '../context';
-import letraMaiuscula from '../utils/Utilitaries';
 import { getByName }  from '../fetchs';
 import Loading from './Loading';
 
@@ -16,6 +15,7 @@ export default function Pokemon (props) {
   const {
     listFavorites,
     setListFavorites,
+    letraMaiuscula,
   } = context;
 
   const { name, id, dataPokemon } = props;

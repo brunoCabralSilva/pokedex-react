@@ -6,7 +6,7 @@ import 'swiper/css/navigation';
 import { motion } from 'framer-motion';
 import contexto from '../context';
 import { getByName } from '../fetchs';
-import imagemType from '../components/Types';
+import AllDataTypes from '../components/AllDataTypes';
 import Nav from '../components/Nav';
 import { useHistory } from 'react-router-dom';
 import Charts from '../components/Charts';
@@ -63,9 +63,9 @@ export default function Details(props) {
   const returnColor = (data) => {
     if (data) {
       if (data.length === 1) {
-        return [imagemType(data[0].type.name).color, 'black'];
+        return [AllDataTypes(data[0].type.name).color, 'black'];
       } else {
-        return [imagemType(data[0].type.name).color, imagemType(data[1].type.name).color];
+        return [AllDataTypes(data[0].type.name).color, AllDataTypes(data[1].type.name).color];
       }
     }
   };
@@ -106,7 +106,7 @@ export default function Details(props) {
                 { 
                   dataPokemon.types && dataPokemon.types.map((type, index) => (
                     <p key={ index } className="px-2">
-                      { imagemType(type.type.name).image }
+                      { AllDataTypes(type.type.name).image }
                     </p>
                   ))
                 }
