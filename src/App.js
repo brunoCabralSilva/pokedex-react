@@ -7,7 +7,6 @@ import Search from './pages/Search';
 import Team from './pages/Team';
 import Favorites from './pages/Favorites';
 import Cards from './pages/Cards';
-import store from './redux/store';
 import { Provider } from 'react-redux';
 import Footer from './components/Footer';
 import Nav from './components/Nav';
@@ -17,7 +16,6 @@ function App() {
   return (
     <AnimateSharedLayout>
       <AnimatePresence>
-        <Provider store={ store }>
           <Nav />
           <Switch location={location} key={location.key}>
             <Route exact path="/pokedex-react" component={Home} />
@@ -29,7 +27,6 @@ function App() {
             {/* <Route exact path="*" component={Home} /> */}
           </Switch>
           <Footer />
-        </Provider>
       </AnimatePresence>
     </AnimateSharedLayout>
   );
