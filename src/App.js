@@ -10,6 +10,7 @@ import Cards from './pages/Cards';
 import store from './redux/store';
 import { Provider } from 'react-redux';
 import Footer from './components/Footer';
+import Nav from './components/Nav';
 
 function App() {
   const location = useLocation();
@@ -17,6 +18,7 @@ function App() {
     <AnimateSharedLayout>
       <AnimatePresence>
         <Provider store={ store }>
+          <Nav />
           <Switch location={location} key={location.key}>
             <Route exact path="/pokedex-react" component={Home} />
             <Route exact path="/search" component={Search} />

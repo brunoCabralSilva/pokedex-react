@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from  'react-router-dom';
 
-export default function Nav({ color }) {
-  console.log(color);
+export default function Nav() {
   const [ showMenu, setShowMenu] = useState(false);
   return (
     <nav className="w-full h-7vh bg-white 2xl:text-xl leading-6 flex flex-col justify-center items-end px-4">
@@ -16,41 +15,41 @@ export default function Nav({ color }) {
       </div>
       {
         showMenu && 
-        <div className="pt-7vh top-0 right-0 fixed w-1/6 bg-anil h-screen z-40 border-l-2 border-marinho flex flex-col items-center justify-between">
+        <div className="pt-7vh top-0 right-0 fixed w-full sm:w-2/5 md:w-3/12 bg-anil/80 h-screen z-40 border-l-2 border-marinho flex flex-col items-center justify-between">
           <div className="w-full flex flex-col items-center justify-center pt-7vh text-marinho">
             <Link
               to=""
-              className="mt-5 py-2 font-bold w-full text-center bg-anil hover:bg-marinho/50 hover:text-black transition-colors flex items-center justify-center"
+              className="mt-5 py-2 font-bold w-full text-center hover:bg-marinho/50 hover:text-black transition-colors flex items-center justify-center"
             >
               Home
             </Link>
             <Link
               to=""
-              className="py-2 font-bold w-full text-center bg-anil hover:bg-marinho/50 hover:text-black  transition-colors flex items-center justify-center"
+              className="py-2 font-bold w-full text-center hover:bg-marinho/50 hover:text-black  transition-colors flex items-center justify-center"
             >
               Buscar
             </Link>
             <Link
               to=""
-              className="py-2 font-bold w-full text-center bg-anil hover:bg-marinho/50 hover:text-black  transition-colors flex items-center justify-center"
+              className="py-2 font-bold w-full text-center hover:bg-marinho/50 hover:text-black  transition-colors flex items-center justify-center"
             >
               Favoritos
             </Link>
             <Link
               to=""
-              className="py-2 font-bold w-full text-center bg-anil hover:bg-marinho/50 hover:text-black  transition-colors flex items-center justify-center"
+              className="py-2 font-bold w-full text-center hover:bg-marinho/50 hover:text-black  transition-colors flex items-center justify-center"
             >
               Meu Time
             </Link>
             <Link
               to=""
-              className="py-2 font-bold w-full text-center bg-anil hover:bg-marinho/50 hover:text-black  transition-colors flex items-center justify-center"
+              className="py-2 font-bold w-full text-center hover:bg-marinho/50 hover:text-black  transition-colors flex items-center justify-center"
             >
               Sobre o Autor
             </Link>
             <Link
               to=""
-              className="py-2 font-bold w-full text-center bg-anil hover:bg-marinho/50 hover:text-black  transition-colors flex items-center justify-center"
+              className="py-2 font-bold w-full text-center hover:bg-marinho/50 hover:text-black  transition-colors flex items-center justify-center"
             >
               Site Oficial
             </Link>
@@ -58,7 +57,7 @@ export default function Nav({ color }) {
           <img
               src={ require('../imagens/wallpaper/pokeball.jpg') } 
               alt="pokébola"
-              className="w-5vw py-5"
+              className="w-20vw sm:w-5vw py-5"
             />
         </div>
       }

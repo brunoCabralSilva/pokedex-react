@@ -13,7 +13,7 @@ export default function Header() {
       <img
         src={require('../imagens/wallpaper/YoutTeam.jpg')}
         alt=""
-        className="py-20vh sm:py-0 sm:h-4/5 object-cover mb-10"
+        className="py-10vh sm:py-0 h-full sm:h-4/5 object-cover object-start mb-10"
       />
     </div>
   );
