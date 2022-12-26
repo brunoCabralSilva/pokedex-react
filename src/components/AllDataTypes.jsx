@@ -1,5 +1,6 @@
-export default function AllDataTypes({ tipo: type }) {
-  const widthImage = 'w-16 pb-5';
+export default function AllDataTypes(type) {
+  const widthImage = 'w-16';
+  console.log(type)
   switch (type) {
     case 'normal':
       return {

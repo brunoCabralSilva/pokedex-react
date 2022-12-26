@@ -19,6 +19,15 @@ module.exports = {
       '2xl':'1536px',
     },
     extend: {
+      animation: {
+        'spin-slow': 'wiggle 3s linear infinite',
+      },
+      keyframes: {
+        wiggle: {
+          '0%, 100%': { transform: 'translateY(-10px)' },
+          '50%': { transform: 'translateY(10px)' },
+        }
+      },
       transitionProperty: {
         'width': 'width',
       },

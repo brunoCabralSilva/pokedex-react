@@ -1,39 +1,79 @@
 import React, { useContext } from 'react';
 import contexto from '../context';
 
-function Filter() { 
+function Filter({ search }) { 
   const context = useContext(contexto);
-  const { setSearch } = context; 
+  const { setSearch } = context;
   return (
     <form className="justify-between lg:flex-nowrap flex flex-col items-center sm:px-0 pb-4 sm:pb-0 w-full">
-      <div className="grid gap-2 grid-cols-1 sm:grid-cols-2 md:grid-cols-4 px-2 sm:px-0 pb-4 sm:pb-0 w-full text-white font-bold">
+      <div className="grid gap-1 grid-cols-1 sm:grid-cols-2 md:grid-cols-4 px-2 sm:px-1 pb-4 sm:pb-0 w-full font-bold mt-1">
         <button
           type="button"
-          className="border-2 border-white py-4 hover:bg-black/60"
+          className={`border-2 ${search === 'ALL' && 'border-b-0'} py-4 border-anil relative hover:bg-anil text-black transition-all duration-500`}
           onClick={ () => setSearch('ALL') }
         >
-          Todos os Pokémon
+          { 
+            search === 'ALL' &&
+            <div className="absolute top-0 h-full flex items-center">
+              <img
+                src={ require('../imagens/wallpaper/pokeball.jpg') } 
+                alt="pokébola"
+                className="h-1/3 lg:h-full"
+              />
+            </div>
+          }
+          <span className="my-4">Todos os Pokémon</span>
         </button>
         <button
           type="button"
-          className="border-2 border-white py-4 hover:bg-black/60"
+          className={`border-2 ${search === 'NAME_NUMBER' && 'border-b-0'} py-4 border-anil relative hover:bg-anil text-black transition-all duration-500`}
           onClick={ () => setSearch('NAME_NUMBER') }
         >
-          Nome ou Número
+          { 
+            search === 'NAME_NUMBER' &&
+            <div className="absolute top-0 h-full flex items-center">
+              <img
+                  src={ require('../imagens/wallpaper/pokeball.jpg') } 
+                  alt="pokébola"
+                  className="h-1/3 lg:h-full"
+                />
+            </div>
+          }
+          <span className="my-4">Nome ou Número</span>
         </button>
         <button
           type="button"
-          className="border-2 border-white py-4 hover:bg-black/60"
+          className={`border-2 ${search === 'GENERATION' && 'border-b-0'} py-4 border-anil relative hover:bg-anil text-black transition-all duration-500`}
           onClick={ () => setSearch('GENERATION') }
         >
-          Busca por Geração
+          { 
+            search === 'GENERATION' &&
+            <div className="absolute top-0 h-full flex items-center">
+              <img
+                src={ require('../imagens/wallpaper/pokeball.jpg') } 
+                alt="pokébola"
+                className="h-1/3 lg:h-full"
+              />
+            </div>
+          }
+          <span className="my-4">Busca por Geração</span>
         </button>
         <button
           type="button"
-          className="border-2 border-white py-4 hover:bg-black/60"
+          className={`border-2 ${search === 'TYPE' && 'border-b-0'} py-4 border-anil relative hover:bg-anil text-black transition-all duration-500`}
           onClick={ () => setSearch('TYPE') }
         >
-          Busca por Tipo
+          { 
+            search === 'TYPE' &&
+            <div className="absolute top-0 h-full flex items-center">
+              <img
+                src={ require('../imagens/wallpaper/pokeball.jpg') } 
+                alt="pokébola"
+                className="h-1/3 lg:h-full"
+              />
+            </div>
+          }
+          <span className="my-4">Busca por Tipo</span>
         </button>
       </div>
      </form>

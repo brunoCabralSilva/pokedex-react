@@ -3,6 +3,8 @@ import { useHistory } from 'react-router-dom';
 import { getNumberOfPokemon } from '../fetchs';
 import Header from '../components/Header';
 import contexto from '../context';
+import Footer from '../components/Footer';
+import Nav from '../components/Nav';
 
 export default function Home() {
   const context = useContext(contexto);
@@ -19,6 +21,7 @@ export default function Home() {
 
   return (
     <div className="bg-white w-full bg-fixed bg-cover">
+      <Nav />
       <div className="w-full mx-auto items-center">
         <Header />
       </div>
@@ -95,6 +98,7 @@ export default function Home() {
           />
         </div>
       </div>
+      <Footer />
     </div>
   );
 }

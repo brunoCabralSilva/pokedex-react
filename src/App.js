@@ -15,7 +15,7 @@ function App() {
   return (
     <AnimateSharedLayout>
       <AnimatePresence>
-          <Nav />
+          {/* <Nav /> */}
           <Switch location={location} key={location.key}>
             <Route exact path="/pokedex-react" component={Home} />
             <Route exact path="/search" component={Search} />
@@ -23,9 +23,9 @@ function App() {
             <Route exact path="/favorites" component={Favorites} />
             <Route exact path="/cards" component={Cards} />
             <Route exact path="/pokemon/:id" component={Details} />
-            {/* <Route exact path="*" component={Home} /> */}
+            <Route exact path="*" component={Home} />
           </Switch>
-          <Footer />
+          {/* <Footer /> */}
       </AnimatePresence>
     </AnimateSharedLayout>
   );

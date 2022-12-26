@@ -8,10 +8,6 @@
   background-color: black !important;
 }
 
-.index50 {
-	z-index: 50;
-}
-
 .swiper-button-next::after {
   color: black;
   font-size: 60px;

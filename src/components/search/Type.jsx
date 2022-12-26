@@ -150,9 +150,27 @@ export default function Type() {
   };
 
   return (
-    <div className={`flex flex-col w-full ${hiddeTypes && 'min-h-70vh'}`}>
+    <div className={`flex flex-col items-center w-full ${hiddeTypes && 'min-h-70vh'}`}>
+      <div className="w-9/12">
+          <p className="mt-8 sm:mt-20 text-4xl sm:text-left pb-5 w-full bg-gradient-to-b">
+            Pesquisando pelo Tipo
+          </p>
+          <p className="pt-5">
+            Abaixo é possível pesquisar um Pokémon por seu tipo.
+            Você também utilizar as outras abas acima para pesquisar Pokémon por nome, número ou geração, ou ainda listar todos os pokémon por ordem numérica. 
+          </p>
+          <p className="pt-2">
+            Escolha abaixo um ou dois tipos existentes de Pokémon. Ao clicar em buscar, serão listados todos os Pokémon pertencentes aos pré-requisitos da busca.
+          </p>
+          <p className="pt-2">  
+            Clicando em um Pokémon, será possível ver mais detalhes sobre ele. Além disso, caso você clique no botão que existe no canto superior direito de cada Pokémon, este será salvo na sua lista de Favoritos.
+          </p>
+          <p className="pt-2 pb-10">  
+            Explore o quanto quiser e divirta-se!
+          </p>
+        </div>
       <div
-        className={`px-1 py-1 gap-1 w-full grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 ${hiddeTypes && 'hidden'}`}
+        className={`border-2 border-anil px-5 py-5 gap-2 w-9/12 grid grid-cols-3 sm:grid-cols-3 md:grid-cols-4 ${hiddeTypes && 'hidden'}`}
         onChange={(e) => setType(e.target.value)}
       >
         {
@@ -163,15 +181,13 @@ export default function Type() {
               return null;
             }
             return (
-              <div className="w-full">
-                <div
-                  className={`flex flex-col items-center sm3:justify-start justify-center text-white font-bold p-2 w-full h-full ${type.includes(id) ? 'bg-black border-2 border-white' : 'bg-black/60 hover:bg-black/70'} `}
-                  key={index}
-                  onClick={() => addType(name)}
-                >
-                  { AllDataTypes(name).image }
-                  <p className="hidden sm3:flex pl-2">{letraMaiuscula(name)}</p>
-                </div>
+              <div
+                className={`px-2 py-2 rounded-full flex items-center sm3:justify-start justify-center text-xl w-full h-full ${type.includes(id) ? 'bg-anil/50' : 'border-2 text-marinho'} `}
+                key={index}
+                onClick={() => addType(name)}
+              >
+                <div>{ AllDataTypes(name).image }</div>
+                <p className="hidden sm3:flex pl-3">{letraMaiuscula(name)}</p>
               </div>
             );
           })
@@ -179,11 +195,11 @@ export default function Type() {
       </div>
       <button
         type="button"
-        className="w-full px-1 mt-1"
+        className="w-9/12 px-1 mt-1"
         onClick={ () => setHiddeTypes(!hiddeTypes) }
         >
           <div
-            className=" bg-black/70 text-white flex items-center justify-between text-xl p-4 font-bold hover:border-2 hover:border-white w-full h-full"
+            className="bg-anil/80 text-black text-xl flex justify-between items-center p-4 w-full h-full bg-anil font-bold border-2 border-anil hover:border-2 hover:border-marinho transition-colors duration-500"
           >
             { hiddeTypes ? 'Exibir Tipos' : 'Minimizar Tipos' }
             <img
@@ -195,30 +211,30 @@ export default function Type() {
       </button>
       <button
         type="button"
-        className="w-full p-1"
+        className="w-9/12 p-1"
         onClick={ searchByType }
         >
-          <div className="bg-black/70 text-white text-xl p-4 font-bold hover:border-2 hover:border-white w-full h-full flex flex-col sm:flex-row items-center justify-between">
+          <div className="bg-anil/80 text-black text-xl flex justify-between items-center p-4 w-full h-full bg-anil font-bold border-2 border-anil hover:border-2 hover:border-marinho transition-colors duration-500">
             { returnMessageButton() }
             <i className="fa-solid fa-magnifying-glass hidden sm:flex"></i>
           </div>
       </button>
-      <div className="w-full px-1 my-1 sm:my-0">
+      <div className="w-full flex justify-center px-1 my-1 sm:my-0">
           { listType.length === 0
             ? messageTypes !== '' 
               ? 
-                <p className="bg-black/70 text-white w-full h-47vh flex flex-col sm:flex-row items-center justify-center text-4xl py-10 font-bold text-center">
+                <p className="py-14 text-marinho w-9/12 text-3xl h-full flex flex-col sm:flex-row items-center sm:p-0 sm:py-14 text-left">
                   Não existem Pokémon que possuam ambos os tipos selecionados
                 </p>
               : 
                 ''
             : 
-              <p className="bg-black/70 text-white w-full h-full flex flex-col sm:flex-row items-center justify-center text-xl sm:text-2xl md:text-4xl py-5 p-2 sm:p-0 sm:py-10 font-bold text-center">
+              <p className="py-14 text-marinho w-9/12 text-3xl h-full flex flex-col sm:flex-row items-center sm:p-0 sm:py-14 text-left">
                 { `${messageTypes} ${listType.length} ` }
               </p>
           }
       </div>
-      <div className="p-1 w-full gap-1 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4">
+      <div className="p-1 w-9/12 gap-1 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4">
         {
           listType.length !== 1
             ? listType.length > 0 && listType.map((poke, index) => (
@@ -232,20 +248,20 @@ export default function Type() {
             ))
             : history.push(`/pokemon/${listType[0].id}`)
           }
-        </div>
-          { listType.length > 10 &&
-            <div className="w-full">
-              <button
-                type="button"
-                className="px-1 w-full mb-1"
-                onClick={ () => window.scrollTo(0, 0) }
-              >
-                <div className="bg-black/70 text-white text-xl p-4 font-bold hover:border-2 hover:border-white w-full h-full">
-                  Voltar ao Topo
-                </div>
-              </button>
-            </div>
-          }
+      </div>
+        { listType.length > 10 &&
+          <div className="w-9/12">
+            <button
+              type="button"
+              className="px-1 w-full mb-1"
+              onClick={ () => window.scrollTo(0, 0) }
+            >
+              <div className="bg-anil/80 text-black text-xl p-4 w-full h-full bg-anil font-bold border-2 border-anil hover:border-2 hover:border-marinho transition-colors duration-500">
+                Voltar ao Topo
+              </div>
+            </button>
+          </div>
+        }
     </div>
   );
   }

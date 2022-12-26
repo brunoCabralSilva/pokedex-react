@@ -9,6 +9,8 @@ import { getByName } from '../fetchs';
 import AllDataTypes from '../components/AllDataTypes';
 import { useHistory } from 'react-router-dom';
 import Charts from '../components/Charts';
+import Footer from '../components/Footer';
+import Nav from '../components/Nav';
 
 export default function Details(props) {
   const { match } = props;
@@ -76,6 +78,7 @@ export default function Details(props) {
         animate="visible"
         exit="exit"
       >
+        <Nav />
         <div className="p-1">
           <div className="bg-black/70 pt-20 text-white w-full h-full flex flex-col sm:flex-row items-center justify-center text-xl sm:text-2xl md:text-4xl py-5 sm:p-0 sm:py-10 font-bold text-center relative">
           <div
@@ -178,6 +181,7 @@ export default function Details(props) {
             </Swiper>
           </div>
         </div>
+        <Footer />
       </motion.div>
   );
 }

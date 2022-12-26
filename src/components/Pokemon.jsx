@@ -57,7 +57,15 @@ export default function Pokemon (props) {
 
 
   const retornaImagem = () => {    
-    return <img src={Object.values(searchByName.sprites.other)[2].front_default} className="w-8/12" alt={name} />;
+    return (
+      <div className="relative">
+        <p className="text-marinho absolute bottom-0 w-full text-center pb-2 pt-4 font-bold bg-gradient-to-t from-anil via-anil/60 to-anil/10">{ messageAdd }</p>
+        <img
+          src={Object.values(searchByName.sprites.other)[2].front_default} 
+          className="w-full bg-anil/40 rounded-lg p-5" alt={name}
+        />
+      </div>
+    );
   };
 
   const addFavorite = (checked) => {
@@ -68,11 +76,7 @@ export default function Pokemon (props) {
     setCheck(checked);
     if (checked) {
       localStorage.setItem('favorites', JSON.stringify([...storage, dataPokemon]));
-      setMessageAdd(
-        <div className="p-3 z-20 absolute w-full h-full flex items-center justify-center text-white text-xl font-bold text-center bg-black/80">
-          Adicionado aos Favoritos
-        </div>
-      );
+      setMessageAdd('Adicionado aos Favoritos');
       setTimeout(() => {
         setMessageAdd('');
       }, 2000);
@@ -80,67 +84,74 @@ export default function Pokemon (props) {
       const removeFavorites = storage
         .filter((favorite) => favorite.name !== dataPokemon.name);
         localStorage.setItem('favorites', JSON.stringify(removeFavorites));
-      setMessageAdd(
-        <div className="z-20 absolute w-full h-full flex items-center justify-center text-white text-xl font-bold text-center bg-black/80">
-          Removido dos Favoritos
-        </div>
-      );
+      setMessageAdd('Removido dos Favoritos');
       setTimeout(() => {
         setMessageAdd('');
       }, 2000);
     }
   };
+
+  const numberZero = (id) => {
+    if (id > 99) return id;
+    if (id >= 10) return `0${id}`;
+    return `00${id}`;
+  };
   
   return (
     <div
-      to={`/pokemon/${id}`}
       className="flex flex-col relative items-center justify-center transition duration-1000"
       >
-      <input
-        type="checkbox"
-        checked={check}
-        onChange={ (e) => { addFavorite(e.target.checked) } }
-        className="sm:w-10 z-10 sm:h-5 absolute right-0 top-0 mt-1 mr-1 sm:mr-0 sm:mt-3" />
-      <div className="absolute w-full h-full flex items-center justify-center text-white text-xl font- text-center">
-        { messageAdd }
-      </div>
+      <label htmlFor={`favorite-${id}`} className="absolute right-0 top-0 mt-2 mr-1 sm:mr-0 sm:mt-2 z-10 w-full">
+        <div className={`${check ? 'bg-green-400': 'bg-blue-400'} input mx-2 rounded-full w-10 h-5 transition-all duration-500 absolute right-0`}>
+          <div className={`${check ? 'right-0': 'left-0'} absolute w-1/2 h-full bg-white rounded-full transition-all duration-500`} />
+        </div>
+        <input
+          id={`favorite-${id}`}
+          type="checkbox"
+          checked={check}
+          onChange={ (e) => { addFavorite(e.target.checked) } }
+          className="sm:w-10 sm:h-5 hidden"
+        />
+      </label>
       { 
       Object.values(searchByName).length === 0
       ? <div
-          className="w-full flex flex-col relative items-center justify-center bg-half-transp hover:bg-min-transp transition duration-500 h-60"
+          className="w-full flex flex-col relative items-center justify-center transition duration-500 h-60"
         >
           <Loading />
         </div>
       : <Link
-        to={`/pokemon/${id}`}
-        className="w-full flex flex-col relative items-center justify-center bg-half-transp hover:bg-min-transp transition duration-500"
-        initial="hidden"
-        animate="visible"
-        exit="exit"
-        variants={pokemonCards}
-        custom={id}
-      >
+          to={`/pokemon/${id}`}
+          className="w-full flex flex-col relative items-center justify-center  transition duration-500"
+          initial="hidden"
+          animate="visible"
+          exit="exit"
+          variants={pokemonCards}
+          custom={id}
+        >
         { Object.values(searchByName.sprites.other)[2].front_default ? retornaImagem(): <Loading /> }
-        <div className="flex items-center justify-center w-full pb-5">
+        <p className="pb-2 text-1xl w-full text-gray-700">
+          <span className="pr-1">{'Nº'}</span>
+          <span>{ numberZero(id) }</span>
+        </p>
+        <p className="pb-1 text-2xl w-full">
+          {letraMaiuscula(name)}
+        </p>
+        <div className="flex items-center pb-5 w-full">
           { 
             type1 && !type2
-            ? <img src={require(`../imagens/types/${type1}.png`)} alt="" className="w-12" />
+            ? <img
+                src={require(`../imagens/types/${type1}2.jpeg`)}
+                alt=""
+                className="w-1/3 object-contain rounded"
+              />
             : type1 && type2 && 
-              <div className="flex items-center justify-center w-full">
-                <img src={require(`../imagens/types/${type1}.png`)} alt="" className="w-12 pr-1" />
-                <img src={require(`../imagens/types/${type2}.png`)} alt="" className="w-12 pl-1" />
+              <div className="flex items-center w-full">
+                  <img src={require(`../imagens/types/${type1}2.jpeg`)} alt="" className="w-1/3 object-contain rounded mr-1" />
+                  <img src={require(`../imagens/types/${type2}2.jpeg`)} alt="" className="w-1/3 object-contain rounded" />
               </div>
           }
         </div>
-        <p className="pb-3 text-center text-1xl text-white font-bold">
-          {
-            (id) < 10
-            ? `0${id }`
-            : `${id}`
-          }
-          {' - '}
-          {letraMaiuscula(name)}
-        </p>
       </Link>
       }
     </div>
