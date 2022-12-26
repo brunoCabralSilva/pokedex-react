@@ -234,7 +234,7 @@ export default function Type() {
               </p>
           }
       </div>
-      <div className="p-1 w-9/12 gap-1 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4">
+      <div className="p-1 w-9/12 gap-1 grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4">
         {
           listType.length !== 1
             ? listType.length > 0 && listType.map((poke, index) => (

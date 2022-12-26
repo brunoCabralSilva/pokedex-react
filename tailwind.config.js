@@ -43,6 +43,7 @@ module.exports = {
           'lilas': '#363775',
           'anil': '#95F7EA',
           'marinho': '#2B273E',
+          'yellow': '#FFCC01',
         },
       backgroundImage: {
         'wallpaper-lilas':"url('../src/imagens/wallpaper/03.jpg')",

@@ -2,6 +2,21 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+	font-family: 'pokemon';
+	src: url('./font/Pokemon Solid.ttf') format('truetype');
+	src: url('./font/Pokemon Solid.ttf') format('opentype');
+}
+
+.contorno {
+  -webkit-text-stroke-width: 6px;
+  -webkit-text-stroke-color: #1c5291;
+}
+
+.pokemon {
+	font-family: 'pokemon';
+}
+
 .hidden-element {
   display: none !important;
   color: black !important;
@@ -46,4 +61,18 @@
     100% {
         transform: translate(-30px, -30px);
     }
+}
+
+@media (max-width: 300) {
+	.contorno {
+		-webkit-text-stroke-width: 3px;
+		-webkit-text-stroke-color: #1c5291;
+		}	
+	}
+
+@media (max-width: 640px) {
+.contorno {
+	-webkit-text-stroke-width: 3px;
+	-webkit-text-stroke-color: #1c5291;
+	}	
 }

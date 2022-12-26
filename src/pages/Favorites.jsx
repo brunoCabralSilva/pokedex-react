@@ -32,12 +32,9 @@ export default function Favorites() {
   return (
     <div className="flex flex-col items-center min-h-screen">
       <Nav />
-      <Header />
+      <Header name="Favoritos" />
       <div className={`w-9/12 mx-1 p-2 ${storage.length === 0 && 'h-screen'}`}>
-        <p className="mt-8 sm:mt-20 text-5xl sm:text-left pb-5 w-full bg-gradient-to-b">
-          Favoritos
-        </p>
-        <p className="pt-5">
+        <p className="pt-5 mt-8 sm:mt-12">
           Abaixo serão listados todos pokémon favoritados por você.
           Você também utilizar as outras abas acima para pesquisar Pokémon por nome, número, geração ou tipo. 
         </p>
@@ -51,7 +48,7 @@ export default function Favorites() {
               { `Total de Pokémon Favoritados: ${storage.length}`}
             </p>
           </div>
-          : <div className="h-3/4 flex justify-center">
+          : <div className="h-3/4 flex justify-start">
               <p className="py-14 text-marinho w-9/12 text-3xl h-full flex flex-col sm:flex-row items-center sm:p-0 sm:py-14 text-left">
                 { `Você ainda não possui Pokémon favoritos. `}
                 <Link href="/search" target="_blank" rel="noreferrer font-bold underline underline-offset-2">Que tal mudarmos isto?</Link>

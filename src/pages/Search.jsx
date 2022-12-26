@@ -29,7 +29,7 @@ export default function Search() {
   return (
     <div className="w-full flex flex-col items-center min-h-screen">
       <Nav />
-      <Header />
+      <Header name="Busca" />
       <Filter search={ search } />
       <div className="flex flex-row items-left justify-center">
         <div className="w-full h-full">
