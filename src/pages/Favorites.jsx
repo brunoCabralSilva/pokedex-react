@@ -3,6 +3,8 @@ import Pokemon from '../components/Pokemon';
 import contexto from '../context';
 import Footer from '../components/Footer';
 import Nav from '../components/Nav';
+import Header from '../components/Header';
+import { Link } from 'react-router-dom';
 
 export default function Favorites() {
   const context = useContext(contexto);
@@ -28,22 +30,36 @@ export default function Favorites() {
   }, []);
 
   return (
-    <div className="bg-wallpaper-lilas bg-fixed bg-cover min-h-screen">
+    <div className="flex flex-col items-center min-h-screen">
       <Nav />
-      <div className={`bg-black/75 mx-1 p-2 ${storage.length === 0 && 'h-screen'}`}>
-        <p className="text-6xl text-white text-center pt-4 pb-10 font-bold w-full">
+      <Header />
+      <div className={`w-9/12 mx-1 p-2 ${storage.length === 0 && 'h-screen'}`}>
+        <p className="mt-8 sm:mt-20 text-5xl sm:text-left pb-5 w-full bg-gradient-to-b">
           Favoritos
         </p>
+        <p className="pt-5">
+          Abaixo serão listados todos pokémon favoritados por você.
+          Você também utilizar as outras abas acima para pesquisar Pokémon por nome, número, geração ou tipo. 
+        </p>
+        <p className="pt-2">  
+          Clicando em um Pokémon, será possível ver mais detalhes sobre ele. Além disso, caso você clique no botão que existe no canto superior direito de cada Pokémon, este será removido na sua lista de Favoritos.
+        </p>
         {
-          storage.length > 0 &&
-          <div className="h-3/4">
-            <p className="text-4xl text-white text-center pt-4 pb-10 font-bold w-full">
+          storage.length > 0
+          ? <div className="h-3/4 flex sm:justify-start w-full">
+            <p className="py-14 text-marinho w-9/12 text-3xl h-full flex flex-col sm:flex-row items-center sm:p-0 sm:py-14 text-left">
               { `Total de Pokémon Favoritados: ${storage.length}`}
             </p>
           </div>
+          : <div className="h-3/4 flex justify-center">
+              <p className="py-14 text-marinho w-9/12 text-3xl h-full flex flex-col sm:flex-row items-center sm:p-0 sm:py-14 text-left">
+                { `Você ainda não possui Pokémon favoritos. `}
+                <Link href="/search" target="_blank" rel="noreferrer font-bold underline underline-offset-2">Que tal mudarmos isto?</Link>
+              </p>
+            </div>
         }
       </div>
-      <div className="w-full p-1 gap-1 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4">
+      <div className="w-9/12 p-1 gap-1 grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4">
         {
           storage.length > 0
           ? storage
@@ -67,10 +83,10 @@ export default function Favorites() {
         storage.length > 0 &&
         <button
           type="button"
-          className="py-1 w-full mb-1"
+          className="py-1 w-9/12 mb-1"
           onClick={ () => window.scrollTo(0, 0) }
         >
-          <div className="bg-black/70 text-white text-xl p-4 font-bold hover:border-2 hover:border-white w-full h-full">
+          <div className="bg-anil/80 text-black text-xl p-4 w-full h-full bg-anil font-bold border-2 border-anil hover:border-2 hover:border-marinho transition-colors duration-500">
             Voltar ao Topo
           </div>
         </button>

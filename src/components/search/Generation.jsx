@@ -104,7 +104,7 @@ export default function Generation() {
                 ))
               }
             </div>
-            <div className="w-full">
+            <div className="w-9/12">
               { 
                 listGeneration.length > 0 &&
                 <button
@@ -112,7 +112,7 @@ export default function Generation() {
                   className="py-1 w-full mb-1"
                   onClick={ () => window.scrollTo(0, 0) }
                 >
-                  <div className="bg-black/70 text-white text-xl p-4 font-bold hover:border-2 hover:border-white w-full h-full">
+                  <div className="bg-anil/80 text-black text-xl p-4 w-full h-full bg-anil font-bold border-2 border-anil hover:border-2 hover:border-marinho transition-colors duration-500">
                     Voltar ao Topo
                   </div>
                 </button>
