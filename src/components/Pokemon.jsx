@@ -8,17 +8,19 @@ import Loading from './Loading';
 export default function Pokemon (props) {
   const [type1, setType1] = useState('');
   const [type2, setType2] = useState('');
+  const [messageTeam, setMessageTeam] = useState('');
   const [messageAdd, setMessageAdd] = useState('');
   const [searchByName, setSearchByName] = useState({});
   const [check, setCheck] = useState(false);
   const context = useContext(contexto);
   const {
-    listFavorites,
-    setListFavorites,
+    // listFavorites,
+    // setListFavorites,
+    // team, setTeam,
     letraMaiuscula,
   } = context;
 
-  const { name, id, dataPokemon } = props;
+  const { name, id, teams, dataPokemon } = props;
 
   const storageSetup = () => {
     let storage = JSON.parse(localStorage.getItem('favorites'));
@@ -46,7 +48,17 @@ export default function Pokemon (props) {
     setType1('');
     setType2('');
     storageSetup();
-    search();    
+    search();
+    let storage = JSON.parse(localStorage.getItem('teams'));
+    if (storage === null) {
+      storage = [];
+    }
+    const search2 = storage.filter((item) => item.name === dataPokemon.name);
+    if (search2.length > 0) {
+      setMessageTeam('Remover do time');
+    } else {
+      setMessageTeam('Adicionar ao time');
+    }
   }, []);
 
   const pokemonCards = {
@@ -55,14 +67,27 @@ export default function Pokemon (props) {
     exit: (index) => ({ opacity: 0, x: 20, transition: { delay: 0.1, duration: 0.3 } }),
   };
 
+  const isOfTeam = (name) => {
+    let storage = JSON.parse(localStorage.getItem('teams'));
+    console.log(storage);
+    if (storage === null) {
+      storage = [];
+    }
+    const search = storage.filter((item) => item.name === name);
+    if (search.length > 0) {
+      return true
+    } else {
+      return false;
+    }
+  };
 
-  const retornaImagem = () => {    
+  const retornaImagem = (name) => {    
     return (
-      <div className="relative">
+      <div className="relative flex items-start">
         <p className="text-marinho absolute bottom-0 w-full text-center pb-2 pt-4 font-bold bg-gradient-to-t from-anil via-anil/60 to-anil/10">{ messageAdd }</p>
         <img
           src={Object.values(searchByName.sprites.other)[2].front_default} 
-          className="w-full bg-anil/40 rounded-lg p-5" alt={name}
+          className={`w-full ${ isOfTeam(name) ? 'bg-gradient-to-t from-anil via-marinho/80 to-marinho' : 'bg-gradient-to-t from-anil via-anil/60 to-anil/10'} rounded-lg p-5`} alt={name}
         />
       </div>
     );
@@ -96,6 +121,24 @@ export default function Pokemon (props) {
     if (id >= 10) return `0${id}`;
     return `00${id}`;
   };
+
+  const addToTeam = (dataPokemon) => {
+    let storage = JSON.parse(localStorage.getItem('teams'));
+    if (storage === null) {
+      storage = [];
+    }
+    const search = storage.filter((item) => item.name === dataPokemon.name);
+    if (search.length > 0) {
+      const search = storage.filter((item) => item.name !== dataPokemon.name);
+      localStorage.setItem('teams', JSON.stringify(search));
+      setMessageTeam('Adicionar ao time');
+    } else if(storage.length === 6) {
+      window.alert("Você já possui seis pokémon no seu time. Remova algum deles para inserir um novo");
+    } else {
+      localStorage.setItem('teams', JSON.stringify([...storage, dataPokemon]));
+      setMessageTeam('Remover do time');
+    }
+  };
   
   return (
     <div
@@ -120,7 +163,8 @@ export default function Pokemon (props) {
         >
           <Loading />
         </div>
-      : <Link
+      : <div>
+        <Link
           to={`/pokemon/${id}`}
           className="w-full flex flex-col relative items-center justify-center  transition duration-500"
           initial="hidden"
@@ -129,7 +173,7 @@ export default function Pokemon (props) {
           variants={pokemonCards}
           custom={id}
         >
-        { Object.values(searchByName.sprites.other)[2].front_default ? retornaImagem(): <Loading /> }
+        { Object.values(searchByName.sprites.other)[2].front_default ? retornaImagem(name): <Loading /> }
         <p className="pb-2 text-1xl w-full text-gray-700">
           <span className="pr-1">{'Nº'}</span>
           <span>{ numberZero(id) }</span>
@@ -137,7 +181,7 @@ export default function Pokemon (props) {
         <p className="pb-1 text-2xl w-full">
           {letraMaiuscula(name)}
         </p>
-        <div className="flex items-center pb-5 w-full">
+        <div className="flex flex-col items-start w-full">
           { 
             type1 && !type2
             ? <img
@@ -146,13 +190,23 @@ export default function Pokemon (props) {
                 className="w-1/3 object-contain rounded"
               />
             : type1 && type2 && 
-              <div className="flex items-center w-full">
-                  <img src={require(`../imagens/types/${type1}2.jpeg`)} alt="" className="w-1/3 object-contain rounded mr-1" />
-                  <img src={require(`../imagens/types/${type2}2.jpeg`)} alt="" className="w-1/3 object-contain rounded" />
+              <div className={`flex items-center w-full ${!teams && 'pb-8'}`}>
+                <img src={require(`../imagens/types/${type1}2.jpeg`)} alt="" className="w-1/3 object-contain rounded mr-1" />
+                <img src={require(`../imagens/types/${type2}2.jpeg`)} alt="" className="w-1/3 object-contain rounded" />
               </div>
           }
         </div>
       </Link>
+        {
+          teams &&
+          <button 
+            type="button"
+            onClick={ () => { addToTeam(dataPokemon) } }
+            className="w-full mt-2 object-contain rounded border-2 border-marinho p-2 bg-white hover:bg-anil transition-all duration-500 mb-5">
+            { messageTeam }
+          </button>
+        }
+      </div>
       }
     </div>
   );

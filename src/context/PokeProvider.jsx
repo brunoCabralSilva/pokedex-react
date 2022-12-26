@@ -13,6 +13,7 @@ export default function PokeProvider({ children }) {
   const [listFavorites, setListFavorites] = useState([]);
   const [countPokemon, setCountPokemon] = useState(0);
   const [messageTypes, setMessageTypes] = useState('');
+  const [team, setTeam] = useState([]);
   
   function letraMaiuscula (nome) {
     let novoNome = nome[0].toUpperCase();
@@ -42,6 +43,7 @@ export default function PokeProvider({ children }) {
       countPokemon, setCountPokemon,
       messageTypes, setMessageTypes,
       gen, setGen,
+      team, setTeam,
       letraMaiuscula,
       numberPokemon,
       }}

@@ -36,7 +36,6 @@ export default function Favorites() {
       <div className={`w-9/12 mx-1 p-2 ${storage.length === 0 && 'h-screen'}`}>
         <p className="pt-5 mt-8 sm:mt-12">
           Abaixo serão listados todos pokémon favoritados por você.
-          Você também utilizar as outras abas acima para pesquisar Pokémon por nome, número, geração ou tipo. 
         </p>
         <p className="pt-2">  
           Clicando em um Pokémon, será possível ver mais detalhes sobre ele. Além disso, caso você clique no botão que existe no canto superior direito de cada Pokémon, este será removido na sua lista de Favoritos.
@@ -66,6 +65,7 @@ export default function Favorites() {
                 key={index}
                 className="w-full"
                 name={poke.name}
+                teams={ true }
                 id={numberPokemon(poke)}
                 dataPokemon={poke}
               />
