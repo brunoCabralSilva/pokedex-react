@@ -44,13 +44,13 @@ export default function Favorites() {
           storage.length > 0
           ? <div className="h-3/4 flex sm:justify-start w-full">
             <p className="py-14 text-marinho w-9/12 text-3xl h-full flex flex-col sm:flex-row items-center sm:p-0 sm:py-14 text-left">
-              { `Total de Pokémon Favoritados: ${storage.length}`}
+              { `Total de Pokémon no seu time: ${storage.length}`}
             </p>
           </div>
           : <div className="h-3/4 flex justify-start">
               <p className="py-14 text-marinho w-9/12 text-3xl h-full flex flex-col sm:flex-row items-center sm:p-0 sm:py-14 text-left">
                 { `Você ainda não possui Pokémon no time. `}
-                <Link href="/favorites" target="_blank" rel="noreferrer font-bold underline underline-offset-2">Que tal mudarmos isto?</Link>
+                <Link to="/favorites" className="font-bold underline underline-offset-2">Que tal mudarmos isto?</Link>
               </p>
             </div>
         }

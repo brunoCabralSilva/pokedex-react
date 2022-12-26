@@ -50,7 +50,7 @@ export default function Favorites() {
           : <div className="h-3/4 flex justify-start">
               <p className="py-14 text-marinho w-9/12 text-3xl h-full flex flex-col sm:flex-row items-center sm:p-0 sm:py-14 text-left">
                 { `Você ainda não possui Pokémon favoritos. `}
-                <Link href="/search" target="_blank" rel="noreferrer font-bold underline underline-offset-2">Que tal mudarmos isto?</Link>
+                <Link to="/search" className="font-bold underline underline-offset-2">Que tal mudarmos isto?</Link>
               </p>
             </div>
         }
