@@ -4,6 +4,7 @@ import contexto from '../context';
 import Footer from '../components/Footer';
 import Nav from '../components/Nav';
 import Header from '../components/Header';
+import ListTeam from '../components/ListTeam';
 import { Link } from 'react-router-dom';
 
 export default function Favorites() {
@@ -32,6 +33,7 @@ export default function Favorites() {
   return (
     <div className="flex flex-col items-center min-h-screen">
       <Nav />
+      <ListTeam />
       <Header name="Favoritos" />
       <div className={`w-9/12 mx-1 p-2 ${storage.length === 0 && 'h-screen'}`}>
         <p className="pt-5 mt-8 sm:mt-12">

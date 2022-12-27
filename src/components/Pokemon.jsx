@@ -16,7 +16,7 @@ export default function Pokemon (props) {
   const {
     // listFavorites,
     // setListFavorites,
-    // team, setTeam,
+    team, setTeam,
     letraMaiuscula,
   } = context;
 
@@ -131,11 +131,13 @@ export default function Pokemon (props) {
     if (search.length > 0) {
       const search = storage.filter((item) => item.name !== dataPokemon.name);
       localStorage.setItem('teams', JSON.stringify(search));
+      setTeam(search);
       setMessageTeam('Adicionar ao time');
     } else if(storage.length === 6) {
       window.alert("Você já possui seis pokémon no seu time. Remova algum deles para inserir um novo");
     } else {
       localStorage.setItem('teams', JSON.stringify([...storage, dataPokemon]));
+      setTeam([...storage, dataPokemon]);
       setMessageTeam('Remover do time');
     }
   };
