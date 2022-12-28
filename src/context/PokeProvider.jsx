@@ -12,6 +12,8 @@ export default function PokeProvider({ children }) {
   const [allPokemonGeneration, setAllPokeOfGeneration] = useState([]);
   const [search, setSearch] = useState('ALL');
   const [listFavorites, setListFavorites] = useState([]);
+  const [listAlternatives, setListAlternatives] = useState([]);
+  const [listAltDisplayed, setListAltDisplayed] = useState([]);
   const [countPokemon, setCountPokemon] = useState(0);
   const [messageTypes, setMessageTypes] = useState('');
   const [team, setTeam] = useState([]);
@@ -44,6 +46,24 @@ export default function PokeProvider({ children }) {
     }
   };
 
+  const numberPokemon = (poke) => {
+    if (poke.id === undefined) {
+      console.log(poke.url);
+
+      if (poke.url.includes('https://pokeapi.co/api/v2/pokemon-species/')) {
+        console.log('All Pokemon');
+        const numero = poke.url.replace('https://pokeapi.co/api/v2/pokemon-species/', '');
+        console.log(numero.replace('/', ''));
+        return numero.replace('/', '');
+      } else {
+        const numero = poke.url.replace('https://pokeapi.co/api/v2/pokemon/', '');
+        console.log(numero.replace('/', ''));
+        return numero.replace('/', '');
+      } 
+        
+    } return poke.id;
+  };
+
   return(
     <contexto.Provider value={{
       list,setList,
@@ -56,10 +76,13 @@ export default function PokeProvider({ children }) {
       listFavorites, setListFavorites,
       countPokemon, setCountPokemon,
       messageTypes, setMessageTypes,
+      listAlternatives, setListAlternatives,
+      listAltDisplayed, setListAltDisplayed,
       gen, setGen,
       team, setTeam,
       letraMaiuscula,
       addFavorite,
+      numberPokemon,
       }}
     >
       {children}

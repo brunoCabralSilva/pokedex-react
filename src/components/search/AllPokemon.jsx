@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext } from "react";
 import contexto from '../../context';
-import { getAllPokemon, getNumberOfPokemon } from '../../fetchs';
+import { getAllPokemonSpecies, getNumberOfPokemon } from '../../fetchs';
 import { useHistory } from "react-router-dom";
 import Pokemon from "../Pokemon";
 
@@ -14,6 +14,7 @@ export default function AllPokemon() {
     list,
     countPokemon,
     setCountPokemon,
+    numberPokemon,
   } = context;
 
   useEffect(() => {
@@ -25,7 +26,7 @@ export default function AllPokemon() {
         count = number.count;
       }
       if(list.length === 0) {
-        const call = await getAllPokemon(first);
+        const call = await getAllPokemonSpecies(first);
         if (list.length <= 20) {
           if (first + 20 < count) {
             setList(call.results);
@@ -50,7 +51,7 @@ export default function AllPokemon() {
 
   const moreTwentyForAll = async () => {
     const newFirst = first + 20;
-    const call = await getAllPokemon(newFirst);
+    const call = await getAllPokemonSpecies(newFirst);
     if (newFirst + 20 < countPokemon) {
       setFirst(newFirst);
       setList([...list, ...call.results]);
@@ -64,14 +65,6 @@ export default function AllPokemon() {
       setList([...list, ...last]);
       setFinish(true);
     }
-  };
-
-
-  const numberPokemon = (poke) => {
-    if (poke.id === undefined) {
-      const numero = poke.url.replace('https://pokeapi.co/api/v2/pokemon-species/', '');
-      return numero.replace('/', '');
-    } return poke.id;
   };
 
   return(
