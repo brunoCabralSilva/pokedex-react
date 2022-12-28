@@ -65,10 +65,10 @@ export default function Nav() {
             </a>
           </div>
           <img
-              src={ require('../imagens/wallpaper/pokeball.jpg') } 
-              alt="pokébola"
-              className="w-20vw sm:w-5vw py-5 pt-10"
-            />
+            src={ require('../imagens/wallpaper/pokeball.jpg') } 
+            alt="pokébola"
+            className="w-20vw sm:w-5vw py-5 pt-10"
+          />
         </div>
       }
     </nav> 

@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { getByName } from '../fetchs';
 import contexto from './index';
 
 export default function PokeProvider({ children }) {
@@ -23,11 +24,24 @@ export default function PokeProvider({ children }) {
     return novoNome;
   }
 
-  const numberPokemon = (poke) => {
-    if (poke.id === undefined) {
-      const numero = poke.url.replace('https://pokeapi.co/api/v2/pokemon-species/', '');
-      return numero.replace('/', '');
-    } return poke.id;
+  const addFavorite = (checked, searchByName) => {
+    console.log(searchByName);
+    if (checked) {
+      const listAdd = {
+        id: searchByName.id,
+        name: searchByName.name,
+        sprites: searchByName.sprites,
+        types: searchByName.types,
+      }
+      const sortList = [...listFavorites, listAdd].sort((a, b) => Number(a.id) - Number(b.id));
+      localStorage.setItem('favorites', JSON.stringify(sortList));
+      setListFavorites(sortList);
+    } else {
+      const removeFavorites = listFavorites
+        .filter((favorite) => favorite.name !== searchByName.name);
+      localStorage.setItem('favorites', JSON.stringify(removeFavorites));
+      setListFavorites(removeFavorites);
+    }
   };
 
   return(
@@ -45,7 +59,7 @@ export default function PokeProvider({ children }) {
       gen, setGen,
       team, setTeam,
       letraMaiuscula,
-      numberPokemon,
+      addFavorite,
       }}
     >
       {children}

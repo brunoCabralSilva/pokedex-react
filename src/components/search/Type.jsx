@@ -14,7 +14,6 @@ export default function Type() {
     letraMaiuscula,
     setListType,
     listType,
-    numberPokemon,
     type,
     setType,
     countPokemon,
@@ -242,7 +241,7 @@ export default function Type() {
                 key={index}
                 className="w-full"
                 name={poke.name}
-                id={numberPokemon(poke)}
+                id={poke.id}
                 dataPokemon={poke}
               />
             ))

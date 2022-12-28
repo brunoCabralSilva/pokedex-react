@@ -8,15 +8,14 @@ import Loading from './Loading';
 export default function Pokemon (props) {
   const [type1, setType1] = useState('');
   const [type2, setType2] = useState('');
-  const [messageTeam, setMessageTeam] = useState('');
   const [messageAdd, setMessageAdd] = useState('');
   const [searchByName, setSearchByName] = useState({});
   const [check, setCheck] = useState(false);
   const context = useContext(contexto);
   const {
-    // listFavorites,
-    // setListFavorites,
-    team, setTeam,
+    addFavorite,
+    team,
+    setTeam,
     letraMaiuscula,
   } = context;
 
@@ -49,27 +48,10 @@ export default function Pokemon (props) {
     setType2('');
     storageSetup();
     search();
-    let storage = JSON.parse(localStorage.getItem('teams'));
-    if (storage === null) {
-      storage = [];
-    }
-    const search2 = storage.filter((item) => item.name === dataPokemon.name);
-    if (search2.length > 0) {
-      setMessageTeam('Remover do time');
-    } else {
-      setMessageTeam('Adicionar ao time');
-    }
   }, []);
-
-  const pokemonCards = {
-    hidden: { opacity: 0, x: 20 },
-    visible: (index) => ({ opacity: 1, x: 0, transition: { delay: 0.1, duration: 0.3 } }),
-    exit: (index) => ({ opacity: 0, x: 20, transition: { delay: 0.1, duration: 0.3 } }),
-  };
 
   const isOfTeam = (name) => {
     let storage = JSON.parse(localStorage.getItem('teams'));
-    console.log(storage);
     if (storage === null) {
       storage = [];
     }
@@ -93,22 +75,15 @@ export default function Pokemon (props) {
     );
   };
 
-  const addFavorite = (checked) => {
-    let storage = JSON.parse(localStorage.getItem('favorites'));
-    if (storage === null) {
-      storage = [];
-    }
+  const addRemoveFavorite = (checked) => {
+    addFavorite(checked, searchByName);
     setCheck(checked);
     if (checked) {
-      localStorage.setItem('favorites', JSON.stringify([...storage, dataPokemon]));
       setMessageAdd('Adicionado aos Favoritos');
       setTimeout(() => {
         setMessageAdd('');
       }, 2000);
     } else {
-      const removeFavorites = storage
-        .filter((favorite) => favorite.name !== dataPokemon.name);
-        localStorage.setItem('favorites', JSON.stringify(removeFavorites));
       setMessageAdd('Removido dos Favoritos');
       setTimeout(() => {
         setMessageAdd('');
@@ -122,23 +97,21 @@ export default function Pokemon (props) {
     return `00${id}`;
   };
 
-  const addToTeam = (dataPokemon) => {
+  const addToTeam = async () => {
     let storage = JSON.parse(localStorage.getItem('teams'));
     if (storage === null) {
       storage = [];
     }
-    const search = storage.filter((item) => item.name === dataPokemon.name);
+    const search = team.filter((item) => item.name === searchByName.name);
     if (search.length > 0) {
-      const search = storage.filter((item) => item.name !== dataPokemon.name);
+      const search = team.filter((item) => item.name !== searchByName.name);
       localStorage.setItem('teams', JSON.stringify(search));
       setTeam(search);
-      setMessageTeam('Adicionar ao time');
-    } else if(storage.length === 6) {
+    } else if(team.length === 6) {
       window.alert("Você já possui seis pokémon no seu time. Remova algum deles para inserir um novo");
     } else {
-      localStorage.setItem('teams', JSON.stringify([...storage, dataPokemon]));
-      setTeam([...storage, dataPokemon]);
-      setMessageTeam('Remover do time');
+      localStorage.setItem('teams', JSON.stringify([...team, searchByName]));
+      setTeam([...team, searchByName]);
     }
   };
   
@@ -154,7 +127,7 @@ export default function Pokemon (props) {
           id={`favorite-${id}`}
           type="checkbox"
           checked={check}
-          onChange={ (e) => { addFavorite(e.target.checked) } }
+          onChange={ (e) => { addRemoveFavorite(e.target.checked) } }
           className="sm:w-10 sm:h-5 hidden"
         />
       </label>
@@ -169,19 +142,14 @@ export default function Pokemon (props) {
         <Link
           to={`/pokemon/${id}`}
           className="w-full flex flex-col relative items-center justify-center  transition duration-500"
-          initial="hidden"
-          animate="visible"
-          exit="exit"
-          variants={pokemonCards}
-          custom={id}
         >
-        { Object.values(searchByName.sprites.other)[2].front_default ? retornaImagem(name): <Loading /> }
+        { Object.values(searchByName.sprites.other)[2].front_default ? retornaImagem(searchByName.name): <Loading /> }
         <p className="pb-2 text-1xl w-full text-gray-700">
           <span className="pr-1">{'Nº'}</span>
           <span>{ numberZero(id) }</span>
         </p>
         <p className="pb-1 text-2xl w-full">
-          {letraMaiuscula(name)}
+          {letraMaiuscula(searchByName.name)}
         </p>
         <div className="flex flex-col items-start w-full">
           { 
@@ -203,9 +171,9 @@ export default function Pokemon (props) {
           teams &&
           <button 
             type="button"
-            onClick={ () => { addToTeam(dataPokemon) } }
+            onClick={ () => addToTeam() }
             className="w-full mt-2 object-contain rounded border-2 border-marinho p-2 bg-white hover:bg-anil transition-all duration-500 mb-5">
-            { messageTeam }
+            { isOfTeam(name) ? "Remover do time" : "Adicionar ao time" }
           </button>
         }
       </div>

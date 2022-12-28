@@ -9,23 +9,14 @@ import { Link } from 'react-router-dom';
 export default function Favorites() {
   const context = useContext(contexto);
   const [storage, setStorage] = useState([]);
-  const { numberPokemon, team, setTeam } = context;
+  const { team, setTeam } = context;
 
   useEffect(() => {
     let locStorage = JSON.parse(localStorage.getItem('teams'));
     if (locStorage === null) {
-      setStorage([]);
+      setTeam([]);
     } else {
-      const arrayWithId = locStorage.map((item) => {
-        const id = numberPokemon(item);
-        return {
-          name: item.name,
-          url: item.url,
-          id: id,
-        }
-
-      })
-      setStorage(arrayWithId);
+      setTeam(locStorage);
     }
   }, []);
 
@@ -48,25 +39,24 @@ export default function Favorites() {
             </p>
           </div>
           : <div className="h-3/4 flex justify-start">
-              <p className="py-14 text-marinho w-9/12 text-3xl h-full flex flex-col sm:flex-row items-center sm:p-0 sm:py-14 text-left">
-                { `Você ainda não possui Pokémon no time. `}
-                <Link to="/favorites" className="font-bold underline underline-offset-2">Que tal mudarmos isto?</Link>
+              <p className="py-14 text-marinho w-9/12 text-3xl h-full flex flex-col items-start sm:p-0 sm:py-14 text-left">
+                { `Você ainda não possui Pokémon favoritos. `}
+                <Link to="/search" className="font-bold underline underline-offset-2 pt-5">Que tal mudarmos isto?</Link>
               </p>
             </div>
         }
       </div>
       <div className="w-9/12 p-1 gap-1 grid grid-cols-1 sm:grid-cols-3 md:grid-cols-3">
         {
-          storage.length > 0
-          ? storage
-              .sort((a, b) => Number(a.id) - Number(b.id) )
+          team.length > 0
+          ? team
               .map((poke, index) => (
               <Pokemon
                 key={index}
                 className="w-full"
                 name={poke.name}
                 teams={ true }
-                id={numberPokemon(poke)}
+                id={poke.id}
                 dataPokemon={poke}
               />
             ))

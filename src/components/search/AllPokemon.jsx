@@ -12,7 +12,6 @@ export default function AllPokemon() {
   const {
     setList,
     list,
-    numberPokemon,
     countPokemon,
     setCountPokemon,
   } = context;
@@ -65,6 +64,14 @@ export default function AllPokemon() {
       setList([...list, ...last]);
       setFinish(true);
     }
+  };
+
+
+  const numberPokemon = (poke) => {
+    if (poke.id === undefined) {
+      const numero = poke.url.replace('https://pokeapi.co/api/v2/pokemon-species/', '');
+      return numero.replace('/', '');
+    } return poke.id;
   };
 
   return(

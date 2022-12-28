@@ -12,7 +12,6 @@ export default function Generation() {
     setLastSelectedGen,
     listGeneration,
     setListGeneration,
-    numberPokemon,
   } = context;
 
   const searchByGen = async () => {
@@ -98,7 +97,7 @@ export default function Generation() {
                     key={index}
                     className="w-full"
                     name={poke.name}
-                    id={numberPokemon(poke)}
+                    id={poke.id}
                     dataPokemon={poke}
                   />
                 ))
