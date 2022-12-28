@@ -28,6 +28,12 @@ export const getAlternativePokemon = async () => {
   return fetchJson.results;
 }
 
+export const getGeneralist = async (url) => {
+  const fetchType = await fetch(url);
+  const fetchJson = await fetchType.json();
+  return fetchJson;
+}
+
 export const getByGeneration = async (gen) => {
   const fetchType = await fetch(`https://pokeapi.co/api/v2/generation/${gen}`);
   const fetchJson = await fetchType.json();

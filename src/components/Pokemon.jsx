@@ -37,6 +37,7 @@ export default function Pokemon (props) {
 
   const search = async () => {
     const searchBy = await getByName(id);
+    console.log(searchBy);
     setSearchByName(searchBy);
     const typeList = await searchBy.types.map((item) => item.type.name);
     setType1(typeList[0]);

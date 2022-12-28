@@ -74,8 +74,6 @@ export default function Alternatives() {
       <Header name="Alternatives" />
       <div className="flex flex-row items-left justify-center">
       <div className="bg-white w-9/12 p-1 gap-3 grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4">
-        {console.log(listAltDisplayed)}
-        
         {
           listAltDisplayed
             ? listAltDisplayed.length > 0 && listAltDisplayed.map((poke, index) => (

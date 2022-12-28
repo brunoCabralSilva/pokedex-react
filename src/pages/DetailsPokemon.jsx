@@ -1,21 +1,33 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { motion } from 'framer-motion';
 import contexto from '../context';
-import { getByName } from '../fetchs';
+import { getByName, getGeneralist } from '../fetchs';
 import AllDataTypes from '../components/AllDataTypes';
 import { useHistory } from 'react-router-dom';
 import Charts from '../components/Charts';
 import Footer from '../components/Footer';
 import Nav from '../components/Nav';
+import Pokemon from '../components/Pokemon';
 
 export default function Details(props) {
   const { match } = props;
   const { params } = match;
   const { id } = params;
   const [dataPokemon, setDataPokemon] = useState({});
+  const [others, setOthers] = useState([]);
   const context = useContext(contexto);
-  const { letraMaiuscula, setListType } = context;
+  const { letraMaiuscula, setListType, numberPokemon } = context;
   const history = useHistory();
+
+  const searchVarieties = async (data) => {
+    const species = await getGeneralist(data.species.url);
+    const varieties = species.varieties;
+    console.log(varieties);
+    const otherVarieties = varieties.filter((variant) => variant.pokemon.name !== data.name);
+    let listOthers = await Promise.all(
+      otherVarieties.map(async (other) => await getGeneralist(other.pokemon.url)));
+    setOthers(listOthers);
+  };
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -23,6 +35,7 @@ export default function Details(props) {
       try {
         const search = await getByName(id);
         setDataPokemon(search);
+        searchVarieties(search);
       } catch(error) {
         window.alert("Não foi possível encontrar este Pokémon! Reveja o número ou nome inserido ou tente novamente mais tarde!");
       }
@@ -147,6 +160,24 @@ export default function Details(props) {
                 <p className="text-left py-2 sm-pb-0">{`Habilidades - ${dataPokemon.abilities && returnAbilities(dataPokemon.abilities)}`}</p>
                 </div>
               </div>
+            </div>
+            <div className="sm:col-span-2 pl-7">
+              <p className="pt-5 text-3xl sm:text-2xl md:text-4xl font-white pb-3 text-left mb-3">Outras Formas</p>
+            <div className="flex flex-col items-center">
+              <div className="w-full p-1 gap-3 grid grid-cols-1 sm:grid-cols-3 md:grid-cols-3">
+                {
+                  others.length > 0 && others.map((poke, index) => (
+                    <Pokemon
+                      key={index}
+                      className="w-full"
+                      name={poke.name}
+                      id={numberPokemon(poke)}
+                      dataPokemon={poke}
+                    />
+                  ))
+                }
+              </div>
+            </div>
             </div>
             <div className="w-full sm:col-span-2 pl-7 sm:pt-5 md:pt-8 sm:pb-5">
               <p className="text-3xl sm:text-2xl md:text-4xl font-white pb-3 text-left mb-3">
