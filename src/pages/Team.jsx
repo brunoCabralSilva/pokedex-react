@@ -24,7 +24,7 @@ export default function Favorites() {
     <div className="flex flex-col items-center min-h-screen">
       <Nav />
       <Header name="Meu Time" />
-      <div className={`w-9/12 mx-1 p-2 ${storage.length === 0 && 'h-screen'}`}>
+      <div className={`w-9/12 mx-1 p-2 ${team.length === 0 && 'h-screen'}`}>
         <p className="pt-5 mt-8 sm:mt-12">
           Abaixo serão listados todos pokémon que pertencem ao seu time.
         </p>
@@ -32,10 +32,10 @@ export default function Favorites() {
           Clicando em um Pokémon, será possível ver mais detalhes sobre ele. Além disso, caso você clique no botão que existe no canto superior direito de cada Pokémon, este será removido na sua lista de Favoritos.
         </p>
         {
-          storage.length > 0
+          team.length > 0
           ? <div className="h-3/4 flex sm:justify-start w-full">
             <p className="py-14 text-marinho w-9/12 text-3xl h-full flex flex-col sm:flex-row items-center sm:p-0 sm:py-14 text-left">
-              { `Total de Pokémon no seu time: ${storage.length}`}
+              { `Total de Pokémon no seu time: ${team.length}`}
             </p>
           </div>
           : <div className="h-3/4 flex justify-start">

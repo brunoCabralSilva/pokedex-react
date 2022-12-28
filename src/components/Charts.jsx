@@ -64,20 +64,6 @@ export default function Charts({ data, color }) {
         show: false
       }
     },
-    fill: {
-      type: 'gradient',
-      gradient: {
-        shade: secondaryColor,
-        type: "horizontal",
-        shadeIntensity: 0.8,
-        gradientToColors: secondaryColor,
-        inverseColors: true,
-        opacityFrom: 0.5,
-        opacityTo: 0.7,
-        stops: [0, 50, 100],
-        colorStops: []
-      }
-    },
     tooltip: {
       theme: 'dark',
       x: {

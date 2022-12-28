@@ -3,7 +3,6 @@ import { Link } from  'react-router-dom';
 import contexto from '../context';
 
 export default function ListTeam({ list, setList }) {
-  console.log(list);
   const context = useContext(contexto);
   const [ showMenu, setShowMenu] = useState(false);
   const {
