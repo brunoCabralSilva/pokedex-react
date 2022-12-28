@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { Link } from  'react-router-dom';
 
-export default function Nav() {
+export default function Nav({ fixed }) {
   const [ showMenu, setShowMenu] = useState(false);
   return (
     <nav className="w-full h-7vh bg-white 2xl:text-xl leading-6 flex flex-col justify-center items-end px-2 sm:px-4">
       <div
         onClick={ () => { setShowMenu(!showMenu) }}
-        className={`z-50 ${showMenu ? 'fixed' : ''}`}
+        className={`z-50 ${showMenu || fixed ? 'fixed' : ''}`}
       >
         <div className={`h-1 w-7 mb-1 transition duration-500 bg-marinho ${ showMenu ? 'rotate-45deg translate-y-2' : 'rotate-0' }`} />
         <div className={`h-1 w-7 mb-1 transition duration-500 bg-marinho ${showMenu ? 'rotate-45' : 'rotate-0'}`} />

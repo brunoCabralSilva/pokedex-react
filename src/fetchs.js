@@ -16,6 +16,18 @@ export const getNumberOfPokemon = async () => {
   return fetchJson;
 };
 
+export const getMove = async (move) => {
+  const fetchType = await fetch(`https://pokeapi.co/api/v2/move/${move}`);
+  const fetchJson = await fetchType.json();
+  return fetchJson;
+}
+
+export const getAlternativePokemon = async () => {
+  const fetchType = await fetch('https://pokeapi.co/api/v2/pokemon?offset=905&limit=1000');
+  const fetchJson = await fetchType.json();
+  return fetchJson.results;
+}
+
 export const getByGeneration = async (gen) => {
   const fetchType = await fetch(`https://pokeapi.co/api/v2/generation/${gen}`);
   const fetchJson = await fetchType.json();

@@ -12,9 +12,9 @@ export default function Charts({ data, color }) {
       case 'defense':
         return 'Defesa';
       case 'special-attack':
-        return 'Ataque Especial';
+        return 'Atk. Especial';
       case 'special-defense':
-        return 'Defesa Especial';
+        return 'Def. Especial';
       case 'speed':
         return 'Velocidade';
       default:
@@ -23,9 +23,18 @@ export default function Charts({ data, color }) {
   });
   const arrayValores = data && data.map((d) => d.base_stat);
 
+  const returnMaxValue = () => {
+    let maxValue = 0;
+    for (let i = 0; i < arrayValores.length; i += 1) {
+      if (arrayValores[i] > maxValue) maxValue = arrayValores[i];
+    };
+    return maxValue;
+  }
+
   const series = [{
     data: arrayValores,
   }];
+
 
   const options = {
     chart: {
@@ -46,7 +55,8 @@ export default function Charts({ data, color }) {
       enabled: true,
       textAnchor: 'start',
       style: {
-        colors: ['#fff']
+        colors: ['#fff'],
+        fontSize: "16px",
       },
       formatter: function (val, opt) {
         return opt.w.globals.labels[opt.dataPointIndex] + " - " + val
@@ -58,11 +68,19 @@ export default function Charts({ data, color }) {
     },
     xaxis: {
       categories: arrayNomes,
+      labels: {
+        show: false,
+      },
     },
     yaxis: {
+      min: 0,
+      max: arrayValores && returnMaxValue(),
       labels: {
         show: false
       }
+    },
+    grid: {
+      show: false,
     },
     tooltip: {
       theme: 'dark',
