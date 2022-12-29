@@ -1,10 +1,10 @@
 import React, { useContext } from 'react';
-import Filter from '../components/Filter';
+import Filter from '../components/searchPokemon/FilterPokemon';
 import contexto from '../context';
-import NameNumber from '../components/search/NameNumber';
-import Type from '../components/search/Type';
-import Generation from '../components/search/Generation';
-import AllPokemon from '../components/search/AllPokemon';
+import NameNumber from '../components/searchPokemon/NameNumber';
+import Type from '../components/searchPokemon/Type';
+import Generation from '../components/searchPokemon/Generation';
+import AllPokemon from '../components/searchPokemon/AllPokemon';
 import Footer from '../components/Footer';
 import Nav from '../components/Nav';
 import Header from '../components/Header';

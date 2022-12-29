@@ -11,7 +11,6 @@ export default function DetailsMove() {
     const getMoveByName = async () => {
       const get = await getMove((params.name));
       setMove(get);
-      console.log(get);
     }
     getMoveByName();
   },[]);

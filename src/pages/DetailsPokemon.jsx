@@ -22,7 +22,6 @@ export default function Details(props) {
   const searchVarieties = async (data) => {
     const species = await getGeneralist(data.species.url);
     const varieties = species.varieties;
-    console.log(varieties);
     const otherVarieties = varieties.filter((variant) => variant.pokemon.name !== data.name);
     let listOthers = await Promise.all(
       otherVarieties.map(async (other) => await getGeneralist(other.pokemon.url)));
@@ -161,24 +160,26 @@ export default function Details(props) {
                 </div>
               </div>
             </div>
-            <div className="sm:col-span-2 pl-7">
-              <p className="pt-5 text-3xl sm:text-2xl md:text-4xl font-white pb-3 text-left mb-3">Outras Formas</p>
-            <div className="flex flex-col items-center">
-              <div className="w-full p-1 gap-3 grid grid-cols-1 sm:grid-cols-3 md:grid-cols-3">
-                {
-                  others.length > 0 && others.map((poke, index) => (
-                    <Pokemon
-                      key={index}
-                      className="w-full"
-                      name={poke.name}
-                      id={numberPokemon(poke)}
-                      dataPokemon={poke}
-                    />
-                  ))
-                }
+            { others.length > 0 &&
+              <div className="sm:col-span-2 pl-7">
+                <p className="pt-5 text-3xl sm:text-2xl md:text-4xl font-white pb-3 text-left mb-3">Outras Formas</p>
+              <div className="flex flex-col items-center">
+                <div className="w-full p-1 gap-3 grid grid-cols-1 sm:grid-cols-3 md:grid-cols-3">
+                  {
+                    others.length > 0 && others.map((poke, index) => (
+                      <Pokemon
+                        key={index}
+                        className="w-full"
+                        name={poke.name}
+                        id={numberPokemon(poke)}
+                        dataPokemon={poke}
+                      />
+                    ))
+                  }
+                </div>
               </div>
-            </div>
-            </div>
+              </div>
+            }
             <div className="w-full sm:col-span-2 pl-7 sm:pt-5 md:pt-8 sm:pb-5">
               <p className="text-3xl sm:text-2xl md:text-4xl font-white pb-3 text-left mb-3">
                 Lista de Movimentos

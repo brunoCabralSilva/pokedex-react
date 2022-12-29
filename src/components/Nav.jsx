@@ -45,6 +45,13 @@ export default function Nav({ fixed }) {
             >
               Meu Time
             </Link>
+            <Link
+              to="/moves"
+              onClick={ () => setShowMenu(false) }
+              className="py-2 font-bold w-full text-center hover:bg-marinho/50 hover:text-black  transition-colors flex items-center justify-center"
+            >
+              Movimentos
+            </Link>
             <a
               href="https://github.com/brunoCabralSilva"
               target="_blank"

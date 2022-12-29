@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { getByName } from '../fetchs';
 import contexto from './index';
 
 export default function PokeProvider({ children }) {
@@ -11,9 +10,10 @@ export default function PokeProvider({ children }) {
   const [type, setType] = useState([]);
   const [allPokemonGeneration, setAllPokeOfGeneration] = useState([]);
   const [search, setSearch] = useState('ALL');
+  const [searchMove, setSearchMove] = useState('ALL');
   const [listFavorites, setListFavorites] = useState([]);
-  const [listAlternatives, setListAlternatives] = useState([]);
-  const [listAltDisplayed, setListAltDisplayed] = useState([]);
+  const [listAllMoves, setListAllMoves] = useState([]);
+  const [listMovesDisplayed, setListMovesDisplayed] = useState([]);
   const [countPokemon, setCountPokemon] = useState(0);
   const [messageTypes, setMessageTypes] = useState('');
   const [team, setTeam] = useState([]);
@@ -27,7 +27,6 @@ export default function PokeProvider({ children }) {
   }
 
   const addFavorite = (checked, searchByName) => {
-    console.log(searchByName);
     if (checked) {
       const listAdd = {
         id: searchByName.id,
@@ -48,16 +47,11 @@ export default function PokeProvider({ children }) {
 
   const numberPokemon = (poke) => {
     if (poke.id === undefined) {
-      console.log(poke.url);
-
       if (poke.url.includes('https://pokeapi.co/api/v2/pokemon-species/')) {
-        console.log('All Pokemon');
         const numero = poke.url.replace('https://pokeapi.co/api/v2/pokemon-species/', '');
-        console.log(numero.replace('/', ''));
         return numero.replace('/', '');
       } else {
         const numero = poke.url.replace('https://pokeapi.co/api/v2/pokemon/', '');
-        console.log(numero.replace('/', ''));
         return numero.replace('/', '');
       } 
         
@@ -72,12 +66,13 @@ export default function PokeProvider({ children }) {
       listType, setListType,
       type, setType,
       search, setSearch,
+      searchMove, setSearchMove,
       lastSelectedGen, setLastSelectedGen,
       listFavorites, setListFavorites,
+      listAllMoves, setListAllMoves,
+      listMovesDisplayed, setListMovesDisplayed,
       countPokemon, setCountPokemon,
       messageTypes, setMessageTypes,
-      listAlternatives, setListAlternatives,
-      listAltDisplayed, setListAltDisplayed,
       gen, setGen,
       team, setTeam,
       letraMaiuscula,

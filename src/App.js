@@ -8,7 +8,6 @@ import Search from './pages/Search';
 import Team from './pages/Team';
 import Favorites from './pages/Favorites';
 import Cards from './pages/Cards';
-import Alternatives from './pages/Alternatives';
 import Moves from './pages/Moves';
 
 function App() {
@@ -20,7 +19,6 @@ function App() {
             <Route exact path="/pokedex-react" component={Home} />
             <Route exact path="/search" component={Search} />
             <Route exact path="/team" component={Team} />
-            <Route exact path="/alternatives" component={Alternatives} />
             <Route exact path="/favorites" component={Favorites} />
             <Route exact path="/cards" component={Cards} />
             <Route exact path="/pokemon/:id" component={DetailsPokemon} />

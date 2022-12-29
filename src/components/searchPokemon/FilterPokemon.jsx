@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import contexto from '../context';
+import contexto from '../../context';
 
 function Filter({ search }) { 
   const context = useContext(contexto);
@@ -16,7 +16,7 @@ function Filter({ search }) {
             search === 'ALL' &&
             <div className="absolute top-0 h-full flex items-center">
               <img
-                src={ require('../imagens/wallpaper/pokeball.jpg') } 
+                src={ require('../../imagens/wallpaper/pokeball.jpg') } 
                 alt="pokébola"
                 className="h-1/3 lg:h-full"
               />
@@ -33,7 +33,7 @@ function Filter({ search }) {
             search === 'NAME_NUMBER' &&
             <div className="absolute top-0 h-full flex items-center">
               <img
-                  src={ require('../imagens/wallpaper/pokeball.jpg') } 
+                  src={ require('../../imagens/wallpaper/pokeball.jpg') } 
                   alt="pokébola"
                   className="h-1/3 lg:h-full"
                 />
@@ -50,7 +50,7 @@ function Filter({ search }) {
             search === 'GENERATION' &&
             <div className="absolute top-0 h-full flex items-center">
               <img
-                src={ require('../imagens/wallpaper/pokeball.jpg') } 
+                src={ require('../../imagens/wallpaper/pokeball.jpg') } 
                 alt="pokébola"
                 className="h-1/3 lg:h-full"
               />
@@ -67,7 +67,7 @@ function Filter({ search }) {
             search === 'TYPE' &&
             <div className="absolute top-0 h-full flex items-center">
               <img
-                src={ require('../imagens/wallpaper/pokeball.jpg') } 
+                src={ require('../../imagens/wallpaper/pokeball.jpg') } 
                 alt="pokébola"
                 className="h-1/3 lg:h-full"
               />
