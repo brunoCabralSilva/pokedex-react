@@ -23,7 +23,7 @@ export default function MovesByName() {
           </p>
           <p className="pt-5">
             Abaixo é possível pesquisar um Movimento pelo seu nome.
-            Você também utilizar as outras abas acima para pesquisar Movimentos por um tipo específico. 
+            Você também utilizar as outras abas acima para pesquisar Movimentos por um tipo específico, ou ainda listar todos de uma vez por ordem alfabética.
           </p>
           <p className="pt-2">
             Digite a seguir um nome válido de um Movimento. Caso este Movimento seja encontrado, você será direcionado para a página de detalhes dele.

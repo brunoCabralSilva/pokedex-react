@@ -8,6 +8,9 @@ export default function PokeProvider({ children }) {
   const [listGeneration, setListGeneration] = useState([]);
   const [listType, setListType] = useState([]);
   const [type, setType] = useState([]);
+  const [typeMove, setTypeMove] = useState('');
+  const [listTypeMove, setListTypeMove] = useState([]);
+  const [firstPositionLitMove, setFirstPositionLitMove] = useState(0);
   const [allPokemonGeneration, setAllPokeOfGeneration] = useState([]);
   const [search, setSearch] = useState('ALL');
   const [searchMove, setSearchMove] = useState('ALL');
@@ -16,6 +19,7 @@ export default function PokeProvider({ children }) {
   const [listMovesDisplayed, setListMovesDisplayed] = useState([]);
   const [countPokemon, setCountPokemon] = useState(0);
   const [messageTypes, setMessageTypes] = useState('');
+  const [messageTypesMove, setMessageTypesMove] = useState('');
   const [team, setTeam] = useState([]);
   
   function letraMaiuscula (nome) {
@@ -65,14 +69,18 @@ export default function PokeProvider({ children }) {
       allPokemonGeneration, setAllPokeOfGeneration,
       listType, setListType,
       type, setType,
+      typeMove, setTypeMove,
+      listTypeMove, setListTypeMove,
       search, setSearch,
       searchMove, setSearchMove,
       lastSelectedGen, setLastSelectedGen,
       listFavorites, setListFavorites,
       listAllMoves, setListAllMoves,
       listMovesDisplayed, setListMovesDisplayed,
+      firstPositionLitMove, setFirstPositionLitMove,
       countPokemon, setCountPokemon,
       messageTypes, setMessageTypes,
+      messageTypesMove, setMessageTypesMove,
       gen, setGen,
       team, setTeam,
       letraMaiuscula,

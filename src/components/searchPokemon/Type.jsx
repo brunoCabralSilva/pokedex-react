@@ -31,10 +31,10 @@ export default function Type() {
 
   const returnMessageButton = () => {
     if (type.length === 1) {
-      const message = `Buscar Pokémon do tipo ${returnTypeByNumber(type[0])}`;
+      const message = `Buscar Pokémon do tipo ${AllDataTypes(type[0]).name}`;
       return message;
     } else if (type.length === 2) {
-      const message = `Buscar Pokémon do tipo ${returnTypeByNumber(type[0])} e ${returnTypeByNumber(type[1])}`;
+      const message = `Buscar Pokémon do tipo ${AllDataTypes(type[0]).name} e ${AllDataTypes(type[1]).name}`;
       return message;
     } else return 'Buscar';
   };
@@ -51,48 +51,6 @@ export default function Type() {
       global.alert('Não existem pokémon com três tipos: Remova um dos dois tipos selecionados ou realize a pesquisa com os dois tipos já escolhidos.');
     } else {
       setType(prevState => [...prevState, AllDataTypes(name).type.toString()]);
-    }
-  };
-
-  const returnTypeByNumber = (number) => {
-    switch(number) {
-      case '1':
-        return 'Normal';
-      case '2':
-        return 'Lutador';
-      case '3':
-        return 'Voador';
-      case '4':
-        return 'Venenoso';
-      case '5':
-        return 'Terrestre';
-      case '6':
-        return 'Pedra';
-      case '7':
-        return 'Inseto';       
-      case '8':
-        return 'Fantasma';
-      case '9':
-        return 'Aço';
-      case '10':
-        return 'Fogo';
-      case '11':
-        return 'Água';
-      case '12':
-        return 'Grama';
-      case '13':
-        return 'Elétrico';
-      case '14':
-        return 'Psíquico';
-      case '15':
-        return 'Gelo';
-      case '16':
-        return 'Dragão';
-      case '17':
-        return 'Sombrio';
-      case '18':
-        return 'Fada';
-      default: return null;
     }
   };
 
@@ -142,9 +100,9 @@ export default function Type() {
 
   const returnMessageSearch = () => {
     if (type.length === 1) {
-      setMessageTypes(`Total de Pokémon do tipo ${returnTypeByNumber(type[0])}:`);
+      setMessageTypes(`Total de Pokémon do tipo ${AllDataTypes(type[0]).name}:`);
     } else if (type.length === 2) {
-      setMessageTypes(`Total de Pokémon do tipo ${returnTypeByNumber(type[0])} e ${returnTypeByNumber(type[1])}:`);
+      setMessageTypes(`Total de Pokémon do tipo ${AllDataTypes(type[0]).name} e ${AllDataTypes(type[1]).name}:`);
     }
   };
 
@@ -181,12 +139,14 @@ export default function Type() {
             }
             return (
               <div
-                className={`px-2 py-2 rounded-full flex items-center sm3:justify-start justify-center text-xl w-full h-full ${type.includes(id) ? 'bg-anil/50' : 'border-2 text-marinho'} `}
+                className={`px-2 py-2 rounded-full flex items-center sm3:justify-start justify-center text-xl w-full h-full ${type.includes(id) ? 'bg-anil/50 border-2 border-anil/50' : 'border-2 text-marinho'} `}
                 key={index}
                 onClick={() => addType(name)}
               >
                 <div>{ AllDataTypes(name).image }</div>
-                <p className="hidden sm3:flex pl-3">{letraMaiuscula(name)}</p>
+                <p className="hidden sm3:flex pl-3">
+                  {AllDataTypes(name).name}
+                </p>
               </div>
             );
           })

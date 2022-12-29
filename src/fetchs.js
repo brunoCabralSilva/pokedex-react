@@ -1,4 +1,5 @@
 export const getByType = async (tipo) => {
+  console.log(tipo);
   const fetchType = await fetch(`https://pokeapi.co/api/v2/type/${tipo}`);
   const fetchJson = await fetchType.json();
   return fetchJson;
