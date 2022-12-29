@@ -8,7 +8,6 @@ import { Link } from 'react-router-dom';
 
 export default function Favorites() {
   const context = useContext(contexto);
-  const [storage, setStorage] = useState([]);
   const { team, setTeam } = context;
 
   useEffect(() => {

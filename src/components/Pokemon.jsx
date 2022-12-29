@@ -50,6 +50,10 @@ export default function Pokemon (props) {
     search();
   }, []);
 
+  useEffect(() => {
+    search();
+  })
+
   const isOfTeam = (name) => {
     let storage = JSON.parse(localStorage.getItem('teams'));
     if (storage === null) {
