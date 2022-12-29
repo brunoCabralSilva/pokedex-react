@@ -43,7 +43,7 @@ export const getByGeneration = async (gen) => {
 };
 
 export const getAllPokemonSpecies = async () => {
-  const fetchType = await fetch(`https://pokeapi.co/api/v2/pokemon/?offset=1&limit=2000"`);
+  const fetchType = await fetch(`https://pokeapi.co/api/v2/pokemon/?offset=0&limit=2000"`);
   const fetchJson = await fetchType.json();
   return fetchJson;
 };

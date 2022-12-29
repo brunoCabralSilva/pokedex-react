@@ -84,26 +84,13 @@ export default function Details(props) {
 
   return (
     <motion.div
-        className="w-full col-span-4 min-h-screen text-black"
+        className="mt-7vh w-full col-span-4 min-h-screen text-black"
         initial="hidden"
         animate="visible"
         exit="exit"
       >
-        <Nav fixed={true} />
+        <Nav push={'/search'} />
         <div className="bg-gradient-to-l sm:bg-gradient-to-r via-white from-anil to-white">
-          <div
-            className="z-40 text-black text-4xl p-2 fixed top-0 left-0 w-full flex justify-left bg-gradient-to-l sm:bg-gradient-to-r via-white from-anil to-white"
-            onClick={ () => { 
-              setListType([]);
-              history.push('/search');
-            } }
-          >
-            <img
-              src={ require('../imagens/arrow-left.png') }
-              alt="seta"
-              className="w-10"
-            />
-          </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 sm:flex-row w-full pt-2 ">
             <div className="flex flex-col items-center justify-center pt-5 lg:pt-0 pl-7">
               { retornaImagem() }
@@ -180,26 +167,29 @@ export default function Details(props) {
               </div>
               </div>
             }
-            <div className="w-full sm:col-span-2 pl-7 sm:pt-5 md:pt-8 sm:pb-5">
-              <p className="text-3xl sm:text-2xl md:text-4xl font-white pb-3 text-left mb-3">
-                Lista de Movimentos
-              </p>
-              <div className="lg:px-5 pr-5 lg:pl-0 pb-5 w-full grid grid-cols-2 sm2:grid-cols-4 lg:grid-cols-6">
-                { 
-                  dataPokemon.moves && dataPokemon.moves.sort((a, b) => {
-                    if (a.move.name < b.move.name) return -1;
-                    else return 1 }).map((move, index) => (
-                      <button
-                        onClick={ () => history.push(`/moves/${move.move.name}`) }
-                        type="button"
-                        key={ index }
-                        className={`px-2 py-3 font-bold border-2 rounded-full bg-white text-marinho transition-colors duration-500 hover:bg-marinho hover:text-white border-marinho text-center mr-1 my-1`}>
-                        { letraMaiuscula(move.move.name) }
-                      </button>
-                  ))
-                }
+            {
+              dataPokemon.moves && dataPokemon.moves.length > 0 &&
+              <div className="w-full sm:col-span-2 pl-7 sm:pt-5 md:pt-8 sm:pb-5">
+                <p className="text-3xl sm:text-2xl md:text-4xl font-white pb-3 text-left mb-3">
+                  Lista de Movimentos
+                </p>
+                <div className="lg:px-5 pr-5 lg:pl-0 pb-5 w-full grid grid-cols-2 sm2:grid-cols-4 lg:grid-cols-6">
+                  { 
+                    dataPokemon.moves.sort((a, b) => {
+                      if (a.move.name < b.move.name) return -1;
+                      else return 1 }).map((move, index) => (
+                        <button
+                          onClick={ () => history.push(`/moves/${move.move.name}`) }
+                          type="button"
+                          key={ index }
+                          className={`px-2 py-3 font-bold border-2 rounded-full bg-white text-marinho transition-colors duration-500 hover:bg-marinho hover:text-white border-marinho text-center mr-1 my-1`}>
+                          { letraMaiuscula(move.move.name) }
+                        </button>
+                    ))
+                  }
+                </div>
               </div>
-            </div>
+            }
           </div>
         </div>
         <Footer />

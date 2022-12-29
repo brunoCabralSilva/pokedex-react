@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function Header({ name }) {
   return(
-    <div className="h-86vh w-full relative flex justify-center bg-anil">
+    <div className="mt-7vh h-86vh w-full relative flex justify-center bg-anil">
       <div className="w-full h-full flex items-end justify-center sm:justify-center absolute">
         <img
           src={require('../imagens/Pokémon_logo.png')}

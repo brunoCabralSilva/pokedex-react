@@ -16,7 +16,8 @@ export default function NameNumber() {
         const found = listAllPokemon.filter((poke) => poke.name.includes(localNameNumber.toLowerCase()));
         if (found.length === 1) {
           setDataFounded([]);
-          history.push(`/moves/${localNameNumber.toLowerCase()}`);
+          const id = numberPokemon(found[0]);
+          history.push(`/pokemon/${id}`);
         } else if (found.length === 0) {
           global.alert("Não foi possível encontrar este Pokémon! Reveja o número ou nome inserido ou tente novamente mais tarde!");
         } else {

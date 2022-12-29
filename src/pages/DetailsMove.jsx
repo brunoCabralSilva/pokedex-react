@@ -31,20 +31,8 @@ export default function DetailsMove() {
   }
 
   return (
-    <div className="w-full flex flex-col min-h-screen">
-      <Nav />
-      <div
-        className="z-40 text-black text-4xl p-2 fixed top-0 left-1 w-full flex justify-left bg-gradient-to-r via-white from-anil to-white border-b-[3px] border-white"
-        onClick={ () => { 
-          history.push('/moves');
-        } }
-      >
-        <img
-          src={ require('../imagens/arrow-left.png') }
-          alt="seta"
-          className="w-10"
-        />
-      </div>
+    <div className="mt-7vh w-full flex flex-col min-h-screen">
+      <Nav push={'/moves'}/>      
       <div className="flex flex-col justify-center px-1">
         {
           Object.values(move).length > 0 &&

@@ -15,7 +15,8 @@ export default function MovesByName() {
         const found = listAllMoves.filter((move) => move.name.includes(localName.toLowerCase()));
         if (found.length === 1) {
           setDataFounded([]);
-          history.push(`/moves/${localName.toLowerCase()}`);
+
+          history.push(`/moves/${found[0].name}`);
         } else if (found.length === 0) {
           global.alert("Não foi possível encontrar este Pokémon! Reveja o número ou nome inserido ou tente novamente mais tarde!");
         } else {

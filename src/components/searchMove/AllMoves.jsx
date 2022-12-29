@@ -34,7 +34,7 @@ export default function AllMoves() {
   useEffect(() => {
     const seedListMoves = async () => {
       if (listAllMoves.length === 0) {
-        const allMoves = await getGeneralist('https://pokeapi.co/api/v2/move?offset=1&limit=1000');
+        const allMoves = await getGeneralist('https://pokeapi.co/api/v2/move?offset=0&limit=1000');
         const allMovesSorted = await allMoves.results
           .sort((a, b) => {
             if (a.name > b.name) return 1;
