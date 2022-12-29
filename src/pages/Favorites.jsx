@@ -11,6 +11,7 @@ export default function Favorites() {
   const context = useContext(contexto);
   const { team, setTeam, listFavorites, setListFavorites } = context;
   useEffect(() => {
+    window.scrollTo(0, 0);
     let locStorage = JSON.parse(localStorage.getItem('favorites'));
     if (locStorage === null) {
       setListFavorites([]);

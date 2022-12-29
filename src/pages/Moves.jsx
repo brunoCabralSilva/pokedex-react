@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import contexto from '../context';
 import Footer from '../components/Footer';
 import Nav from '../components/Nav';
@@ -11,6 +11,10 @@ import MoveByName from '../components/searchMove/MovesByName';
 export default function Search() {
   const context = useContext(contexto);
   const { searchMove } = context;
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const returnSearch = () => {
     switch (searchMove) {

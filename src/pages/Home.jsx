@@ -83,10 +83,10 @@ export default function Home() {
         </div>
         <div className="flex flex-col-reverse sm:flex-row justify-end mx-3 sm:mx-14 mb-14 border hover:border-4 border-anil rounded">
           <div className="px-5 sm:pr-10 w-full sm:w-5/12 flex flex-col justify-center items-center sm:items-end pb-10 sm:pb-0 text-marinho">
-            <p className="py-10 sm:text-lg text-center sm:text-right">Explore o mundo dos Pokémon, tendo como guia um mecanismo de busca avançado, onde é possível buscar pelo nome, número, geração ou tipo.</p>
+            <p className="py-10 sm:text-lg text-center sm:text-right">Explore todos os movimentos existentes dos Pokémon, podendo listar todos eles de forma alfabética ou pesquisar por Movimentos pertencentes a algum tipo específico.</p>
             <button
               className="rounded px-5 py-3 bg-anil font-bold border-2 border-anil hover:border-2 hover:border-marinho transition-colors duration-500"
-              onClick={ () => { history.push('/search') } }
+              onClick={ () => { history.push('/moves') } }
             >
               Mais
             </button>
