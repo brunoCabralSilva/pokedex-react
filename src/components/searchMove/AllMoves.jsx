@@ -33,21 +33,21 @@ export default function AllMoves() {
 
   useEffect(() => {
     const seedListMoves = async () => {
-        if (listAllMoves.length === 0) {
-          const allMoves = await getGeneralist('https://pokeapi.co/api/v2/move?offset=1&limit=1000');
-          const allMovesSorted = await allMoves.results
-            .sort((a, b) => {
-              if (a.name > b.name) return 1;
-              if (a.name < b.name) return -1;
-              return 0;
-            });
-          setListAllMoves(allMovesSorted);
-          let last = [];
-            for (let i = 0; i < 20; i += 1) {
-            last.push(allMovesSorted[i]);
-          }
-          setFirstPositionLitMove(20);
-          queryMoveDetails(last);
+      if (listAllMoves.length === 0) {
+        const allMoves = await getGeneralist('https://pokeapi.co/api/v2/move?offset=1&limit=1000');
+        const allMovesSorted = await allMoves.results
+          .sort((a, b) => {
+            if (a.name > b.name) return 1;
+            if (a.name < b.name) return -1;
+            return 0;
+          });
+        setListAllMoves(allMovesSorted);
+        let last = [];
+          for (let i = 0; i < 20; i += 1) {
+          last.push(allMovesSorted[i]);
+        }
+        setFirstPositionLitMove(20);
+        queryMoveDetails(last);
       };
     };
     seedListMoves();
@@ -81,7 +81,6 @@ export default function AllMoves() {
         </p>
       </div>
       <div className="w-9/12 flex flex-row items-left justify-center">
-        { console.log(listMovesDisplayed)}
         {
           listMovesDisplayed.length > 0 &&
           <div className="lg:px-5 pr-5 lg:pl-0 pb-5 w-full grid grid-cols-1 sm2:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">

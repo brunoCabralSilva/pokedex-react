@@ -1,71 +1,66 @@
 import { useState, useEffect, useContext } from "react";
 import contexto from '../../context';
-import { getAllPokemonSpecies, getNumberOfPokemon } from '../../fetchs';
+import { getAllPokemonSpecies, getGeneralist } from '../../fetchs';
 import { useHistory } from "react-router-dom";
 import Pokemon from "../Pokemon";
 
 export default function AllPokemon() {
-  const [first, setFirst] = useState(0);
   const [finish, setFinish] = useState(false);
   const history = useHistory();
   const context = useContext(contexto);
   const {
-    setList,
-    list,
-    countPokemon,
-    setCountPokemon,
     numberPokemon,
+    listAllPokemon, setListAllPokemon,
+    listPokemonDisplayed, setListPokemonDisplayed,
+    firstPositionListPokemon, setFirstPositionListPokemon,
   } = context;
 
-  useEffect(() => {
-    const firstCall = async () => {
-      let count = countPokemon;
-      if (countPokemon === 0) {
-        const number = await getNumberOfPokemon();
-        setCountPokemon(number.count);
-        count = number.count;
-      }
-      if(list.length === 0) {
-        const call = await getAllPokemonSpecies(first);
-        if (list.length <= 20) {
-          if (first + 20 < count) {
-            setList(call.results);
-          } else {
-            let last = [];
-            for (let i = 0; i < count - first; i += 1) {
-              last.push(call.results[i]);
-            }
-            setList(last);
-          }
-        }
-      } else if (list.length === 20) {
-        setFirst(list.length);
-        window.scrollTo(0, 0);
-      } else {
-        setFirst(list.length);
-        window.scrollTo(0, document.body.scrollHeight);
-      }
-    };
-    firstCall();
-  }, []);
-
-  const moreTwentyForAll = async () => {
-    const newFirst = first + 20;
-    const call = await getAllPokemonSpecies(newFirst);
-    if (newFirst + 20 < countPokemon) {
-      setFirst(newFirst);
-      setList([...list, ...call.results]);
-      setFinish(false);
+  const queryMorePokemon = async(list) => {
+    console.log('url', list);
+    let listItems = await Promise.all(
+      list.map(async (item) => await getGeneralist(item.url)));
+      if (listPokemonDisplayed.length > 0) {
+        setListPokemonDisplayed([...listPokemonDisplayed, ...listItems]);
     } else {
-      let last = [];
-      for (let i = 0; i < countPokemon - newFirst; i += 1) {
-        last.push(call.results[i]);
-      }
-      setFirst(newFirst);
-      setList([...list, ...last]);
-      setFinish(true);
+      setListPokemonDisplayed(listItems);
     }
   };
+
+  const displayedPokemon = async () => {
+    if (listPokemonDisplayed.length + 20 > listAllPokemon.length) {
+      let last = [];
+      for (let i = firstPositionListPokemon; i < listAllPokemon.length - listPokemonDisplayed.length; i += 1) {
+        last.push(listAllPokemon[i]);
+      }
+      queryMorePokemon(last);
+      setFinish(true);
+    } else {
+      let last = [];
+      for (let i = firstPositionListPokemon; i < firstPositionListPokemon + 20; i += 1) {
+        last.push(listAllPokemon[i]);
+      }
+      setFirstPositionListPokemon(firstPositionListPokemon + 20);
+      queryMorePokemon(last);
+    } 
+  };
+
+  useEffect(() => {
+    const seedListPokemon = async () => {
+      const allMoves = await getAllPokemonSpecies();
+      if (listAllPokemon.length === 0) {
+        console.log('entrei');
+        console.log('todos', allMoves);
+        setListAllPokemon(allMoves.results);
+        let last = [];
+          for (let i = 0; i < 20; i += 1) {
+          last.push(allMoves.results[i]);
+        }
+        setFirstPositionListPokemon(20);
+        queryMorePokemon(last);
+      };
+    };
+    seedListPokemon();
+  }, []);
 
   return(
     <div className="flex flex-col items-center">
@@ -85,9 +80,10 @@ export default function AllPokemon() {
         </p>
       </div>
       <div className="bg-white w-9/12 p-1 gap-3 grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4">
+        { console.log('list', listAllPokemon) }
         {
-          list.length !== 1
-            ? list.length > 0 && list.map((poke, index) => (
+          listPokemonDisplayed.length !== 1
+            ? listPokemonDisplayed.length > 0 && listPokemonDisplayed.map((poke, index) => (
               <Pokemon
                 key={index}
                 className="w-full"
@@ -96,14 +92,14 @@ export default function AllPokemon() {
                 dataPokemon={poke}
               />
             ))
-            : history.push(`/pokemon/${list[0].id}`)
+            : history.push(`/pokemon/${listPokemonDisplayed[0].id}`)
         }
       </div>
       <div className="w-9/12">
         <button
           type="button"
           className={`px-1 w-full ${ finish && 'hidden' }`}
-          onClick={ moreTwentyForAll }
+          onClick={ displayedPokemon }
         >
           <div className="bg-anil/80 text-black text-xl p-4 w-full h-full bg-anil font-bold border-2 border-anil hover:border-2 hover:border-marinho transition-colors duration-500">
             Mais Pokémon

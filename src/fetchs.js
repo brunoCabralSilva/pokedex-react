@@ -23,12 +23,6 @@ export const getMove = async (move) => {
   return fetchJson;
 }
 
-export const getAlternativePokemon = async () => {
-  const fetchType = await fetch('https://pokeapi.co/api/v2/pokemon?offset=905&limit=500');
-  const fetchJson = await fetchType.json();
-  return fetchJson.results;
-}
-
 export const getGeneralist = async (url) => {
   const fetchType = await fetch(url);
   const fetchJson = await fetchType.json();
@@ -48,9 +42,8 @@ export const getByGeneration = async (gen) => {
   return arrayGen;
 };
 
-export const getAllPokemonSpecies = async (first) => {
-  const firstString = first.toString();
-  const fetchType = await fetch(`https://pokeapi.co/api/v2/pokemon-species/?offset=${firstString}&limit=%20`);
+export const getAllPokemonSpecies = async () => {
+  const fetchType = await fetch(`https://pokeapi.co/api/v2/pokemon/?offset=1&limit=2000"`);
   const fetchJson = await fetchType.json();
   return fetchJson;
 };

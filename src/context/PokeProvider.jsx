@@ -2,9 +2,11 @@ import { useState } from 'react';
 import contexto from './index';
 
 export default function PokeProvider({ children }) {
-  const [list, setList] = useState([]);
+  const [listAllPokemon, setListAllPokemon] = useState([]);
+  const [listPokemonDisplayed, setListPokemonDisplayed] = useState([]);
+  const [firstPositionListPokemon, setFirstPositionListPokemon] = useState(0);
   const [gen, setGen] = useState('1');
-  const[lastSelectedGen, setLastSelectedGen] = useState('');
+  const [lastSelectedGen, setLastSelectedGen] = useState('');
   const [listGeneration, setListGeneration] = useState([]);
   const [listType, setListType] = useState([]);
   const [type, setType] = useState([]);
@@ -64,7 +66,9 @@ export default function PokeProvider({ children }) {
 
   return(
     <contexto.Provider value={{
-      list,setList,
+      listAllPokemon, setListAllPokemon,
+      listPokemonDisplayed, setListPokemonDisplayed,
+      firstPositionListPokemon, setFirstPositionListPokemon,
       listGeneration, setListGeneration,
       allPokemonGeneration, setAllPokeOfGeneration,
       listType, setListType,

@@ -63,7 +63,7 @@ export default function DetailsMove() {
               <p className="pt-1">Prioridade: {move.priority}</p>
               <p className="pt-1">Alvo: {move.target.name}</p>
             </div>
-            <div className="py-5 bg-gradient-to-r via-white from-anil to-white mb-1 px-7">
+            <div className="w-full py-5 bg-gradient-to-r via-white from-anil to-white mb-1 px-7">
               <p className="text-3xl sm:text-2xl md:text-4xl">Efeito</p>
               <p className="pt-5">
                 Espanhol: { move.flavor_text_entries.find((text) => text.language.name === 'es').flavor_text }
