@@ -1,6 +1,5 @@
 export default function AllDataTypes(type) {
   const widthImage = 'w-16';
-  console.log(type);
   if (type === 'normal' || type === '1') {
     return {
       image:(<img src={require('../imagens/types/normal.png')}

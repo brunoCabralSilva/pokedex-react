@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import contexto from './index';
+import { getGeneralist } from '../fetchs';
+const NUMBERBYPAGE = 20;
 
 export default function PokeProvider({ children }) {
   const [listAllPokemon, setListAllPokemon] = useState([]);
@@ -23,6 +25,7 @@ export default function PokeProvider({ children }) {
   const [messageTypes, setMessageTypes] = useState('');
   const [messageTypesMove, setMessageTypesMove] = useState('');
   const [team, setTeam] = useState([]);
+  const [loadingPokemon, setLoadingPokemon] = useState(false);
   
   function letraMaiuscula (nome) {
     let novoNome = nome[0].toUpperCase();
@@ -64,6 +67,34 @@ export default function PokeProvider({ children }) {
     } return poke.id;
   };
 
+  const queryMorePokemon = async(list) => {
+    setLoadingPokemon(true);
+    let listItems = await Promise.all(
+      list.map(async (item) => await getGeneralist(item.url)));
+      setListPokemonDisplayed(listItems);
+      setTimeout(() => {
+        setLoadingPokemon(false);
+      }, 500);
+  };
+
+  const queryByPage = async (number, list) => {
+    if (number * NUMBERBYPAGE > list.length) {
+      const numero = (number - 1) * 20;
+      let last = [];
+      for (let i = numero; i < list.length; i += 1) {
+        last.push(list[i]);
+      }
+      queryMorePokemon(last);
+    } else {
+      const numero = (number - 1) * 20;
+      let last = [];
+      for (let i = numero; i < numero + NUMBERBYPAGE; i += 1) {
+        last.push(list[i]);
+      }
+      queryMorePokemon(last);
+    }
+  };
+
   return(
     <contexto.Provider value={{
       listAllPokemon, setListAllPokemon,
@@ -85,11 +116,13 @@ export default function PokeProvider({ children }) {
       countPokemon, setCountPokemon,
       messageTypes, setMessageTypes,
       messageTypesMove, setMessageTypesMove,
+      loadingPokemon, setLoadingPokemon,
       gen, setGen,
       team, setTeam,
       letraMaiuscula,
       addFavorite,
       numberPokemon,
+      queryByPage,
       }}
     >
       {children}

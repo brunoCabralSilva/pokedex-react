@@ -17,6 +17,7 @@ export default function Pokemon (props) {
     team,
     setTeam,
     letraMaiuscula,
+    loadingPokemon,
   } = context;
 
   const { name, id, teams, dataPokemon } = props;
@@ -121,8 +122,14 @@ export default function Pokemon (props) {
   
   return (
     <div
-      className="flex flex-col relative items-center justify-center transition duration-1000"
-      >
+    className="flex flex-col relative items-center transition duration-1000"
+    >
+      { 
+      loadingPokemon ? 
+      <div className="text-marinho bottom-0 w-full text-center pb-2 pt-4 font-bold bg-gradient-to-t h-60 from-anil via-anil/60 to-anil/10">
+        <Loading />
+      </div> 
+      :<div>
       <label htmlFor={`favorite-${id}`} className="absolute right-0 top-0 mt-2 mr-1 sm:mr-0 sm:mt-2 z-10 w-full">
         <div className={`${check ? 'bg-green-400': 'bg-blue-400'} input mx-2 rounded-full w-10 h-5 transition-all duration-500 absolute right-0`}>
           <div className={`${check ? 'right-0': 'left-0'} absolute w-1/2 h-full bg-white rounded-full transition-all duration-500`} />
@@ -182,14 +189,8 @@ export default function Pokemon (props) {
         }
       </div>
       }
+      </div>
+      }
     </div>
-  );
+    );
 }
-
-Pokemon.propTypes = {
-  letraMaiuscula: PropTypes.func.isRequired,
-  numeroDoPokemon: PropTypes.number.isRequired,
-  index: PropTypes.number.isRequired,
-  nome: PropTypes.string.isRequired,
-  lista: PropTypes.string.isRequired,
-};
