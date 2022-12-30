@@ -1,11 +1,9 @@
-import { useState, useEffect, useContext } from "react";
+import { useEffect, useContext } from "react";
 import contexto from '../../context';
 import { getAllPokemonSpecies, getGeneralist } from '../../fetchs';
 import { useHistory } from "react-router-dom";
-import { GrFormNext, GrFormPrevious } from "react-icons/gr";
 import Pokemon from "../Pokemon";
 import Guide from "../Guide";
-import Loading from "../Loading";
 const NUMBERBYPAGE = 20;
 
 export default function AllPokemon() {
@@ -13,18 +11,22 @@ export default function AllPokemon() {
   const context = useContext(contexto);
   const {
     numberPokemon,
-    listAllPokemon, setListAllPokemon,
-    listPokemonDisplayed, setListPokemonDisplayed,
-    firstPositionListPokemon, setFirstPositionListPokemon,
+    listAllPokemon, setListAllPokemon, setLoadingPokemon,
+    listPokemonDisplayed, setListPokemonDisplayed, setFirstPage,
   } = context;
 
-  const queryMorePokemon = async(list) => {
+  const queryMorePokemon = async(list, setListDisplayed) => {
+    setLoadingPokemon(true);
     let listItems = await Promise.all(
       list.map(async (item) => await getGeneralist(item.url)));
-      setListPokemonDisplayed(listItems);
+      setListDisplayed(listItems);
+      setTimeout(() => {
+        setLoadingPokemon(false);
+      }, 500);
   };
 
   useEffect(() => {
+    setFirstPage(1);
     const seedListPokemon = async () => {
       const allMoves = await getAllPokemonSpecies();
       if (listAllPokemon.length === 0) {
@@ -33,8 +35,7 @@ export default function AllPokemon() {
           for (let i = 0; i < NUMBERBYPAGE; i += 1) {
           last.push(allMoves.results[i]);
         }
-        setFirstPositionListPokemon(NUMBERBYPAGE);
-        queryMorePokemon(last);
+        queryMorePokemon(last, setListPokemonDisplayed);
       };
     };
     seedListPokemon();
@@ -57,7 +58,11 @@ export default function AllPokemon() {
           Explore o quanto quiser e divirta-se!
         </p>
       </div>
-      <Guide list={listAllPokemon} />
+      <Guide
+        list={listAllPokemon}
+        listDisplayed={setListPokemonDisplayed}
+        position="top"
+      />
         <div className="bg-white relative w-full flex justify-center">
           <div className="w-9/12 p-1 gap-3 grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4">
             {
@@ -75,7 +80,11 @@ export default function AllPokemon() {
             }
           </div>
         </div>
-      <Guide list={listAllPokemon} />
+      <Guide
+        list={listAllPokemon}
+        listDisplayed={setListPokemonDisplayed}
+        position="bottom"
+      />
     </div>
   );
 }

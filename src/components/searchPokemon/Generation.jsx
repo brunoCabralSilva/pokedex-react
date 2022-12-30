@@ -1,27 +1,55 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import contexto from '../../context';
-import { getByGeneration } from '../../fetchs';
+import { getByGeneration, getGeneralist } from '../../fetchs';
 import Pokemon from '../Pokemon';
+import Guide from '../Guide';
 
 export default function Generation() {
   const context = useContext(contexto);
   const {
     gen,
     setGen,
+    setFirstPage,
+    setLoadingPokemon,
     lastSelectedGen,
     setLastSelectedGen,
+    listGenerationDisplayed,
+    setListGenerationDisplayed,
     listGeneration,
     setListGeneration,
+    NUMBERBYPAGE,
   } = context;
 
+  useEffect(() => {
+    setFirstPage(1);
+  }, []);
+
+  const queryMorePokemon = async(list, setListDisplayed) => {
+    setLoadingPokemon(true);
+    let last = [];
+    for (let i = 0; i < NUMBERBYPAGE; i += 1) {
+      last.push(list[i]);
+    }
+    let listItems = await Promise.all(
+      last.map(async (item) => await getGeneralist(item.url)));
+      console.log(listItems);
+      setListDisplayed(listItems);
+      setTimeout(() => {
+        setLoadingPokemon(false);
+      }, 500);
+  };
+
   const searchByGen = async () => {
+      setFirstPage(1);
       setListGeneration([]);
       const call = await getByGeneration(gen);
-      setListGeneration(call);
+      const genSort = call.sort((a, b) => a.id - b.id );
+      setListGeneration(genSort);
       const selectGeneration = document.getElementById('select-generation');
       selectGeneration.selectedIndex = '1';
       setLastSelectedGen(gen);
       setGen('1');
+      queryMorePokemon(genSort, setListGenerationDisplayed)
   };
 
   const showDataGeneration = () => {
@@ -88,9 +116,17 @@ export default function Generation() {
         <div>
           { showDataGeneration() }
           <div className="w-full flex flex-col items-center">
+            <div className={ listGeneration.length === 0 ? 'hidden' : '' }>
+              <Guide
+                className={ listGeneration.length === 0 && 'hidden' }
+                list={listGeneration}
+                listDisplayed={setListGenerationDisplayed}
+                position="top"
+              />
+            </div>
             <div className="w-9/12 p-1 gap-3 grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4">
               {
-                listGeneration.length > 0 && listGeneration
+                listGenerationDisplayed.length > 0 && listGenerationDisplayed
                 .sort((a, b) => Number(a.id) - Number(b.id))
                 .map((poke, index) => (
                   <Pokemon
@@ -103,19 +139,12 @@ export default function Generation() {
                 ))
               }
             </div>
-            <div className="w-9/12">
-              { 
-                listGeneration.length > 0 &&
-                <button
-                  type="button"
-                  className="py-1 w-full mb-1"
-                  onClick={ () => window.scrollTo(0, 0) }
-                >
-                  <div className="bg-anil/80 text-black text-xl p-4 w-full h-full bg-anil font-bold border-2 border-anil hover:border-2 hover:border-marinho transition-colors duration-500">
-                    Voltar ao Topo
-                  </div>
-                </button>
-              }
+            <div className={ listGeneration.length === 0 ? 'hidden' : '' }>
+              <Guide
+                list={listGeneration}
+                listDisplayed={setListGenerationDisplayed}
+                position="bottom"
+              />
             </div>
           </div>
         </div>
