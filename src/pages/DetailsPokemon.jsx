@@ -16,7 +16,7 @@ export default function Details(props) {
   const [dataPokemon, setDataPokemon] = useState({});
   const [others, setOthers] = useState([]);
   const context = useContext(contexto);
-  const { letraMaiuscula, setListType, numberPokemon } = context;
+  const { letraMaiuscula, setAllListDisplayed, numberPokemon } = context;
   const history = useHistory();
 
   const searchVarieties = async (data) => {
@@ -29,6 +29,7 @@ export default function Details(props) {
   };
 
   useEffect(() => {
+    setAllListDisplayed([]);
     window.scrollTo(0, 0);
     const fetch = async () => {
       try {

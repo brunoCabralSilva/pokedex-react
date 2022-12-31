@@ -10,9 +10,12 @@ export default function AllPokemon() {
   const history = useHistory();
   const context = useContext(contexto);
   const {
+    listOfAllPokemon, setListOfAllPokemon,
+    listOfAllPokemonDisplayed, setListOfAllPokemonDisplayed,
     numberPokemon,
-    listAllPokemon, setListAllPokemon, setLoadingPokemon,
-    listPokemonDisplayed, setListPokemonDisplayed, setFirstPage,
+    setLoadingPokemon,
+    setFirstPage,
+    setValueButton,
   } = context;
 
   const queryMorePokemon = async(list, setListDisplayed) => {
@@ -29,13 +32,13 @@ export default function AllPokemon() {
     setFirstPage(1);
     const seedListPokemon = async () => {
       const allMoves = await getAllPokemonSpecies();
-      if (listAllPokemon.length === 0) {
-        setListAllPokemon(allMoves.results);
+      if (listOfAllPokemon.length === 0) {
+        setListOfAllPokemon(allMoves.results);
         let last = [];
           for (let i = 0; i < NUMBERBYPAGE; i += 1) {
           last.push(allMoves.results[i]);
         }
-        queryMorePokemon(last, setListPokemonDisplayed);
+        queryMorePokemon(last, setListOfAllPokemonDisplayed);
       };
     };
     seedListPokemon();
@@ -59,15 +62,15 @@ export default function AllPokemon() {
         </p>
       </div>
       <Guide
-        list={listAllPokemon}
-        listDisplayed={setListPokemonDisplayed}
+        list={listOfAllPokemon}
+        listDisplayed={setListOfAllPokemonDisplayed}
         position="top"
       />
         <div className="bg-white relative w-full flex justify-center">
           <div className="w-9/12 p-1 gap-3 grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4">
             {
-              listPokemonDisplayed.length !== 1
-                ? listPokemonDisplayed.length > 0 && listPokemonDisplayed.map((poke, index) => (
+              listOfAllPokemonDisplayed.length !== 1
+                ? listOfAllPokemonDisplayed.length > 0 && listOfAllPokemonDisplayed.map((poke, index) => (
                   <Pokemon
                     key={index}
                     className=""
@@ -76,13 +79,13 @@ export default function AllPokemon() {
                     dataPokemon={poke}
                   />
                 ))
-                : history.push(`/pokemon/${listPokemonDisplayed[0].id}`)
+                : history.push(`/pokemon/${listOfAllPokemonDisplayed[0].id}`)
             }
           </div>
         </div>
       <Guide
-        list={listAllPokemon}
-        listDisplayed={setListPokemonDisplayed}
+        list={listOfAllPokemon}
+        listDisplayed={setListOfAllPokemonDisplayed}
         position="bottom"
       />
     </div>

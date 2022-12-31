@@ -7,20 +7,24 @@ import Guide from '../Guide';
 export default function Generation() {
   const context = useContext(contexto);
   const {
+    listOfAll, setListOfAll,
+    allListDisplayed, setAllListDisplayed,
     gen,
     setGen,
     setFirstPage,
     setLoadingPokemon,
     lastSelectedGen,
     setLastSelectedGen,
-    listGenerationDisplayed,
-    setListGenerationDisplayed,
-    listGeneration,
-    setListGeneration,
+    setValueButton,
     NUMBERBYPAGE,
+    setListOfAllPokemonDisplayed,
   } = context;
 
   useEffect(() => {
+    setListOfAllPokemonDisplayed([]);
+    setListOfAll([]);
+    setAllListDisplayed([]);
+    setValueButton(1);
     setFirstPage(1);
   }, []);
 
@@ -40,26 +44,34 @@ export default function Generation() {
   };
 
   const searchByGen = async () => {
-      setFirstPage(1);
-      setListGeneration([]);
-      const call = await getByGeneration(gen);
-      const genSort = call.sort((a, b) => a.id - b.id );
-      setListGeneration(genSort);
-      const selectGeneration = document.getElementById('select-generation');
-      selectGeneration.selectedIndex = '1';
-      setLastSelectedGen(gen);
-      setGen('1');
-      queryMorePokemon(genSort, setListGenerationDisplayed)
+    setFirstPage(1);
+    setValueButton(1);
+    setListOfAll([]);
+    setAllListDisplayed([]);
+    const call = await getByGeneration(gen);
+    const genSort = call.sort((a, b) => a.id - b.id );
+    setListOfAll(genSort);
+    const selectGeneration = document.getElementById('select-generation');
+    selectGeneration.selectedIndex = '1';
+    setLastSelectedGen(gen);
+    setGen('1');
+    queryMorePokemon(genSort, setAllListDisplayed)
   };
 
   const showDataGeneration = () => {
     if (lastSelectedGen !== '') {
       return (
-        <div className="w-full pb-2 flex justify-center">
-          <p className="py-14 text-marinho w-9/12 text-3xl h-full flex flex-col sm:flex-row items-center sm:p-0 sm:py-14 text-left">
-            {listGeneration.length && `Total de Pokémon da ${lastSelectedGen}ª Geração: ${listGeneration.length}` }
-          </p>
-        </div>
+        listOfAll.length > 0
+        ? <div className="w-full pb-2 flex justify-center">
+            <p className="py-14 text-marinho w-9/12 text-3xl h-full flex flex-col sm:flex-row items-center sm:p-0 sm:py-14 text-left">
+              {listOfAll.length && `Total de Pokémon da ${lastSelectedGen}ª Geração: ${listOfAll.length}` }
+            </p>
+          </div>
+        : <div className="w-full pb-2 flex justify-center">
+            <p className="py-5 text-marinho w-9/12 text-3xl h-full flex flex-col sm:flex-row items-center sm:p-0 sm:py-5 text-left">
+              Buscando Pokémon, por favor aguarde...
+            </p>
+          </div>
       );
     }
   }
@@ -110,23 +122,23 @@ export default function Generation() {
                 <i className="fa-solid fa-magnifying-glass"></i>
               </button>
             </div>
-            { listGeneration.length === 0 && <div className="w-full mb-20 sm:mb-28 sm:mt-14" /> }
+            { listOfAll.length === 0 && <div className="w-full mb-20 sm:mb-28 sm:mt-14" /> }
           </div>
         </div>
         <div>
           { showDataGeneration() }
           <div className="w-full flex flex-col items-center">
-            <div className={ listGeneration.length === 0 ? 'hidden' : '' }>
+            <div className={ listOfAll.length === 0 ? 'hidden' : '' }>
               <Guide
-                className={ listGeneration.length === 0 && 'hidden' }
-                list={listGeneration}
-                listDisplayed={setListGenerationDisplayed}
+                className={ listOfAll.length === 0 && 'hidden' }
+                list={listOfAll}
+                listDisplayed={setAllListDisplayed}
                 position="top"
               />
             </div>
             <div className="w-9/12 p-1 gap-3 grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4">
               {
-                listGenerationDisplayed.length > 0 && listGenerationDisplayed
+                allListDisplayed.length > 0 && allListDisplayed
                 .sort((a, b) => Number(a.id) - Number(b.id))
                 .map((poke, index) => (
                   <Pokemon
@@ -139,10 +151,10 @@ export default function Generation() {
                 ))
               }
             </div>
-            <div className={ listGeneration.length === 0 ? 'hidden' : '' }>
+            <div className={ listOfAll.length === 0 ? 'hidden' : '' }>
               <Guide
-                list={listGeneration}
-                listDisplayed={setListGenerationDisplayed}
+                list={listOfAll}
+                listDisplayed={setAllListDisplayed}
                 position="bottom"
               />
             </div>

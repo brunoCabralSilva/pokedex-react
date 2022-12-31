@@ -121,7 +121,7 @@ export default function Pokemon (props) {
   
   return (
     <div
-    className="flex flex-col relative items-center transition duration-1000"
+    className="w-full flex flex-col relative items-center transition duration-1000"
     >
       { 
       loadingPokemon ? 

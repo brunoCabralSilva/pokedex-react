@@ -4,29 +4,28 @@ import { getGeneralist } from '../fetchs';
 const NUMBERBYPAGE = 20;
 
 export default function PokeProvider({ children }) {
-  const [listAllPokemon, setListAllPokemon] = useState([]);
-  const [listPokemonDisplayed, setListPokemonDisplayed] = useState([]);
+  const [listOfAllPokemon, setListOfAllPokemon] = useState([]);
+  const [listOfAllPokemonDisplayed, setListOfAllPokemonDisplayed] = useState([]);
+  const [listAllMoves, setListAllMoves] = useState([]);
+  const [listMovesDisplayed, setListMovesDisplayed] = useState([]);
+  const [listOfAll, setListOfAll] = useState([]);
+  const [allListDisplayed, setAllListDisplayed] = useState([]);
+  const [valueButton, setValueButton] = useState(1);
   const [gen, setGen] = useState('1');
   const [lastSelectedGen, setLastSelectedGen] = useState('');
-  const [listGeneration, setListGeneration] = useState([]);
-  const [listGenerationDisplayed, setListGenerationDisplayed] = useState([]);
-  const [listType, setListType] = useState([]);
   const [type, setType] = useState([]);
   const [typeMove, setTypeMove] = useState('');
   const [listTypeMove, setListTypeMove] = useState([]);
-  const [firstPositionLitMove, setFirstPositionLitMove] = useState(0);
-  const [allPokemonGeneration, setAllPokeOfGeneration] = useState([]);
   const [search, setSearch] = useState('ALL');
   const [searchMove, setSearchMove] = useState('ALL');
   const [listFavorites, setListFavorites] = useState([]);
-  const [listAllMoves, setListAllMoves] = useState([]);
-  const [listMovesDisplayed, setListMovesDisplayed] = useState([]);
   const [countPokemon, setCountPokemon] = useState(0);
   const [messageTypes, setMessageTypes] = useState('');
   const [messageTypesMove, setMessageTypesMove] = useState('');
   const [team, setTeam] = useState([]);
   const [loadingPokemon, setLoadingPokemon] = useState(false);
   const [firstPage, setFirstPage] = useState(1);
+  const [firstPositionLitMove, setFirstPositionLitMove] = useState(0);
   
   function letraMaiuscula (nome) {
     let novoNome = nome[0].toUpperCase();
@@ -116,8 +115,9 @@ export default function PokeProvider({ children }) {
         <button
           key={i}
           type="button"
-          className="px-2 py-1 border mx-1"
+          className={`px-2 py-1 border mx-1 ${valueButton === totalPages + i && 'border-2 border-marinho'}`}
           onClick={ () => {
+            setValueButton(totalPages + i);
             if (totalPages + i > (allPages- 5)) {
               queryByPage(totalPages + i, list, setListDisplayed);
               setFirstPage(allPages- 5);
@@ -134,8 +134,9 @@ export default function PokeProvider({ children }) {
     }
     const spanItem = <div className="px-2 py-1 border mx-1">...</div>;
     const elementFirst = <button
-      className="px-2 py-1 border mx-1"
+    className={`px-2 py-1 border mx-1 ${valueButton === 1 && 'border-2 border-marinho'}`}
       onClick={ () => {
+          setValueButton(1);
           queryByPage(1, list, setListDisplayed);
           setFirstPage(1);
           window.location.href = '#init'
@@ -143,19 +144,20 @@ export default function PokeProvider({ children }) {
       }
     >1</button>;
     const elementLast = <button
-      className="px-2 py-1 border mx-1"
+    className={`px-2 py-1 border mx-1 ${valueButton === allPages && 'border-2 border-marinho'}`}
       onClick={ () => {
-          queryByPage(allPages, list, setListDisplayed);
-          setFirstPage(Math.round(list.length/20 - 5));
-          window.location.href = '#init';
-        }
+        setValueButton(allPages);
+        queryByPage(allPages, list, setListDisplayed);
+        setFirstPage(Math.round(list.length/20 - 5));
+        window.location.href = '#init';
       }
+    }
       >{allPages}</button>
     const elementPrevious = <button
-      className="px-2 py-1 border mx-1"
+     className={`px-2 py-1 border mx-1 ${valueButton === firstPage - 15 && 'border-2 border-marinho'}`}
       onClick={ () => {
         if (firstPage - 15 < 0) {
-          setFirstPage(1);
+          setFirstPage(firstPage - 15);
           queryByPage(1, list, setListDisplayed);
         } else {
           queryByPage(firstPage - 15, list, setListDisplayed);
@@ -167,8 +169,9 @@ export default function PokeProvider({ children }) {
       { firstPage - 15}
     </button>;
     const elementNext = <button
-      className="px-2 py-1 border mx-1"
+      className={`px-2 py-1 border mx-1 ${valueButton === firstPage + 15 && 'border-2 border-marinho'}`}
       onClick={ () => {
+        setValueButton(firstPage + 15);
         if (firstPage + 15 > (allPages- 5)) {
           setFirstPage(allPages- 5);
           queryByPage(allPages- 5, list, setListDisplayed);
@@ -210,12 +213,24 @@ export default function PokeProvider({ children }) {
       concludePage = [elementFirst, spanItem, ...pages];
     }
     
+    else if (firstPage + 5 >= allPages) {
+      console.log('8 if');
+      concludePage = [elementFirst, spanItem, ...pages];
+    }
+
     else if (firstPage + 15 > allPages && allPages < 15 && firstPage + 5 > allPages - 5) {
       console.log('7 if');
       concludePage = [...pages, spanItem, elementLast];
     }
+
+
+    else if (firstPage + 15 > allPages && allPages < 15 ) {
+      console.log('9 if');
+      concludePage = [...pages, spanItem, elementLast];
+    }
+
     else {
-      console.log('8 if');
+      console.log('10 if');
       concludePage = [elementPrevious, spanItem, ...pages];
     }
     return (concludePage);
@@ -240,27 +255,25 @@ export default function PokeProvider({ children }) {
 
   return(
     <contexto.Provider value={{
-      listAllPokemon, setListAllPokemon,
-      listPokemonDisplayed, setListPokemonDisplayed,
-      listGeneration, setListGeneration,
-      allPokemonGeneration, setAllPokeOfGeneration,
-      listGenerationDisplayed, setListGenerationDisplayed,
-      listType, setListType,
+      listOfAllPokemon, setListOfAllPokemon,
+      listOfAllPokemonDisplayed, setListOfAllPokemonDisplayed,
+      listFavorites, setListFavorites, 
+      listOfAll, setListOfAll,
+      allListDisplayed, setAllListDisplayed,
       type, setType,
       typeMove, setTypeMove,
       listTypeMove, setListTypeMove,
       search, setSearch,
       searchMove, setSearchMove,
       lastSelectedGen, setLastSelectedGen,
-      listFavorites, setListFavorites,
-      listAllMoves, setListAllMoves,
-      listMovesDisplayed, setListMovesDisplayed,
-      firstPositionLitMove, setFirstPositionLitMove,
       countPokemon, setCountPokemon,
       messageTypes, setMessageTypes,
       messageTypesMove, setMessageTypesMove,
       loadingPokemon, setLoadingPokemon,
       firstPage, setFirstPage,
+      listAllMoves, setListAllMoves,
+      listMovesDisplayed, setListMovesDisplayed,
+      firstPositionLitMove, setFirstPositionLitMove,
       gen, setGen,
       team, setTeam,
       letraMaiuscula,
@@ -270,6 +283,7 @@ export default function PokeProvider({ children }) {
       returnFivePages,
       nextPage,
       previousPage,
+      valueButton, setValueButton,
       NUMBERBYPAGE,
       }}
     >

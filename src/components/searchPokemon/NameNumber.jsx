@@ -1,28 +1,68 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import contexto from '../../context';
+import Guide from '../Guide';
 import Pokemon from '../Pokemon';
+import { getGeneralist } from '../../fetchs';
 
 export default function NameNumber() {
   const [localNameNumber, setLocalNameNumber] = useState([]);
-  const [dataFounded, setDataFounded] = useState([]);
   const history = useHistory();
   const context = useContext(contexto);
-  const { numberPokemon, listAllPokemon } = context;
+  const {
+    numberPokemon,
+    listOfAllPokemon,
+    listOfAll, setListOfAll,
+    allListDisplayed, setAllListDisplayed,
+    setLoadingPokemon,
+    NUMBERBYPAGE,
+    setValueButton,
+    setListOfAllPokemonDisplayed,
+  } = context;
+
+  useEffect(() => {
+    setValueButton(1);
+    setListOfAllPokemonDisplayed([]);
+    setListOfAll([]);
+    setAllListDisplayed([]);
+  }, []);
+
+  const queryMorePokemon = async(list, setListDisplayed) => {
+    setLoadingPokemon(true);
+    let listItems = await Promise.all(
+      list.map(async (item) => await getGeneralist(item.url)));
+      setListDisplayed(listItems);
+      setTimeout(() => {
+        setLoadingPokemon(false);
+      }, 500);
+  };
 
   const getByNameNumber = async () => {
-      try {
-        setDataFounded([]);
-        const found = listAllPokemon.filter((poke) => poke.name.includes(localNameNumber.toLowerCase()));
-        if (found.length === 1) {
-          setDataFounded([]);
-          const id = numberPokemon(found[0]);
-          history.push(`/pokemon/${id}`);
-        } else if (found.length === 0) {
-          global.alert("Não foi possível encontrar este Pokémon! Reveja o número ou nome inserido ou tente novamente mais tarde!");
+    setValueButton(1);
+    setAllListDisplayed([]);
+    try {
+      setListOfAll([]);
+      const found = listOfAllPokemon.filter((poke) => poke.name.includes(localNameNumber.toLowerCase()));
+      if (found.length === 1) {
+        setListOfAll([]);
+        const id = numberPokemon(found[0]);
+        history.push(`/pokemon/${id}`);
+      } else if (found.length === 0) {
+        global.alert("Não foi possível encontrar este Pokémon! Reveja o número ou nome inserido ou tente novamente mais tarde!");
+      } else {
+        setListOfAll(found);
+        let last = [];
+        if (found.length <= 20) {
+          for (let i = 0; i < found.length; i += 1) {
+            last.push(found[i]);
+          }
         } else {
-          setDataFounded(found);
+          for (let i = 0; i < NUMBERBYPAGE; i += 1) {
+            last.push(found[i]);
+          }
         }
+        queryMorePokemon(last, setAllListDisplayed);
+      }
     } catch(error) {
       global.alert("Não foi possível encontrar este Pokémon! Reveja o número ou nome inserido ou tente novamente mais tarde!");
     }
@@ -64,16 +104,24 @@ export default function NameNumber() {
           </button>
         </div>
           {
-            dataFounded.length > 0 &&
+            listOfAll.length > 0 &&
             <div>
               <div className="w-full flex justify-center px-1 my-1 sm:my-0">
                 <p className="pt-14 pb-10 text-marinho w-full text-3xl h-full flex flex-col sm:flex-row items-center sm:p-0 sm:py-14 text-left">
-                  { `Total de Movimentos encontrados relacionados à pesquisa: ${dataFounded.length} ` }
+                  { `Total de Pokémon encontrados relacionados à pesquisa: ${listOfAll.length} ` }
                 </p>
             </div>
+              {
+                listOfAll.length > 20 &&
+                <Guide
+                  list={listOfAll}
+                  listDisplayed={setAllListDisplayed}
+                  position="top"
+                />
+              }
               <div className="lg:px-5 pr-5 lg:pl-0 pb-5 w-full grid grid-cols-1 gap-3 sm2:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
                 {
-                  dataFounded.map((poke, index) => (
+                  allListDisplayed.map((poke, index) => (
                     <Pokemon
                       key={index}
                       className="w-full"
@@ -84,6 +132,14 @@ export default function NameNumber() {
                   ))
                 }
               </div>
+              {
+                listOfAll.length > 20 &&
+                <Guide
+                  list={listOfAll}
+                  listDisplayed={setAllListDisplayed}
+                  position="bottom"
+                />
+              }
             </div>
           }
       </div>

@@ -2,8 +2,9 @@ import React, { useState, useContext, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import contexto from '../../context';
 import AllDataTypes from '../AllDataTypes';
-import { getAllTypes, getByType } from '../../fetchs';
+import { getAllTypes, getByType, getGeneralist } from '../../fetchs';
 import Pokemon from '../Pokemon';
+import Guide from '../Guide';
 
 export default function Type() {
   const [allTheTypes, setAllTheTypes] = useState([]);
@@ -11,23 +12,41 @@ export default function Type() {
   const history = useHistory();
   const context = useContext(contexto);
   const {
-    letraMaiuscula,
-    setListType,
-    listType,
     type,
     setType,
-    countPokemon,
+    loadingPokemon,
     messageTypes,
     setMessageTypes,
+    setLoadingPokemon,
+    NUMBERBYPAGE,
+    setValueButton,
+    listOfAll, setListOfAll,
+    allListDisplayed, setAllListDisplayed,
+    setListOfAllPokemonDisplayed,
+    
   } = context;
 
   useEffect(() => {
+    setListOfAllPokemonDisplayed([]);
+    setListOfAll([]);
+    setAllListDisplayed([]);
     const listTypes = async () => {
       const types = await getAllTypes();
       setAllTheTypes(types.results);
     };
     listTypes();
   }, []);
+
+  const queryMorePokemon = async(list, setListDisplayed) => {
+    setLoadingPokemon(true);
+    console.log('list', list);
+    let listItems = await Promise.all(
+      list.map(async (item) => await getGeneralist(item.url)));
+      setListDisplayed(listItems);
+      setTimeout(() => {
+        setLoadingPokemon(false);
+      }, 500);
+  };
 
   const returnMessageButton = () => {
     if (type.length === 1) {
@@ -55,7 +74,10 @@ export default function Type() {
   };
 
   const searchByType = async () => {
-    setListType([]);
+    setValueButton(1);
+    setLoadingPokemon(true);
+    setAllListDisplayed([]);
+    setListOfAll([]);
     setHiddeTypes(true);
     if(type.length !== 1) {
     const type1 = await getByType(type[0]);
@@ -76,8 +98,18 @@ export default function Type() {
           };
           return objPokemon;
         });
-        const arrayTipos = all.filter((tipo) => Number(tipo.id) <= countPokemon);
-        setListType(arrayTipos);
+        setListOfAll(all);
+        let last = [];
+        if (all.length <= 20) {
+          for (let i = 0; i < all.length; i += 1) {
+            last.push(all[i]);
+          }
+        } else {
+          for (let i = 0; i < NUMBERBYPAGE; i += 1) {
+            last.push(all[i]);
+          }
+        }
+        queryMorePokemon(last, setAllListDisplayed);
       }
     } else {
       const allByType = await getByType(type[0]);
@@ -91,8 +123,18 @@ export default function Type() {
         };
         return objPokemon;
       });
-      const arrayTipos = all.filter((tipo) => Number(tipo.id) <= countPokemon);
-      setListType(arrayTipos);
+      setListOfAll(all);
+        let last = [];
+        if (all.length <= 20) {
+          for (let i = 0; i < all.length; i += 1) {
+            last.push(all[i]);
+          }
+        } else {
+          for (let i = 0; i < NUMBERBYPAGE; i += 1) {
+            last.push(all[i]);
+          }
+        }
+        queryMorePokemon(last, setAllListDisplayed);
     }
     setType([]);
     returnMessageSearch();
@@ -179,24 +221,37 @@ export default function Type() {
           </div>
       </button>
       <div className="w-full flex justify-center px-1 my-1 sm:my-0">
-          { listType.length === 0
-            ? messageTypes !== '' 
+          { listOfAll.length === 0
+            ? loadingPokemon
               ? 
                 <p className="py-14 text-marinho w-9/12 text-3xl h-full flex flex-col sm:flex-row items-center sm:p-0 sm:py-14 text-left">
-                  Não existem Pokémon que possuam ambos os tipos selecionados
+                  Buscando Pokémon, Por favor aguarde.
                 </p>
               : 
                 ''
-            : 
-              <p className="py-14 text-marinho w-9/12 text-3xl h-full flex flex-col sm:flex-row items-center sm:p-0 sm:py-14 text-left">
-                { `${messageTypes} ${listType.length} ` }
-              </p>
+            : listOfAll.length === 0
+              ?
+                <p className="py-14 text-marinho w-9/12 text-3xl h-full flex flex-col sm:flex-row items-center sm:p-0 sm:py-14 text-left">
+                  Nenhum Pokémon que corresponda a estes tipos foi encontrado.
+                </p>
+              : 
+                <p className="py-14 text-marinho w-9/12 text-3xl h-full flex flex-col sm:flex-row items-center sm:p-0 sm:py-14 text-left">
+                  { `${messageTypes} ${listOfAll.length} ` }
+                </p>
           }
       </div>
+      {
+        listOfAll.length > 20 &&
+        <Guide
+          list={listOfAll}
+          listDisplayed={setAllListDisplayed}
+          position="bottom"
+        />
+      }
       <div className="p-1 w-9/12 gap-1 grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4">
         {
-          listType.length !== 1
-            ? listType.length > 0 && listType.map((poke, index) => (
+          allListDisplayed.length !== 1
+            ? allListDisplayed.length > 0 && allListDisplayed.map((poke, index) => (
               <Pokemon
                 key={index}
                 className="w-full"
@@ -205,22 +260,18 @@ export default function Type() {
                 dataPokemon={poke}
               />
             ))
-            : history.push(`/pokemon/${listType[0].id}`)
+            : 
+              history.push(`/pokemon/${allListDisplayed[0].id}`)
           }
       </div>
-        { listType.length > 10 &&
-          <div className="w-9/12">
-            <button
-              type="button"
-              className="px-1 w-full mb-1"
-              onClick={ () => window.scrollTo(0, 0) }
-            >
-              <div className="bg-anil/80 text-black text-xl p-4 w-full h-full bg-anil font-bold border-2 border-anil hover:border-2 hover:border-marinho transition-colors duration-500">
-                Voltar ao Topo
-              </div>
-            </button>
-          </div>
-        }
+      {
+        listOfAll.length > 20 &&
+        <Guide
+          list={listOfAll}
+          listDisplayed={setAllListDisplayed}
+          position="bottom"
+        />
+      }  
     </div>
   );
   }

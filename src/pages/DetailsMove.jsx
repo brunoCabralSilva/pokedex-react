@@ -1,23 +1,58 @@
 import React, { useState, useEffect, useContext } from 'react';
 import Footer from '../components/Footer';
-import { useHistory } from 'react-router-dom';
-import Nav from '../components/Nav';
 import { useParams } from 'react-router-dom';
-import { getMove } from '../fetchs';
+import Nav from '../components/Nav';
+import { getMove, getGeneralist } from '../fetchs';
 import Pokemon from '../components/Pokemon';
 import contexto from '../context';
 import AllDataTypes from '../components/AllDataTypes';
+import Guide from '../components/Guide';
 
 export default function DetailsMove() {
   const [move, setMove] = useState({});
   const params = useParams();
-  const history = useHistory();
   const context = useContext(contexto);
-  const { numberPokemon, letraMaiuscula } = context;
+  const {
+    listOfAll, setListOfAll,
+    allListDisplayed, setAllListDisplayed,
+    numberPokemon,
+    letraMaiuscula,
+    setLoadingPokemon,
+    NUMBERBYPAGE,
+    setValueButton,
+    setListOfAllPokemonDisplayed,
+  } = context;
+  
+  const queryMorePokemon = async(list, setListDisplayed) => {
+    setLoadingPokemon(true);
+    let listItems = await Promise.all(
+      list.map(async (item) => await getGeneralist(item.url)));
+      setListDisplayed(listItems);
+      setTimeout(() => {
+        setLoadingPokemon(false);
+      }, 500);
+  };
+
   useEffect(() => {
+    setListOfAllPokemonDisplayed([]);
+    setListOfAll([]);
+    setAllListDisplayed([]);
+    setValueButton(1);
     const getMoveByName = async () => {
       const get = await getMove((params.name));
       setMove(get);
+      setListOfAll(get.learned_by_pokemon);
+      let last = [];
+      if (get.length <= 20) {
+        for (let i = 0; i < get.length; i += 1) {
+          last.push(get.learned_by_pokemon[i]);
+        }
+      } else {
+        for (let i = 0; i < NUMBERBYPAGE; i += 1) {
+          last.push(get.learned_by_pokemon[i]);
+        }
+      }
+      queryMorePokemon(last, setAllListDisplayed);
     }
     getMoveByName();
   },[]);
@@ -66,9 +101,14 @@ export default function DetailsMove() {
                 <p className="w-full py-10 bg-gradient-to-r via-white from-anil to-white my-1 px-7 text-3xl sm:text-2xl md:text-4xl">
                   {`Aprendido por ${move.learned_by_pokemon.length} Pokémon:`}
                 </p>
+                <Guide
+                  list={listOfAll}
+                  listDisplayed={setAllListDisplayed}
+                  position="top"
+                />
                 <div className="bg-white p-1 gap-3 grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4">
                   {
-                    move.learned_by_pokemon.map((poke) => (
+                    allListDisplayed.map((poke) => (
                       <Pokemon
                       name={poke.name}
                       id = {numberPokemon(poke)}
@@ -77,20 +117,11 @@ export default function DetailsMove() {
                     ))
                   }
                 </div>
-              { 
-                move && move.learned_by_pokemon.length > 10 &&
-                <div className="w-full">
-                  <button
-                    type="button"
-                    className="p-1 w-full mb-1"
-                    onClick={ () => window.scrollTo(0, 0) }
-                  >
-                    <div className="bg-anil/80 text-black text-xl p-4 w-full h-full bg-anil font-bold border-2 border-anil hover:border-2 hover:border-marinho transition-colors duration-500">
-                      Voltar ao Topo
-                    </div>
-                  </button>
-                </div>
-              }
+                <Guide
+                  list={listOfAll}
+                  listDisplayed={setAllListDisplayed}
+                  position="bottom"
+                />
             </div>
           }
           </div>
