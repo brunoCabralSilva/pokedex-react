@@ -1,6 +1,6 @@
 import { useEffect, useContext } from "react";
 import contexto from '../../context';
-import { getAllPokemonSpecies, getGeneralist } from '../../fetchs';
+import { getAllPokemonSpecies } from '../../fetchs';
 import { useHistory } from "react-router-dom";
 import Pokemon from "../Pokemon";
 import Guide from "../Guide";
@@ -13,33 +13,26 @@ export default function AllPokemon() {
     listOfAllPokemon, setListOfAllPokemon,
     listOfAllPokemonDisplayed, setListOfAllPokemonDisplayed,
     numberPokemon,
-    setLoadingPokemon,
     setFirstPage,
     setValueButton,
+    queryMorePokemon,
+    return20empty,
   } = context;
 
-  const queryMorePokemon = async(list, setListDisplayed) => {
-    setLoadingPokemon(true);
-    let listItems = await Promise.all(
-      list.map(async (item) => await getGeneralist(item.url)));
-      setListDisplayed(listItems);
-      setTimeout(() => {
-        setLoadingPokemon(false);
-      }, 500);
-  };
-
   useEffect(() => {
+    console.log('useEffect');
+    setListOfAllPokemonDisplayed([])
     setFirstPage(1);
+    setValueButton(1);
     const seedListPokemon = async () => {
+      let last = [];
       const allMoves = await getAllPokemonSpecies();
-      if (listOfAllPokemon.length === 0) {
-        setListOfAllPokemon(allMoves.results);
-        let last = [];
-          for (let i = 0; i < NUMBERBYPAGE; i += 1) {
-          last.push(allMoves.results[i]);
-        }
-        queryMorePokemon(last, setListOfAllPokemonDisplayed);
+      setListOfAllPokemon(allMoves.results);
+        for (let i = 0; i < NUMBERBYPAGE; i += 1) {
+        last.push(allMoves.results[i]);
       };
+      console.log('last', last);
+      queryMorePokemon(last, setListOfAllPokemonDisplayed, 'all');
     };
     seedListPokemon();
   }, []);
@@ -67,18 +60,21 @@ export default function AllPokemon() {
         position="top"
       />
         <div className="bg-white relative w-full flex justify-center">
-          <div className="w-9/12 p-1 gap-3 grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4">
+          <div className="w-9/12 p-1 gap-3 grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4">
             {
               listOfAllPokemonDisplayed.length !== 1
-                ? listOfAllPokemonDisplayed.length > 0 && listOfAllPokemonDisplayed.map((poke, index) => (
-                  <Pokemon
-                    key={index}
-                    className=""
-                    name={poke.name}
-                    id={numberPokemon(poke)}
-                    dataPokemon={poke}
-                  />
-                ))
+                ? listOfAllPokemonDisplayed.length > 0
+                  ? 
+                    listOfAllPokemonDisplayed.map((poke, index) => (
+                    <Pokemon
+                      key={index}
+                      className=""
+                      name={poke.name}
+                      id={numberPokemon(poke)}
+                      dataPokemon={poke}
+                    />
+                    ))
+                    : return20empty()
                 : history.push(`/pokemon/${listOfAllPokemonDisplayed[0].id}`)
             }
           </div>

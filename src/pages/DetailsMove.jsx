@@ -20,7 +20,6 @@ export default function DetailsMove() {
     setLoadingPokemon,
     NUMBERBYPAGE,
     setValueButton,
-    setListOfAllPokemonDisplayed,
   } = context;
   
   const queryMorePokemon = async(list, setListDisplayed) => {
@@ -34,7 +33,6 @@ export default function DetailsMove() {
   };
 
   useEffect(() => {
-    setListOfAllPokemonDisplayed([]);
     setListOfAll([]);
     setAllListDisplayed([]);
     setValueButton(1);
@@ -110,9 +108,10 @@ export default function DetailsMove() {
                   {
                     allListDisplayed.map((poke) => (
                       <Pokemon
-                      name={poke.name}
-                      id = {numberPokemon(poke)}
-                      dataPokemon={poke}
+                        type="moves"
+                        name={poke.name}
+                        id = {numberPokemon(poke)}
+                        dataPokemon={poke}
                       />
                     ))
                   }

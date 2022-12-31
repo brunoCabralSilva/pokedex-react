@@ -22,12 +22,10 @@ export default function Type() {
     setValueButton,
     listOfAll, setListOfAll,
     allListDisplayed, setAllListDisplayed,
-    setListOfAllPokemonDisplayed,
     
   } = context;
 
   useEffect(() => {
-    setListOfAllPokemonDisplayed([]);
     setListOfAll([]);
     setAllListDisplayed([]);
     const listTypes = async () => {
@@ -248,18 +246,21 @@ export default function Type() {
           position="bottom"
         />
       }
-      <div className="p-1 w-9/12 gap-1 grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4">
+      <div className="p-1 w-9/12 gap-1 grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4">
         {
           allListDisplayed.length !== 1
-            ? allListDisplayed.length > 0 && allListDisplayed.map((poke, index) => (
-              <Pokemon
-                key={index}
-                className="w-full"
-                name={poke.name}
-                id={poke.id}
-                dataPokemon={poke}
-              />
-            ))
+            ? allListDisplayed.length > 0 
+            
+              ? allListDisplayed.map((poke, index) => (
+                <Pokemon
+                  key={index}
+                  className="w-full"
+                  name={poke.name}
+                  id={poke.id}
+                  dataPokemon={poke}
+                />
+              ))
+              : <div className="h-screen" />
             : 
               history.push(`/pokemon/${allListDisplayed[0].id}`)
           }

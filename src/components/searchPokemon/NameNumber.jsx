@@ -15,14 +15,13 @@ export default function NameNumber() {
     listOfAll, setListOfAll,
     allListDisplayed, setAllListDisplayed,
     setLoadingPokemon,
-    NUMBERBYPAGE,
-    setValueButton,
-    setListOfAllPokemonDisplayed,
+    NUMBERBYPAGE, setValueButton,
+    setFirstPage,
   } = context;
 
   useEffect(() => {
+    setFirstPage(1);
     setValueButton(1);
-    setListOfAllPokemonDisplayed([]);
     setListOfAll([]);
     setAllListDisplayed([]);
   }, []);
@@ -119,9 +118,10 @@ export default function NameNumber() {
                   position="top"
                 />
               }
-              <div className="lg:px-5 pr-5 lg:pl-0 pb-5 w-full grid grid-cols-1 gap-3 sm2:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-                {
-                  allListDisplayed.map((poke, index) => (
+              <div className="lg:px-5 pr-5 lg:pl-0 pb-5 w-full grid grid-cols-1 gap-3 p-1 sm:grid-cols-3 lg:grid-cols-4">
+                { 
+                  allListDisplayed.length > 0
+                  ? allListDisplayed.map((poke, index) => (
                     <Pokemon
                       key={index}
                       className="w-full"
@@ -130,6 +130,7 @@ export default function NameNumber() {
                       dataPokemon={poke}
                     />
                   ))
+                  : <div className="h-screen" />
                 }
               </div>
               {

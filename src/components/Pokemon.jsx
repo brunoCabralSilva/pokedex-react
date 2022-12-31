@@ -5,6 +5,7 @@ import { getByName }  from '../fetchs';
 import Loading from './Loading';
 
 export default function Pokemon (props) {
+  const [altura, setAltura] = useState('');
   const [type1, setType1] = useState('');
   const [type2, setType2] = useState('');
   const [messageAdd, setMessageAdd] = useState('');
@@ -17,23 +18,11 @@ export default function Pokemon (props) {
     setTeam,
     letraMaiuscula,
     loadingPokemon,
+    setListFavorites,
   } = context;
 
-  const { name, id, teams, dataPokemon } = props;
-
-  const storageSetup = () => {
-    let storage = JSON.parse(localStorage.getItem('favorites'));
-    if (storage === null) {
-      storage = [];
-    }
-    const verification = storage
-      .filter((fav) => {
-        return fav.name === dataPokemon.name
-      });
-    if(verification.length > 0) {
-      setCheck(true);
-    }
-  };
+  
+  const { name, id, teams, type } = props;
 
   const search = async () => {
     const searchBy = await getByName(id);
@@ -41,13 +30,31 @@ export default function Pokemon (props) {
     const typeList = await searchBy.types.map((item) => item.type.name);
     setType1(typeList[0]);
     setType2(typeList[1]);
+    let locStorage = JSON.parse(localStorage.getItem('favorites'));
+    if (locStorage === null) {
+      setListFavorites([]);
+      setCheck(false);
+    } else {
+      setListFavorites(JSON.parse(localStorage.getItem('favorites')));
+      const verification = locStorage
+        .filter((fav) => fav.name === searchBy.name);
+      if(verification.length > 0)  setCheck(true);
+      else setCheck(false);
+    }
   };
 
   useEffect(() => {
     setType1('');
     setType2('');
-    storageSetup();
     search();
+    
+    if(type === 'moves') {
+      setAltura("h-64 sm1:h-72 sm2:h-96 sm3:h-100 sm:h-56 md:h-48 md2:h-60 lg:h-80 2xl:h-96");
+    } else if(type === 'team') {
+      setAltura("h-54 sm1:h-60 sm2:h-80 sm3:h-96 sm:h-44 md:h-44 md2:h-60 lg:h-80 2xl:h-110");
+    } else {
+    setAltura("h-68 sm1:h-72 sm2:h-80 sm3:h-96 sm:h-40 md:h-48 md2:h-60 lg:h-60 2xl:h-80");
+    }
   }, []);
 
   useEffect(() => {
@@ -69,11 +76,11 @@ export default function Pokemon (props) {
 
   const retornaImagem = (name) => {    
     return (
-      <div className="relative flex items-start">
+      <div className={`w-full h-full relative flex items-center col-span-1 ${ isOfTeam(name) ? 'bg-gradient-to-t from-anil via-marinho/80 to-marinho' : 'bg-gradient-to-t from-anil via-anil/60 to-anil/10'}`}>
         <p className="text-marinho absolute bottom-0 w-full text-center pb-2 pt-4 font-bold bg-gradient-to-t from-anil via-anil/60 to-anil/10">{ messageAdd }</p>
         <img
           src={Object.values(searchByName.sprites.other)[2].front_default} 
-          className={`w-full ${ isOfTeam(name) ? 'bg-gradient-to-t from-anil via-marinho/80 to-marinho' : 'bg-gradient-to-t from-anil via-anil/60 to-anil/10'} rounded-lg p-5`} alt={name}
+          className={`w-11/12 sm:w-full rounded-lg p-5`} alt={name}
         />
       </div>
     );
@@ -125,10 +132,15 @@ export default function Pokemon (props) {
     >
       { 
       loadingPokemon ? 
-      <div className="text-marinho bottom-0 w-full text-center pb-2 pt-4 font-bold bg-gradient-to-t h-60 from-anil via-anil/60 to-anil/10">
+      <div className={`flex items-center justify-center text-marinho relative bottom-0 w-full text-center pb-2 pt-4 font-bold bg-gradient-to-t ${altura} from-anil via-anil/60 to-anil/10`}>
+        <img
+          src={require('../imagens/all/001.png')}
+          alt="opacity 0"
+          className="opacity-0 absolute"
+        />
         <Loading />
       </div> 
-      :<div>
+      :<div className="">
       <label htmlFor={`favorite-${id}`} className="absolute right-0 top-0 mt-2 mr-1 sm:mr-0 sm:mt-2 z-10 w-full">
         <div className={`${check ? 'bg-green-400': 'bg-blue-400'} input mx-2 rounded-full w-10 h-5 transition-all duration-500 absolute right-0`}>
           <div className={`${check ? 'right-0': 'left-0'} absolute w-1/2 h-full bg-white rounded-full transition-all duration-500`} />
@@ -144,8 +156,13 @@ export default function Pokemon (props) {
       { 
       Object.values(searchByName).length === 0
       ? <div
-          className="w-full flex flex-col relative items-center justify-center transition duration-500 h-60"
+          className="w-full flex flex-col relative items-center justify-center transition duration-500 h-68 sm1:h-72 sm2:h-80 sm3:h-96 sm:h-40 md:h-48 md2:h-60 lg:h-60 2xl:h-80"
         >
+          <img
+            src={require('../imagens/all/001.png')}
+            alt="opacity 0"
+            className="opacity-0 absolute"
+          />
           <Loading />
         </div>
       : <div>
@@ -153,7 +170,20 @@ export default function Pokemon (props) {
           to={`/pokemon/${id}`}
           className="w-full flex flex-col relative items-center justify-center  transition duration-500"
         >
-        { Object.values(searchByName.sprites.other)[2].front_default ? retornaImagem(searchByName.name): <Loading /> }
+        <div className={`w-full ${altura} bg-gradient-to-t from-anil via-anil/60 to-anil/10 flex items-center`}>
+        {
+          Object.values(searchByName.sprites.other)[2].front_default
+            ? retornaImagem(searchByName.name)
+            : 
+            <div className="relative w-full h-68 sm1:h-72 sm2:h-80 sm3:h-96 sm:h-40 md:h-48 md2:h-60 lg:h-60 2xl:h-80 flex items-center justify-center">
+              <img
+                src={require('../imagens/all/001.png')}
+                alt="opacity 0"
+                className="opacity-0 absolute"
+              />
+              <Loading />
+            </div> }
+        </div>
         <p className="pb-2 text-1xl w-full text-gray-700">
           <span className="pr-1">{'Nº'}</span>
           <span>{ numberZero(id) }</span>

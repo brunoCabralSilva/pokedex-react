@@ -152,7 +152,7 @@ export default function Details(props) {
               <div className="sm:col-span-2 pl-7">
                 <p className="pt-5 text-3xl sm:text-2xl md:text-4xl font-white pb-3 text-left mb-3">Outras Formas</p>
               <div className="flex flex-col items-center">
-                <div className="w-full p-1 gap-3 grid grid-cols-1 sm:grid-cols-3 md:grid-cols-3">
+                <div className="w-full p-1 gap-3 grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4">
                   {
                     others.length > 0 && others.map((poke, index) => (
                       <Pokemon

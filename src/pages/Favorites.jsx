@@ -6,16 +6,48 @@ import Nav from '../components/Nav';
 import Header from '../components/Header';
 import ListTeam from '../components/ListTeam';
 import { Link } from 'react-router-dom';
+import Guide from '../components/Guide';
 
 export default function Favorites() {
   const context = useContext(contexto);
-  const { team, setTeam, listFavorites, setListFavorites } = context;
+  const {
+    team, setTeam,
+    listFavorites, setListFavorites,
+    listFavoritesDisplayed, setListFavoritesDisplayed,
+    NUMBERBYPAGE,
+    setLoadingPokemon,
+    setValueButton,
+    setFirstPage,
+  } = context;
+
+  const queryMorePokemon = async(list, setListDisplayed) => {
+    setLoadingPokemon(true);
+      setListDisplayed(list);
+      setTimeout(() => {
+        setLoadingPokemon(false);
+      }, 500);
+  };
+
   useEffect(() => {
+    setFirstPage(1);
+    setValueButton(1);
     let locStorage = JSON.parse(localStorage.getItem('favorites'));
+    console.log(locStorage);
     if (locStorage === null) {
       setListFavorites([]);
     } else {
       setListFavorites(JSON.parse(localStorage.getItem('favorites')));
+      let last = [];
+      if (locStorage.length <= 20) {
+        for (let i = 0; i < locStorage.length; i += 1) {
+          last.push(locStorage[i]);
+        }
+      } else {
+        for (let i = 0; i < NUMBERBYPAGE; i += 1) {
+          last.push(locStorage[i]);
+        }
+      }
+      queryMorePokemon(last, setListFavoritesDisplayed);
     }
   }, []);
 
@@ -46,10 +78,19 @@ export default function Favorites() {
             </div>
         }
       </div>
+      {
+        listFavorites.length > 20 &&
+        <Guide
+          list={listFavorites}
+          listDisplayed={setListFavoritesDisplayed}
+          position="top"
+        />
+      }
       <div className="w-9/12 p-1 gap-1 grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4">
         {
           listFavorites.length > 0
-          ? listFavorites
+          ? listFavoritesDisplayed.length > 0
+            ? listFavoritesDisplayed
               .map((poke, index) => (
               <Pokemon
                 key={index}
@@ -60,23 +101,20 @@ export default function Favorites() {
                 dataPokemon={poke}
               />
             ))
+            : <div className="h-screen" />
           : 
             <p className="text-4xl text-white text-center pt-4 pb-10  font-bold w-full">
               Nenhum Pokémon adicionado aos Favorivos
             </p>
         }
       </div>
-      { 
-        listFavorites.length > 0 &&
-        <button
-          type="button"
-          className="py-1 w-9/12 mb-1"
-          onClick={ () => window.scrollTo(0, 0) }
-        >
-          <div className="bg-anil/80 text-black text-xl p-4 w-full h-full bg-anil font-bold border-2 border-anil hover:border-2 hover:border-marinho transition-colors duration-500">
-            Voltar ao Topo
-          </div>
-        </button>
+        {
+        listFavorites.length > 20 &&
+        <Guide
+          list={listFavorites}
+          listDisplayed={setListFavoritesDisplayed}
+          position="top"
+        />
       }
       <Footer />
     </div>

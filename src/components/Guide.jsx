@@ -13,20 +13,26 @@ export default function Guide({ list, position, listDisplayed }) {
 
   return(
     <div
-      className="flex justify-center my-5"
-      id={ position === 'top' ? 'init' : '' }
+      className="w-10/12 sm:w-full flex justify-center my-5 text-sm sm:text-base "
     >
       {
         firstPage > 1 &&
-        <button onClick={ () => previousPage()  }>
+        <button
+          onClick={ () => previousPage() }
+          className="border"
+          id={ position === 'top' ? 'init' : '' }
+        >
           <GrFormPrevious />
         </button>
       }
+      <div className="flex flex-wrap sm2:flex-none justify-center">
       { returnFivePages(list, listDisplayed, position) }
+      </div>
       {
         firstPage < Math.round(list.length/20) - 5 &&
         <button
           onClick={ () => nextPage(list) }
+          className="border"
           id={ position === 'top' ? 'init' : '' }
         >
           <GrFormNext />

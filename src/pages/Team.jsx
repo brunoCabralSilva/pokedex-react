@@ -52,6 +52,7 @@ export default function Favorites() {
               .map((poke, index) => (
               <Pokemon
                 key={index}
+                type="team"
                 className="w-full"
                 name={poke.name}
                 teams={ true }
