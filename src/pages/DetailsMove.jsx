@@ -20,6 +20,7 @@ export default function DetailsMove() {
     setLoadingPokemon,
     NUMBERBYPAGE,
     setValueButton,
+    return20empty,
   } = context;
   
   const queryMorePokemon = async(list, setListDisplayed) => {
@@ -95,7 +96,7 @@ export default function DetailsMove() {
             </div>
             { 
             move.learned_by_pokemon.length > 0 &&
-              <div className="flex flex-col items-center">
+              <div className="flex flex-col items-center w-full">
                 <p className="w-full py-10 bg-gradient-to-r via-white from-anil to-white my-1 px-7 text-3xl sm:text-2xl md:text-4xl">
                   {`Aprendido por ${move.learned_by_pokemon.length} Pokémon:`}
                 </p>
@@ -104,16 +105,18 @@ export default function DetailsMove() {
                   listDisplayed={setAllListDisplayed}
                   position="top"
                 />
-                <div className="bg-white p-1 gap-3 grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4">
+                <div className="bg-white p-1 gap-3 grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 w-full">
                   {
-                    allListDisplayed.map((poke) => (
-                      <Pokemon
-                        type="moves"
-                        name={poke.name}
-                        id = {numberPokemon(poke)}
-                        dataPokemon={poke}
-                      />
-                    ))
+                    allListDisplayed.length > 0
+                      ? allListDisplayed.map((poke) => (
+                        <Pokemon
+                          type="moves"
+                          name={poke.name}
+                          id = {numberPokemon(poke)}
+                          dataPokemon={poke}
+                        />
+                        ))
+                      : return20empty()
                   }
                 </div>
                 <Guide
