@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import Filter from '../components/searchPokemon/FilterPokemon';
 import contexto from '../context';
 import NameNumber from '../components/searchPokemon/NameNumber';
@@ -12,6 +12,8 @@ import Header from '../components/Header';
 export default function Search() {
   const context = useContext(contexto);
   const { search } = context;
+
+  useEffect(() => { window.scrollTo(0, 0) }, []);
 
   const returnSearch = () => {
     switch (search) {

@@ -19,7 +19,6 @@ export default function Pokemon (props) {
     letraMaiuscula,
     loadingPokemon,
     setListFavorites,
-    listFavorites,
   } = context;
 
   

@@ -34,6 +34,7 @@ export default function DetailsMove() {
   };
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     setListOfAll([]);
     setAllListDisplayed([]);
     setValueButton(1);

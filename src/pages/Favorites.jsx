@@ -29,6 +29,7 @@ export default function Favorites() {
   };
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     setFirstPage(1);
     setValueButton(1);
     let locStorage = JSON.parse(localStorage.getItem('favorites'));

@@ -12,6 +12,7 @@ export default function Home() {
   const history = useHistory();
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     const numberOf = async () => {
       const number = await getNumberOfPokemon();
       setCountPokemon(number.count);
