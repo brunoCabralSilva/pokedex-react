@@ -69,7 +69,7 @@ export default function PokeProvider({ children }) {
         .filter((favorite) => favorite.name !== searchByName.name);
       localStorage.setItem('favorites', JSON.stringify(removeFavorites));
       setListFavorites(removeFavorites);
-      listFavoritesDisplayed(removeFavoritesDisplayed);
+      setListFavoritesDisplayed(removeFavoritesDisplayed);
     }
   };
 

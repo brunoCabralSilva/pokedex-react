@@ -47,7 +47,6 @@ export default function Pokemon (props) {
     setType1('');
     setType2('');
     search();
-    
     if(type === 'moves') {
       setAltura("h-64 sm1:h-72 sm2:h-96 sm3:h-100 sm:h-56 md:h-48 md2:h-60 lg:h-80 2xl:h-96");
     } else if(type === 'team') {
@@ -58,7 +57,6 @@ export default function Pokemon (props) {
   }, []);
 
   useEffect(() => {
-    console.log('entrou')
     search();
   });
 

@@ -53,12 +53,12 @@ export default function AllPokemon() {
         </p>
       </div>
       {
-       listOfAllPokemon.length > 0 &&
-        <Guide
-          list={listOfAllPokemon}
-          listDisplayed={setListOfAllPokemonDisplayed}
-          position="top"
-        />
+        listOfAllPokemon.length > 0 &&
+          <Guide
+            list={listOfAllPokemon}
+            listDisplayed={setListOfAllPokemonDisplayed}
+            position="top"
+          />
       }
         <div className="bg-white relative w-full flex justify-center">
           <div className="w-9/12 p-1 gap-3 grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4">
@@ -80,12 +80,13 @@ export default function AllPokemon() {
             }
           </div>
         </div>
-        { listOfAllPokemon.length > 0 &&
-          <Guide
-            list={listOfAllPokemon}
-            listDisplayed={setListOfAllPokemonDisplayed}
-            position="bottom"
-          />
+        { 
+          listOfAllPokemon.length > 0 &&
+            <Guide
+              list={listOfAllPokemon}
+              listDisplayed={setListOfAllPokemonDisplayed}
+              position="bottom"
+            />
         }
     </div>
   );

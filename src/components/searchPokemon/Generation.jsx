@@ -130,14 +130,14 @@ export default function Generation() {
         <div>
           { showDataGeneration() }
           <div className="w-full flex flex-col items-center">
-            <div className={ listOfAll.length === 0 ? 'hidden' : '' }>
-              <Guide
-                className={ listOfAll.length === 0 && 'hidden' }
-                list={listOfAll}
-                listDisplayed={setAllListDisplayed}
-                position="top"
-              />
-            </div>
+            { 
+              listOfAll.length > 0 &&
+                <Guide
+                  list={listOfAll}
+                  listDisplayed={setAllListDisplayed}
+                  position="top"
+                />
+            }
             <div className="w-9/12 p-1 gap-3 grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4">
               {
                 allListDisplayed.length > 0 
@@ -155,13 +155,14 @@ export default function Generation() {
                 : return20empty()
               }
             </div>
-            <div className={ listOfAll.length === 0 ? 'hidden' : '' }>
-              <Guide
-                list={listOfAll}
-                listDisplayed={setAllListDisplayed}
-                position="bottom"
-              />
-            </div>
+            { 
+              listOfAll.length > 0 &&
+                <Guide
+                  list={listOfAll}
+                  listDisplayed={setAllListDisplayed}
+                  position="bottom"
+                />
+            }
           </div>
         </div>
       </div>

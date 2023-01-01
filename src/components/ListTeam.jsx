@@ -64,8 +64,10 @@ export default function ListTeam({ list, setList }) {
               </p>
           }
           { 
-          team.map((item) => (
-          <div className="flex items-center justify-between border-2 w-9/12 my-2 sm1:w-2/3 sm0:w-1/2 sm:w-11/12">
+          team.map((item, index) => (
+          <div
+            key={ index }
+            className="flex items-center justify-between border-2 w-9/12 my-2 sm1:w-2/3 sm0:w-1/2 sm:w-11/12">
             <img
               src={Object.values(item.sprites.other)[2].front_default}
               className="pl-1 h-10vh"

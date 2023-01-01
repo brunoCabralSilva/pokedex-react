@@ -10,6 +10,7 @@ export default function Guide({ list, position, listDisplayed }) {
     previousPage,
     returnFivePages,
     nextPage,
+    valueButton,
   } = context;
 
   useEffect(() => {
@@ -20,7 +21,7 @@ export default function Guide({ list, position, listDisplayed }) {
   useEffect(() => {
     const value = returnFivePages(list, listDisplayed, position);
     setPagination(value);
-  }, [firstPage]);
+  }, [firstPage, valueButton]);
 
   return(
     <div
