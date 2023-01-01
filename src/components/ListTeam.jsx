@@ -1,5 +1,4 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { Link } from  'react-router-dom';
 import contexto from '../context';
 
 export default function ListTeam({ list, setList }) {
