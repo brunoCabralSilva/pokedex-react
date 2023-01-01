@@ -19,6 +19,7 @@ export default function Pokemon (props) {
     letraMaiuscula,
     loadingPokemon,
     setListFavorites,
+    listFavorites,
   } = context;
 
   
@@ -58,8 +59,9 @@ export default function Pokemon (props) {
   }, []);
 
   useEffect(() => {
+    console.log('entrou')
     search();
-  })
+  });
 
   const isOfTeam = (name) => {
     let storage = JSON.parse(localStorage.getItem('teams'));

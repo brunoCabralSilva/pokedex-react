@@ -63,10 +63,13 @@ export default function PokeProvider({ children }) {
       localStorage.setItem('favorites', JSON.stringify(sortList));
       setListFavorites(sortList);
     } else {
+      const removeFavoritesDisplayed = listFavoritesDisplayed
+        .filter((favorite) => favorite.name !== searchByName.name);
       const removeFavorites = listFavorites
         .filter((favorite) => favorite.name !== searchByName.name);
       localStorage.setItem('favorites', JSON.stringify(removeFavorites));
       setListFavorites(removeFavorites);
+      listFavoritesDisplayed(removeFavoritesDisplayed);
     }
   };
 
