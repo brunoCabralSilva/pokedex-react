@@ -20,7 +20,6 @@ export default function AllPokemon() {
   } = context;
 
   useEffect(() => {
-    console.log('useEffect');
     setListOfAllPokemonDisplayed([])
     setFirstPage(1);
     setValueButton(1);
@@ -31,7 +30,6 @@ export default function AllPokemon() {
         for (let i = 0; i < NUMBERBYPAGE; i += 1) {
         last.push(allMoves.results[i]);
       };
-      console.log('last', last);
       queryMorePokemon(last, setListOfAllPokemonDisplayed, 'all');
     };
     seedListPokemon();
@@ -54,11 +52,14 @@ export default function AllPokemon() {
           Explore o quanto quiser e divirta-se!
         </p>
       </div>
-      <Guide
-        list={listOfAllPokemon}
-        listDisplayed={setListOfAllPokemonDisplayed}
-        position="top"
-      />
+      {
+       listOfAllPokemon.length > 0 &&
+        <Guide
+          list={listOfAllPokemon}
+          listDisplayed={setListOfAllPokemonDisplayed}
+          position="top"
+        />
+      }
         <div className="bg-white relative w-full flex justify-center">
           <div className="w-9/12 p-1 gap-3 grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4">
             {
@@ -79,11 +80,13 @@ export default function AllPokemon() {
             }
           </div>
         </div>
-      <Guide
-        list={listOfAllPokemon}
-        listDisplayed={setListOfAllPokemonDisplayed}
-        position="bottom"
-      />
+        { listOfAllPokemon.length > 0 &&
+          <Guide
+            list={listOfAllPokemon}
+            listDisplayed={setListOfAllPokemonDisplayed}
+            position="bottom"
+          />
+        }
     </div>
   );
 }

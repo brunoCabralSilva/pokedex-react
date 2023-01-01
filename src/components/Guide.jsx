@@ -1,15 +1,26 @@
-import {useContext } from 'react';
+import {useContext, useEffect, useState } from 'react';
 import { GrFormNext, GrFormPrevious } from "react-icons/gr";
 import contexto from '../context';
 
 export default function Guide({ list, position, listDisplayed }) {
   const context = useContext(contexto);
+  const [pagination, setPagination] = useState([1, 2, 3]);
   const {
     firstPage,
     previousPage,
     returnFivePages,
     nextPage,
   } = context;
+
+  useEffect(() => {
+    const value = returnFivePages(list, listDisplayed, position);
+    setPagination(value);
+  }, []);
+
+  useEffect(() => {
+    const value = returnFivePages(list, listDisplayed, position);
+    setPagination(value);
+  }, [firstPage]);
 
   return(
     <div
@@ -19,20 +30,20 @@ export default function Guide({ list, position, listDisplayed }) {
         firstPage > 1 &&
         <button
           onClick={ () => previousPage() }
-          className="border"
+          className="mr-1 border"
           id={ position === 'top' ? 'init' : '' }
         >
           <GrFormPrevious />
         </button>
       }
       <div className="flex flex-wrap sm2:flex-none justify-center">
-      { returnFivePages(list, listDisplayed, position) }
+      { pagination }
       </div>
       {
         firstPage < Math.round(list.length/20) - 5 &&
         <button
           onClick={ () => nextPage(list) }
-          className="border"
+          className="ml-1 border"
           id={ position === 'top' ? 'init' : '' }
         >
           <GrFormNext />

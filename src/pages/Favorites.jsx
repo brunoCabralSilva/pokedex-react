@@ -32,7 +32,6 @@ export default function Favorites() {
     setFirstPage(1);
     setValueButton(1);
     let locStorage = JSON.parse(localStorage.getItem('favorites'));
-    console.log(locStorage);
     if (locStorage === null) {
       setListFavorites([]);
     } else {

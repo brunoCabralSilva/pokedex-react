@@ -37,7 +37,6 @@ export default function Generation() {
     }
     let listItems = await Promise.all(
       last.map(async (item) => await getGeneralist(item.url)));
-      console.log(listItems);
       setListDisplayed(listItems);
       setTimeout(() => {
         setLoadingPokemon(false);

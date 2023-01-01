@@ -37,7 +37,6 @@ export default function Type() {
 
   const queryMorePokemon = async(list, setListDisplayed) => {
     setLoadingPokemon(true);
-    console.log('list', list);
     let listItems = await Promise.all(
       list.map(async (item) => await getGeneralist(item.url)));
       setListDisplayed(listItems);
