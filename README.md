@@ -1,6 +1,6 @@
 <h1 align="center">Pokédex-React</h1>
 
-<p align="center">Projeto idealizado por Thiago Lucas Martins da Silva e desenvolvido por Bruno Gabryell Cabral da Silva com o intuito de criar uma aplicação que facilite o acesso a informações voltadas ao jogo de RPG <strong>Lobisomem: O Apocalipse</strong>!</p>
+<p align="center">Projeto idealizado por Bruno Gabryell Cabral da Silva com o intuito de criar uma aplicação que facilite a busca por Pokémon de maneira interativa e de fácil compreensão!</p>
 
 <h3 align="center">https://brunocabralsilva.github.io/pokedex-react/</h3>
 
