@@ -79,16 +79,25 @@
 
 <li><h4>Detalhes do Pokémon</h4></li> 
 
+<p>Esta página está interligada a todos os Pokémon que são exibidos na tela. Ao clicar em um deles, o usuário é direcionado para uma página com todos os detalhes do mesmo, como nome, tipo, número, altura, peso, experiência base, habilidades, estatísticas (HP, ataque, defesa, Ataque e Defesa especiais e velocidade), outras formas(alola, galar, gigantamax, mega evolução, etc.) e uma lista com todos os movimentos que aquele Pokémon pode aprender.</p>
+
+<p>Para a exibição das estatísticas do Pokémon, foi criado um gráfico com o auxílio do "React Charts", onde o tamanho de cada barra criada corresponde a sua porcentagem ante a maior das estatísticas que o Pokémon possui.</p>
 
 <p> </p>
 
 <li><h4>Favoritos</h4></li> 
 
-<p> </p>
+<p>Todos os Pokémon que o usuário adicionou como favoritos serão disponibilizados nesta página, divididos assim como as demais listas entre paginações onde são exibidos 20 Pokémon por página.</p>
+<p>Dentre estes Pokémon, o usuário poderá clicar no botão "Adicionar ao time" ou "Remover do time" para escolher quais Pokémon farão parte do seu time principal de seis Pokémon. Enquanto ele navega por esta página, haverá um botão no canto inferior direito que, ao ser clicado, exibe uma barra lateral com todos os Pokémon que foram adicionados ao time.</p>
+<p>
+Caso o usuário tente adicionar mais de seis Pokémon ao time, é exibido um Pop-up na tela informando que esta ação não é possível.
+</p>
+<p>Por fim, existe um mecanismo de confirmação para cada Pokémon favoritado, onde é preciso confirmar se o usuário realmente deseja removê-lo dos favoritos. Desta forma, as chances de remover um Pokémon por acidente diminuem bruscamente.
+</p>
 
 <li><h4>Meu Time</h4></li> 
 
-<p> </p>
+<p>Nesta página são disponibilizados todos os Pokémon que o usuário escolheu para comporem seu time. Assim como na página de Favoritos, existe um mecanismo de confirmação para cada Pokémon que compõe o time, onde é preciso confirmar se o usuário realmente deseja removê-lo.</p>
 
 <li><h4>Movimentos</h4></li> 
 
