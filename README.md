@@ -52,22 +52,33 @@
 <li>Meu Time</li>
 <li>Movimentos</li>
 </ul>
+<br />
 
-<p>Além destes links, existem mais dois que direcionam o usuário para fora da aplicação, sendo o primeiro("Sobre o autor") referente ao endereço do perfil Github do autor e o segundo("Site Oficial) um encaminhamento para o site oficial de Pokémon.
+<p>Além destes links, existem mais dois que direcionam o usuário para fora da aplicação, sendo o primeiro ("Sobre o autor") referente ao endereço do perfil Github do autor e o segundo ("Site Oficial) um encaminhamento para o site oficial de Pokémon.
 </p>
 
 <li><h4>Buscar</h4></li> 
 
-<p> </p>
+<p>Ao acessar a página em questão, são listados todos pokémon por ordem numérica, sendo todos eles divididos em paginações (20 por página). Caso o usuário tenha interesse ou necessidade em uma busca mais específica, ele pode navegar entre as outras abas de busca e pesquisar Pokémon por nome, número, geração ou tipo:</p>
 
 <ul>
-<li>Todos os Pokémon</li>
 <li>Nome ou Número</li>
+
+<p>O usuário poderá inserir no input de busca um nome, número ou até mesmo trecho ou parte de um nome, caso não se lembre dele todo.</p>
+
 <li>Geração</li>
+
+<p>Há um seletor disponibilizado onde é possível escolher uma das gerações existentes e ter acesso apenas aos Pokémon que pertencem a mesma.</p>
+
 <li>Tipo</li>
+<p>O usuário pode buscar Pokémon por um ou dois tipos. Caso o mesmo tente selecionar três, um Pop-pup é exibido na tela informando que não existem Pokémon com três tipos ao mesmo tempo.</p>
+
 </ul>
+<br />
+<p>Clicando em um Pokémon, será possível ver mais detalhes sobre ele. Além disso, caso você clique no botão que existe no canto superior direito de cada Pokémon, este será salvo na lista de Favoritos.</p>
 
 <li><h4>Detalhes do Pokémon</h4></li> 
+
 
 <p> </p>
 
