@@ -90,9 +90,10 @@
 <p>O usuário pode buscar Pokémon por um ou dois tipos. Caso o mesmo tente selecionar três, um Pop-pup é exibido na tela informando que não existem Pokémon com três tipos ao mesmo tempo. Caso seja encontrado apenas um Pokémon que satisfaça a busca, o usuário será encaminhado para a tela de detalhes deste Pokémon. Caso contrário, todos os Pokémon relacionados serão exibidos em uma lista.</p>
 
 </ul>
-<br />
 
 <p>Clicando em um Pokémon, será possível ver mais detalhes sobre ele. Além disso, caso você clique no botão de checkbox que existe no canto superior direito de cada Pokémon, este será salvo na lista de Favoritos, que fica guardada no local storage do usuário.</p>
+
+![Tela Inicial da Aplicação](src/imagens/wallpaper/favorite-details.gif)
 
 <li><h4>Detalhes do Pokémon</h4></li>
 
