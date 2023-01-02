@@ -39,7 +39,7 @@ export default function Nav({ push }) {
               Home
             </Link>
             <Link
-              to="/search#init"
+              to="/search"
               onClick={ () => setShowMenu(false) }
               className="py-2 font-bold w-full text-center hover:bg-marinho/50 hover:text-black  transition-colors flex items-center justify-center"
             >

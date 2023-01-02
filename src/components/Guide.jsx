@@ -32,7 +32,6 @@ export default function Guide({ list, position, listDisplayed }) {
         <button
           onClick={ () => previousPage() }
           className="mr-1 border"
-          id={ position === 'top' ? 'init' : '' }
         >
           <GrFormPrevious />
         </button>
@@ -45,7 +44,6 @@ export default function Guide({ list, position, listDisplayed }) {
         <button
           onClick={ () => nextPage(list) }
           className="ml-1 border"
-          id={ position === 'top' ? 'init' : '' }
         >
           <GrFormNext />
         </button>

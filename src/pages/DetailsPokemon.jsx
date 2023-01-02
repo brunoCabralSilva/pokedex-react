@@ -8,6 +8,7 @@ import Charts from '../components/Charts';
 import Footer from '../components/Footer';
 import Nav from '../components/Nav';
 import Pokemon from '../components/Pokemon';
+import Loading from '../components/Loading';
 
 export default function Details(props) {
   const { match } = props;
@@ -96,9 +97,15 @@ export default function Details(props) {
             <div className="flex flex-col items-center justify-center pt-5 lg:pt-0 pl-7">
               { retornaImagem() }
               <div className="w-full lg:items-end justify-start lg:mb-5">
+               {
+                dataPokemon.id ?
                 <p className="w-full text-2xl">
                   { `Nº ${returnZero()}${dataPokemon.id}` }
                 </p>
+                : <div>
+                  <Loading />
+                </div>
+              }
                 <p className="w-full text-3xl sm:text-2xl md:text-4xl pt-2 pb-5">
                   { dataPokemon.name && letraMaiuscula(dataPokemon.name) }
                 </p>
@@ -192,7 +199,7 @@ export default function Details(props) {
               </div>
             }
           </div>
-        </div>
+            </div>
         <Footer />
       </motion.div>
   );

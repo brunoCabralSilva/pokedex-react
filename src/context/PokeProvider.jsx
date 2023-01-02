@@ -157,7 +157,6 @@ export default function PokeProvider({ children }) {
             } else {
               queryByPage(totalPages + i, list, setListDisplayed);
               setFirstPage(totalPages + i);
-              window.location.href ='#init';
             }
           }}
         >
@@ -172,7 +171,6 @@ export default function PokeProvider({ children }) {
           setValueButton(1);
           queryByPage(1, list, setListDisplayed);
           setFirstPage(1);
-          window.location.href ='#init';
         }
       }
     >1</button>;
@@ -183,7 +181,6 @@ export default function PokeProvider({ children }) {
         setValueButton(allPages);
         queryByPage(allPages, list, setListDisplayed);
         setFirstPage(Math.round(list.length/20 - 5));
-        window.location.href ='#init';
       }
     }
       >{allPages}</button>;
@@ -198,7 +195,6 @@ export default function PokeProvider({ children }) {
           queryByPage(firstPage - 15, list, setListDisplayed);
           setFirstPage(firstPage - 15);
         }
-        window.location.href ='#init';
       }}
     >
       { firstPage - 15}
