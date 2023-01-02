@@ -11,6 +11,8 @@ export default function Pokemon (props) {
   const [messageAdd, setMessageAdd] = useState('');
   const [searchByName, setSearchByName] = useState({});
   const [check, setCheck] = useState(false);
+  const [messageFavorites, setMessageFavorites] = useState(false);
+  const [messageTeams, setMessageTeams] = useState(false);
   const context = useContext(contexto);
   const {
     addFavorite,
@@ -22,7 +24,7 @@ export default function Pokemon (props) {
   } = context;
 
   
-  const { name, id, teams, type } = props;
+  const { name, id, teams, type, favorites, teamPage } = props;
 
   const search = async () => {
     const searchBy = await getByName(id);
@@ -85,19 +87,33 @@ export default function Pokemon (props) {
     );
   };
 
+  const confirmRemoveFavorite = () => {
+    addFavorite(false, searchByName);
+    setCheck(false);
+    setMessageAdd('');
+  };
+
   const addRemoveFavorite = (checked) => {
-    addFavorite(checked, searchByName);
-    setCheck(checked);
-    if (checked) {
-      setMessageAdd('Adicionado aos Favoritos');
-      setTimeout(() => {
-        setMessageAdd('');
-      }, 2000);
+    if (favorites) {
+      setMessageFavorites(true);
     } else {
-      setMessageAdd('Removido dos Favoritos');
-      setTimeout(() => {
+      addFavorite(checked, searchByName);
+      setCheck(checked);
+      if (favorites) {
         setMessageAdd('');
-      }, 2000);
+      } else {
+        if (checked) {
+          setMessageAdd('Adicionado aos Favoritos');
+          setTimeout(() => {
+            setMessageAdd('');
+          }, 2000);
+        } else {
+          setMessageAdd('Removido dos Favoritos');
+          setTimeout(() => {
+            setMessageAdd('');
+          }, 2000);
+        }
+      }
     }
   };
 
@@ -107,21 +123,31 @@ export default function Pokemon (props) {
     return `00${id}`;
   };
 
+  const confirmRemoveToTeam = () => {
+    const search = team.filter((item) => item.name !== searchByName.name);
+    localStorage.setItem('teams', JSON.stringify(search));
+    setTeam(search);
+  };
+
   const addToTeam = async () => {
-    let storage = JSON.parse(localStorage.getItem('teams'));
-    if (storage === null) {
-      storage = [];
-    }
-    const search = team.filter((item) => item.name === searchByName.name);
-    if (search.length > 0) {
-      const search = team.filter((item) => item.name !== searchByName.name);
-      localStorage.setItem('teams', JSON.stringify(search));
-      setTeam(search);
-    } else if(team.length === 6) {
-      window.alert("Você já possui seis pokémon no seu time. Remova algum deles para inserir um novo");
+    if (teamPage) {
+      setMessageTeams(true);
     } else {
-      localStorage.setItem('teams', JSON.stringify([...team, searchByName]));
-      setTeam([...team, searchByName]);
+      let storage = JSON.parse(localStorage.getItem('teams'));
+      if (storage === null) {
+        storage = [];
+      }
+      const search = team.filter((item) => item.name === searchByName.name);
+      if (search.length > 0) {
+        const search = team.filter((item) => item.name !== searchByName.name);
+        localStorage.setItem('teams', JSON.stringify(search));
+        setTeam(search);
+      } else if(team.length === 6) {
+        window.alert("Você já possui seis pokémon no seu time. Remova algum deles para inserir um novo");
+      } else {
+        localStorage.setItem('teams', JSON.stringify([...team, searchByName]));
+        setTeam([...team, searchByName]);
+      }
     }
   };
   
@@ -165,11 +191,69 @@ export default function Pokemon (props) {
           <Loading />
         </div>
       : <div>
+        {
+          messageFavorites &&
+          <div className="absolute bg-gradient-to-t from-anil via-anil to-anil/10 text-marinho font-bold w-full h-full z-40 flex flex-col items-center justify-center">
+            <p className="text-center px-3 text-xl pb-5">
+              {`Tem certeza que deseja Excluir ${letraMaiuscula(searchByName.name)} da lista de Favoritos?`}
+            </p>
+            <div className="w-full flex items-center justify-center  text-white">
+              <button
+                type="button"
+                className="bg-green-700 hover:bg-green-500 px-2 py-1 mr-3 w-1/3 rounded-xl transition-colors duration-500"
+                onClick={ 
+                  () => {
+                  confirmRemoveFavorite();
+                  setMessageFavorites(false);
+                  }
+                }
+              >
+                Sim
+              </button>
+              <button
+                type="button"
+                className="bg-red-700 hover:bg-red-500 px-2 py-1 w-1/3 rounded-xl transition-colors duration-500"
+                onClick={ () => setMessageFavorites(false) }
+              >
+                Não
+              </button>
+            </div>
+          </div>
+        }
+        {
+          messageTeams &&
+          <div className="absolute bg-gradient-to-t from-anil via-anil to-anil/10 text-marinho font-bold w-full h-full z-40 flex flex-col items-center justify-center">
+            <p className="text-center px-3 text-xl pb-5">
+              {`Tem certeza que deseja Excluir ${letraMaiuscula(searchByName.name)} do seu time?`}
+            </p>
+            <div className="w-full flex items-center justify-center  text-white">
+              <button
+                type="button"
+                className="bg-green-700 hover:bg-green-500 px-2 py-1 mr-3 w-1/3 rounded-xl transition-colors duration-500"
+                onClick={ 
+                  () => {
+                  confirmRemoveToTeam();
+                  setMessageTeams(false);
+                  }
+                }
+              >
+                Sim
+              </button>
+              <button
+                type="button"
+                className="bg-red-700 hover:bg-red-500 px-2 py-1 w-1/3 rounded-xl transition-colors duration-500"
+                onClick={ () => setMessageTeams(false) }
+              >
+                Não
+              </button>
+            </div>
+          </div>
+        }
         <Link
           to={`/pokemon/${id}`}
           className="w-full flex flex-col relative items-center justify-center  transition duration-500"
         >
-        <div className={`w-full ${altura} bg-gradient-to-t from-anil via-anil/60 to-anil/10 flex items-center`}>
+        <div className={`w-full ${altura} bg-gradient-to-t from-anil via-anil/60 to-anil/10 flex items-center relative`}>
         {
           Object.values(searchByName.sprites.other)[2].front_default
             ? retornaImagem(searchByName.name)
@@ -205,7 +289,7 @@ export default function Pokemon (props) {
               </div>
           }
         </div>
-      </Link>
+        </Link>
         {
           teams &&
           <button 

@@ -93,6 +93,7 @@ export default function Favorites() {
             ? listFavoritesDisplayed
               .map((poke, index) => (
               <Pokemon
+                favorites={true}
                 key={index}
                 className="w-full"
                 name={poke.name}
