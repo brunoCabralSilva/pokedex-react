@@ -40,7 +40,7 @@ export default function Home() {
             </p>
             <button
               className="rounded px-5 py-3 bg-anil font-bold border-2 border-anil hover:border-2 hover:border-marinho transition-colors duration-500"
-              onClick={ () => { history.push('/search') } }
+              onClick={ () => { history.push('/search#init') } }
             >
               Mais
             </button>

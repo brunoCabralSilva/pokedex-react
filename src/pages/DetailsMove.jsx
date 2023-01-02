@@ -67,69 +67,73 @@ export default function DetailsMove() {
 
   return (
     <div className="mt-7vh w-full flex flex-col min-h-screen">
-      <Nav push={'/moves'}/>      
-      <div className="flex flex-col justify-center px-1">
-        {
-          Object.values(move).length > 0 &&
-          <div className="flex flex-col items-start justify-center">
-            <div className="flex flex-col w-full justify-start px-7 pt-10 gap-3 bg-gradient-to-r via-white from-anil to-white">
-              { AllDataTypes(move.type.name).image }
-              <p className="text-3xl sm:text-2xl md:text-4xl">{ letraMaiuscula(move.name) }</p>
-              <p className="pb-2 text-1xl text-gray-700"># { move.id }</p>
-            </div>
-            <div className="w-full py-5 bg-gradient-to-r via-white from-anil to-white my-1 px-7">
-              <p className="text-3xl sm:text-2xl md:text-4xl">Dados</p>
-              <p className="pt-5">Precisão: { move.accuracy }</p>
-              <p className="pt-1">Classe de dano: { letraMaiuscula(move.damage_class.name) }</p>
-              <p className="pt-1">Poder: {move.power}</p>
-              <p className="pt-1">PP: {move.pp}</p>
-              <p className="pt-1">Prioridade: {move.priority}</p>
-              <p className="pt-1">Alvo: {move.target.name}</p>
-            </div>
-            <div className="w-full py-5 bg-gradient-to-r via-white from-anil to-white mb-1 px-7">
-              <p className="text-3xl sm:text-2xl md:text-4xl">Efeito</p>
-              <p className="pt-5">
-                Espanhol: { move.flavor_text_entries.find((text) => text.language.name === 'es').flavor_text }
-              </p>
-              <p className="pt-3">
-                Inglês: { returnEffect(move.effect_entries) }
-              </p>
-            </div>
-            { 
-            move.learned_by_pokemon.length > 0 &&
-              <div className="flex flex-col items-center w-full">
-                <p className="w-full py-10 bg-gradient-to-r via-white from-anil to-white my-1 px-7 text-3xl sm:text-2xl md:text-4xl">
-                  {`Aprendido por ${move.learned_by_pokemon.length} Pokémon:`}
+      <Nav push={'/moves'}/>
+      {
+        Object.values(move).length === 0
+        ? <div className="h-screen bg-gradient-to-b from-anil to-white" />
+        : <div className="flex flex-col justify-center px-1 min-h-screen">
+          {
+            Object.values(move).length > 0 &&
+            <div className="flex flex-col items-start justify-center">
+              <div className="flex flex-col w-full justify-start px-7 pt-10 gap-3 bg-gradient-to-r via-white from-anil to-white">
+                { AllDataTypes(move.type.name).image }
+                <p className="text-3xl sm:text-2xl md:text-4xl">{ letraMaiuscula(move.name) }</p>
+                <p className="pb-2 text-1xl text-gray-700"># { move.id }</p>
+              </div>
+              <div className="w-full py-5 bg-gradient-to-r via-white from-anil to-white my-1 px-7">
+                <p className="text-3xl sm:text-2xl md:text-4xl">Dados</p>
+                <p className="pt-5">Precisão: { move.accuracy }</p>
+                <p className="pt-1">Classe de dano: { letraMaiuscula(move.damage_class.name) }</p>
+                <p className="pt-1">Poder: {move.power}</p>
+                <p className="pt-1">PP: {move.pp}</p>
+                <p className="pt-1">Prioridade: {move.priority}</p>
+                <p className="pt-1">Alvo: {move.target.name}</p>
+              </div>
+              <div className="w-full py-5 bg-gradient-to-r via-white from-anil to-white mb-1 px-7">
+                <p className="text-3xl sm:text-2xl md:text-4xl">Efeito</p>
+                <p className="pt-5">
+                  Espanhol: { move.flavor_text_entries.find((text) => text.language.name === 'es').flavor_text }
                 </p>
-                <Guide
-                  list={listOfAll}
-                  listDisplayed={setAllListDisplayed}
-                  position="top"
-                />
-                <div className="bg-white p-1 gap-3 grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 w-full">
-                  {
-                    allListDisplayed.length > 0
-                      ? allListDisplayed.map((poke) => (
-                        <Pokemon
-                          type="moves"
-                          name={poke.name}
-                          id = {numberPokemon(poke)}
-                          dataPokemon={poke}
-                        />
-                        ))
-                      : return20empty()
-                  }
-                </div>
-                <Guide
-                  list={listOfAll}
-                  listDisplayed={setAllListDisplayed}
-                  position="bottom"
-                />
+                <p className="pt-3">
+                  Inglês: { returnEffect(move.effect_entries) }
+                </p>
+              </div>
+              { 
+              move.learned_by_pokemon.length > 0 &&
+                <div className="flex flex-col items-center w-full">
+                  <p className="w-full py-10 bg-gradient-to-r via-white from-anil to-white my-1 px-7 text-3xl sm:text-2xl md:text-4xl">
+                    {`Aprendido por ${move.learned_by_pokemon.length} Pokémon:`}
+                  </p>
+                  <Guide
+                    list={listOfAll}
+                    listDisplayed={setAllListDisplayed}
+                    position="top"
+                  />
+                  <div className="bg-white p-1 gap-3 grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 w-full">
+                    {
+                      allListDisplayed.length > 0
+                        ? allListDisplayed.map((poke) => (
+                          <Pokemon
+                            type="moves"
+                            name={poke.name}
+                            id = {numberPokemon(poke)}
+                            dataPokemon={poke}
+                          />
+                          ))
+                        : return20empty()
+                    }
+                  </div>
+                  <Guide
+                    list={listOfAll}
+                    listDisplayed={setAllListDisplayed}
+                    position="bottom"
+                  />
+              </div>
+            }
             </div>
           }
-          </div>
-        }
-      </div>
+        </div>
+      }
       <Footer />
     </div>
   );
