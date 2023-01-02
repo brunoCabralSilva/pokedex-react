@@ -1,6 +1,6 @@
 <h1 align="center">Pokédex-React</h1>
 
-<p align="center">Projeto idealizado por Bruno Gabryell Cabral da Silva com o intuito de criar uma aplicação que facilite a busca por Pokémon de maneira interativa e de fácil compreensão!</p>
+<p align="center">Projeto idealizado por Bruno Gabryell Cabral da Silva com o intuito de criar uma aplicação que disponibilize mecanismos de busca por Pokémon e seus Movimentos de maneira interativa e de fácil compreensão!</p>
 
 <h3 align="center">https://brunocabralsilva.github.io/pokedex-react/</h3>
 
@@ -18,13 +18,13 @@
 
 <h2 id="intro">Introdução</h2>
 
-<p>Pokémon é uma franquia originada de jogos eletrônicos desenvolvidos pela Game Freak e publicados pela Nintendo. Lançado pela primeira vez em 1996 no Japão para o console Game Boy, a principal série de jogos de RPGs, que continuou em cada geração em portáteis da Nintendo.</p>
+<p><strong>Pokémon</strong> é uma franquia originada de jogos eletrônicos desenvolvidos pela Game Freak e publicados pela Nintendo. Lançado pela primeira vez em 1996 no Japão para o console Game Boy, a principal série de jogos de RPGs, Pokémon continuou por gerações em portáteis da Nintendo.</p>
 
-<p>Os jogos são geralmente lançados em pares, sendo que cada um contém pequenas variações em relação ao outro. Enquanto a série principal consiste em RPGs, os spin-off abrangem outros gêneros, como RPG de ação, quebra-cabeça e jogos virtuais para animais de estimação.</p>
+<p>Os jogos são geralmente lançados em pares, sendo que cada um contém pequenas variações em relação ao outro. Enquanto a série principal consiste em RPGs, os spin-off abrangem outros gêneros, como ação, quebra-cabeça e outros tipos de jogos virtuais.</p>
 
-<p>A partir de 24 de novembro de 2017, mais de 300 milhões de jogos de Pokémon foram vendidos em todo o mundo, em 76 títulos. Isso faz de Pokémon a segunda franquia de jogos eletrônicos mais vendidas, atrás da própria franquia da Nintendo Mario.</p>
+<p>Até 24 de novembro de 2017, mais de 300 milhões de jogos de Pokémon foram vendidos em todo o mundo, em 76 títulos. Isso faz de Pokémon a segunda franquia de jogos eletrônicos mais vendidas, atrás apenas de outra franquia também da Nintendo: Mario.</p>
 
-<p>Diante do sucesso de Pokémon no universo dos games, desenhos e filmes, somado à paixão que o Desenvolvedor deste projeto possui pela franquia, foi utilizada a API <a href="https://pokeapi.co/" target="_blank" >PokeApi</a> para desenvolver uma aplicação em React que disponibiliza diversas informações sobre o mundo Pokémon, das quais serão melhor abordadas adiante. </p>
+<p>Diante do sucesso de Pokémon no universo dos games, desenhos e filmes, somado à paixão que o Desenvolvedor deste projeto possui pela franquia, foi utilizada a API <a href="https://pokeapi.co/" target="_blank" rel="noreferrer" >PokeApi</a> para desenvolver uma aplicação em React que disponibiliza diversas informações sobre o mundo Pokémon, das quais serão melhor abordadas adiante. </p>
 
 <h2 id="descrição-do-projeto">Descrição do Projeto</h2>
 
