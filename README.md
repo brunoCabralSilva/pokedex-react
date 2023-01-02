@@ -28,7 +28,7 @@
 
 <h2 id="descrição-do-projeto">Descrição do Projeto</h2>
 
-<p>A Pokédex-React é um site onde é possível encontrar um ou mais Pokémon, assim como um ou mais movimentos de Pokémon, com o auxílio de diversos filtros que facilitam a busca. Para exibição dos resultados da procura foram criadas paginações, onde são exibidos 20 Pokémon por vez. Ao clicar em um Pokémon ou Movimento, é possível obter mais detalhes sobre os mesmos.
+<p>O <strong>Pokédex-React</strong> é site onde é possível encontrar um ou mais Pokémon, assim como um ou mais movimentos de Pokémon, com o auxílio de diversos filtros que facilitam a busca. Para exibição dos resultados de todas as procuras foram criadas paginações, onde são exibidos 20 Pokémon ou Movimentos por vez. Ao clicar em um Pokémon ou Movimento, é possível obter mais detalhes sobre os mesmos.
 </p>
 
 <p>A aplicação também disponibiliza a possibilidade de favoritar um Pokémon e, dentre a lista de favoritos, escolher quais os seis que farão parte do seu time principal. Todas estas listas, informações e mecanismos são distribuídos em páginas muito bem organizadas dentro do site, que é munido de uma estilização atualizada, agradável e de fácil entendimento.
@@ -39,18 +39,20 @@
 <ol>
 <li><h4>Home</h4></li> 
 
-<p>É a página inicial, onde as principais funcionalidades da aplicação são apresentadas de maneira resumida. Ao clicar em uma das opções oferecias, o usuário é direcionado para a respectiva página, sela ela a de busca, favoritos, time ou movimentos.</p>
+<p>É a página inicial, onde as principais funcionalidades da aplicação são apresentadas de maneira resumida. Ao clicar em uma das opções oferecias, o usuário é direcionado para a respectiva página, seja ela a de busca, favoritos, time ou movimentos.</p>
 
 <li><h4>Menu</h4></li>
 
 <p>Durante toda a interação do usuário com a aplicação, um ícone referente ao menu fica disponível no canto superior direito da tela. Por meio dele, o usuário possui acesso a todas as páginas principais da aplicação, sendo elas:</p>
 
 <ul>
+
 <li>Home</li>
 <li>Buscar</li>
 <li>Favoritos</li>
 <li>Meu Time</li>
 <li>Movimentos</li>
+
 </ul>
 <br />
 
@@ -59,66 +61,68 @@
 
 <li><h4>Buscar</h4></li> 
 
-<p>Ao acessar a página em questão, são listados todos pokémon por ordem numérica, sendo todos eles divididos em paginações (20 por página). Caso o usuário tenha interesse ou necessidade em uma busca mais específica, ele pode navegar entre as outras abas de busca e pesquisar Pokémon por nome, número, geração ou tipo:</p>
+<p>Ao acessar a página em questão, são listados todos pokémon por ordem numérica, sendo todos eles divididos em paginações como já foi dito (20 por página). Caso o usuário tenha interesse ou necessidade em uma busca mais específica, ele pode navegar entre as outras abas de busca e pesquisar Pokémon por nome, número, geração ou tipo:</p>
 
 <ul>
-<li>Nome ou Número</li>
 
-<p>O usuário poderá inserir no input de busca um nome, número ou até mesmo trecho ou parte de um nome, caso não se lembre dele por completo.</p>
+<li><strong>Nome ou Número</strong></li>
 
-<li>Geração</li>
+<p>O usuário poderá inserir no input de busca um nome, número ou até mesmo trecho ou parte de um nome, caso não se lembre dele por completo. Caso seja encontrado apenas um Pokémon que satisfaça a busca, o usuário será encaminhado para a tela de detalhes deste Pokémon. Caso contrário, todos os Pokémon relacionados serão exibidos em uma lista.</p>
+
+<li><strong>Geração</strong></li>
 
 <p>Há um seletor disponibilizado onde é possível escolher uma das gerações existentes e ter acesso apenas aos Pokémon que pertencem a mesma.</p>
 
-<li>Tipo</li>
-<p>O usuário pode buscar Pokémon por um ou dois tipos. Caso o mesmo tente selecionar três, um Pop-pup é exibido na tela informando que não existem Pokémon com três tipos ao mesmo tempo.</p>
+<li><strong>Tipo</strong></li>
+
+<p>O usuário pode buscar Pokémon por um ou dois tipos. Caso o mesmo tente selecionar três, um Pop-pup é exibido na tela informando que não existem Pokémon com três tipos ao mesmo tempo. Caso seja encontrado apenas um Pokémon que satisfaça a busca, o usuário será encaminhado para a tela de detalhes deste Pokémon. Caso contrário, todos os Pokémon relacionados serão exibidos em uma lista.</p>
 
 </ul>
 <br />
-<p>Clicando em um Pokémon, será possível ver mais detalhes sobre ele. Além disso, caso você clique no botão que existe no canto superior direito de cada Pokémon, este será salvo na lista de Favoritos.</p>
+
+<p>Clicando em um Pokémon, será possível ver mais detalhes sobre ele. Além disso, caso você clique no botão de checkbox que existe no canto superior direito de cada Pokémon, este será salvo na lista de Favoritos, que fica guardada no local storage do usuário.</p>
 
 <li><h4>Detalhes do Pokémon</h4></li> 
 
-<p>Esta página está interligada a todos os Pokémon que são exibidos na tela. Ao clicar em um deles, o usuário é direcionado para uma página com todos os detalhes do mesmo, como nome, tipo, número, altura, peso, experiência base, habilidades, estatísticas (HP, ataque, defesa, Ataque e Defesa especiais e velocidade), outras formas(alola, galar, gigantamax, mega evolução, etc.) e uma lista com todos os movimentos que aquele Pokémon pode aprender.</p>
+<p>Esta página está interligada a todos os Pokémon que são exibidos na tela. Ao clicar em um deles, o usuário é direcionado para esta página que possui todos os detalhes do mesmo, tais como nome, tipo, número, altura, peso, experiência base, habilidades, estatísticas (HP, ataque, defesa, ataque e defesa especiais e velocidade), outras formas (como alola, galar, gigantamax, mega evolução, etc.) e uma lista com todos os movimentos que aquele Pokémon pode aprender.</p>
 
-<p>Para a exibição das estatísticas do Pokémon, foi criado um gráfico com o auxílio do "React Charts", onde o tamanho de cada barra criada corresponde a sua porcentagem ante a maior das estatísticas que o Pokémon possui.</p>
-
-<p> </p>
+<p>Para a exibição das estatísticas do Pokémon foi criado um gráfico com o auxílio do "React Charts", onde o tamanho de cada barra de estatística corresponde a sua porcentagem ante a maior das estatísticas que o Pokémon possui.</p>
 
 <li><h4>Favoritos</h4></li> 
 
-<p>Todos os Pokémon que o usuário adicionou como favoritos serão disponibilizados nesta página, divididos assim como as demais listas entre paginações onde são exibidos 20 Pokémon por página.</p>
-<p>Dentre estes Pokémon, o usuário poderá clicar no botão "Adicionar ao time" ou "Remover do time" para escolher quais Pokémon farão parte do seu time principal de seis Pokémon. Enquanto ele navega por esta página, haverá um botão no canto inferior direito que, ao ser clicado, exibe uma barra lateral com todos os Pokémon que foram adicionados ao time.</p>
+<p>Todos os Pokémon que o usuário adicionou como favoritos serão disponibilizados nesta página, sendo estes buscados no local storage do seu navegador.</p>
 
-<p>
-Caso o usuário tente adicionar mais de seis Pokémon ao time, é exibido um Pop-up na tela informando que esta ação não é possível.
-</p>
+<p>Dentre estes Pokémon, o usuário poderá clicar no botão "Adicionar ao time" ou "Remover do time" para escolher quais Pokémon farão parte do seu time principal de seis Pokémon (esta informação também ficará salva no local storage do usuário). Enquanto ele navega por esta página, haverá um botão no canto inferior direito que, ao ser clicado, exibe uma barra lateral com todos os Pokémon que foram adicionados ao time.</p>
+
+<p>Caso o usuário tente adicionar mais de seis Pokémon ao time, é exibido um Pop-up na tela informando que esta ação não é permitida.</p>
 
 <p>Por fim, existe um mecanismo de confirmação para cada Pokémon favoritado, onde é preciso confirmar se o usuário realmente deseja removê-lo dos favoritos. Desta forma, as chances de remover um Pokémon por acidente diminuem bruscamente.
 </p>
 
 <li><h4>Meu Time</h4></li> 
 
-<p>Nesta página são disponibilizados todos os Pokémon que o usuário escolheu para comporem seu time. Assim como na página de Favoritos, existe um mecanismo de confirmação para cada Pokémon que compõe o time, onde é preciso confirmar se o usuário realmente deseja removê-lo.</p>
+<p>Nesta página são disponibilizados todos os Pokémon que o usuário escolheu para compor seu time, encontrados no local storage do navegador do mesmo. Assim como na página de Favoritos, existe um mecanismo de confirmação para cada Pokémon que compõe o time, onde é preciso confirmar se o usuário realmente deseja removê-lo. Além disso, todos os Pokémon que se encontram nesta lista possuem uma cor de fundo diferente ao serem exibidos nos mecanismos de busca.</p>
 
 <li><h4>Movimentos</h4></li> 
 
-<p>Ao acessar a página em questão, são listados todos os movimentos por ordem numérica, sendo todos eles divididos em paginações (20 por página). Caso o usuário tenha interesse ou necessidade em uma busca mais específica, ele pode navegar entre as outras abas de busca e pesquisar Movimentos pelo nome ou tipo:</p>
+<p>Ao acessar a página em questão, são listados todos os movimentos por ordem alfabética. Caso o usuário tenha interesse ou necessidade em uma busca mais específica, ele pode navegar entre as outras abas de busca e pesquisar Movimentos pelo nome ou tipo:</p>
 
 <ul>
+
 <li>Nome</li>
 
-<p>O usuário poderá inserir no input de busca um nome ou parte de um nome, caso não se lembre dele por completo.</p>
+<p>O usuário poderá inserir no input de busca um nome ou parte de um nome, caso não se lembre dele por completo. Caso seja encontrado apenas um movimento que satisfaça a busca, o usuário será encaminhado para a tela de detalhes deste movimento. Caso contrário, todos os movimentos relacionados serão exibidos em uma lista.</p>
 
 <li>Tipo</li>
 
-<p>Diferente da busca por tipo que existe para os Pokémon, o usuário só pode buscar um movimento por um tipo específico, visto que não é possível que este possua dois.</p>
+<p>Diferente da busca por tipo que existe para os Pokémon, o usuário só pode buscar um movimento por um único tipo específico, visto que não é possível que um movimento possua mais de um tipo.</p>
 
 </ul>
 
 <li><h4>Detalhes do Movimento</h4></li> 
 
-<p>Esta página está interligada a todos os Movimentos que são exibidos na tela. Ao clicar em um deles, o usuário é direcionado para uma página com todos os detalhes do mesmo, como nome, id, Precisão (caso existe), classe de dano,  Poder, PP, prioridade, alvo, uma descrição em espanhol e outra em inglês e uma lista com todos os Pokémon que podem aprender o movimento.</p>
+<p>Esta página está interligada a todos os Movimentos que são exibidos na tela. Ao clicar em um deles, o usuário é direcionado para esta página página que possui todos os detalhes do mesmo, como nome, id, precisão (caso exista), classe de dano, poder, PP, prioridade, alvo, uma descrição em espanhol e outra em inglês e uma lista com todos os Pokémon que podem aprender o movimento.</p>
+
 </ol>
 
 <h2 id="tecnologias-utilizadas">Tecnologias utilizadas</h2>
