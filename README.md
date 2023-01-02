@@ -124,7 +124,7 @@
 
 <li><h4>Movimentos</h4></li>
 
-![Tela Inicial da Aplicação](src/imagens/wallpaper/movimentos.gif)
+![Tela Inicial da Aplicação](src/imagens/wallpaper/busca-move-all.gif)
 
 <p>Ao acessar a página em questão, são listados todos os movimentos por ordem alfabética. Caso o usuário tenha interesse ou necessidade em uma busca mais específica, ele pode navegar entre as outras abas de busca e pesquisar Movimentos pelo nome ou tipo:</p>
 
@@ -132,9 +132,13 @@
 
 <li>Nome</li>
 
+![Tela Inicial da Aplicação](src/imagens/wallpaper/busca-move-nome.png)
+
 <p>O usuário poderá inserir no input de busca um nome ou parte de um nome, caso não se lembre dele por completo. Caso seja encontrado apenas um movimento que satisfaça a busca, o usuário será encaminhado para a tela de detalhes deste movimento. Caso contrário, todos os movimentos relacionados serão exibidos em uma lista.</p>
 
 <li>Tipo</li>
+
+![Tela Inicial da Aplicação](src/imagens/wallpaper/busca-move-tipo.gif)
 
 <p>Diferente da busca por tipo que existe para os Pokémon, o usuário só pode buscar um movimento por um único tipo específico, visto que não é possível que um movimento possua mais de um tipo.</p>
 
