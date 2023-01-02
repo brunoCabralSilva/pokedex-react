@@ -13,7 +13,7 @@
 * [Mapeamento do Site](#mapeamento)
 * [Tecnologias utilizadas](#tecnologias-utilizadas)
 * [Conceitos abordados](#conceitos-abordados)
-* [Desenvolvedores e demais contribuidores](#pessoas-envolvidas)
+* [Desenvolvedores](#pessoas-envolvidas)
 * [Conclusão](#conclusão)
 
 <h2 id="intro">Introdução</h2>
@@ -39,7 +39,22 @@
 <ol>
 <li><h4>Home</h4></li> 
 
-<p> </p>
+<p>É a página inicial, onde as principais funcionalidades da aplicação são apresentadas de maneira resumida. Ao clicar em uma das opções oferecias, o usuário é direcionado para a respectiva página, sela ela a de busca, favoritos, time ou movimentos.</p>
+
+<li><h4>Menu</h4></li>
+
+<p>Durante toda a interação do usuário com a aplicação, um ícone referente ao menu fica disponível no canto superior direito da tela. Por meio dele, o usuário possui acesso a todas as páginas principais da aplicação, sendo elas:</p>
+
+<ul>
+<li>Home</li>
+<li>Buscar</li>
+<li>Favoritos</li>
+<li>Meu Time</li>
+<li>Movimentos</li>
+</ul>
+
+<p>Além destes links, existem mais dois que direcionam o usuário para fora da aplicação, sendo o primeiro("Sobre o autor") referente ao endereço do perfil Github do autor e o segundo("Site Oficial) um encaminhamento para o site oficial de Pokémon.
+</p>
 
 <li><h4>Buscar</h4></li> 
 
@@ -110,7 +125,7 @@
 * `Hooks (useState, useEffect, useContext, useHistory e useParams)`
 * `Experiência e interação visual do usuário`
 
-<h2 id="pessoas-envolvidas">Desenvolvedores e demais contribuidores</h2>
+<h2 id="pessoas-envolvidas">Desenvolvedores</h2>
 
 * <strong>Bruno Gabryell Cabral da Silva</strong> - Desenvolvedor Web;
 
