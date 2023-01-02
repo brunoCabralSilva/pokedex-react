@@ -4,7 +4,7 @@
 
 <h3 align="center">https://brunocabralsilva.github.io/pokedex-react/</h3>
 
-![Tela Inicial da Aplicação](src/imagens/wallpaper/presentation.png)
+![Tela Inicial da Aplicação](src/imagens/wallpaper/README/presentation.png)
 
 <h2> Índice</h2>
 
@@ -39,13 +39,13 @@
 <ol>
 <li><h4>Home</h4></li> 
 
-![Tela Inicial da Aplicação](src/imagens/wallpaper/home.gif)
+![Tela Inicial da Aplicação](src/imagens/wallpaper/README/home.gif)
 
 <p>É a página inicial, onde as principais funcionalidades da aplicação são apresentadas de maneira resumida. Ao clicar em uma das opções oferecias, o usuário é direcionado para a respectiva página, seja ela a de busca, favoritos, time ou movimentos.</p>
 
 <li><h4>Menu</h4></li>
 
-![Tela Inicial da Aplicação](src/imagens/wallpaper/menu.gif)
+![Tela Inicial da Aplicação](src/imagens/wallpaper/README/menu.gif)
 
 <p>Durante toda a interação do usuário com a aplicação, um ícone referente ao menu fica disponível no canto superior direito da tela. Por meio dele, o usuário possui acesso a todas as páginas principais da aplicação, sendo elas:</p>
 
@@ -65,7 +65,7 @@
 
 <li><h4>Buscar</h4></li>
 
-![Tela Inicial da Aplicação](src/imagens/wallpaper/busca-all.png)
+![Tela Inicial da Aplicação](src/imagens/wallpaper/README/busca-all.png)
 
 <p>Ao acessar a página em questão, são listados todos pokémon por ordem numérica, sendo todos eles divididos em paginações como já foi dito (20 por página). Caso o usuário tenha interesse ou necessidade em uma busca mais específica, ele pode navegar entre as outras abas de busca e pesquisar Pokémon por nome, número, geração ou tipo:</p>
 
@@ -73,19 +73,19 @@
 
 <li><strong>Nome ou Número</strong></li>
 
-![Tela Inicial da Aplicação](src/imagens/wallpaper/busca-nome.png)
+![Tela Inicial da Aplicação](src/imagens/wallpaper/README/busca-nome.png)
 
 <p>O usuário poderá inserir no input de busca um nome, número ou até mesmo trecho ou parte de um nome, caso não se lembre dele por completo. Caso seja encontrado apenas um Pokémon que satisfaça a busca, o usuário será encaminhado para a tela de detalhes deste Pokémon. Caso contrário, todos os Pokémon relacionados serão exibidos em uma lista.</p>
 
 <li><strong>Geração</strong></li>
 
-![Tela Inicial da Aplicação](src/imagens/wallpaper/busca-geração.png)
+![Tela Inicial da Aplicação](src/imagens/wallpaper/README/busca-geração.png)
 
 <p>Há um seletor disponibilizado onde é possível escolher uma das gerações existentes e ter acesso apenas aos Pokémon que pertencem a mesma.</p>
 
 <li><strong>Tipo</strong></li>
 
-![Tela Inicial da Aplicação](src/imagens/wallpaper/busca-tipo.gif)
+![Tela Inicial da Aplicação](src/imagens/wallpaper/README/busca-tipo.gif)
 
 <p>O usuário pode buscar Pokémon por um ou dois tipos. Caso o mesmo tente selecionar três, um Pop-pup é exibido na tela informando que não existem Pokémon com três tipos ao mesmo tempo. Caso seja encontrado apenas um Pokémon que satisfaça a busca, o usuário será encaminhado para a tela de detalhes deste Pokémon. Caso contrário, todos os Pokémon relacionados serão exibidos em uma lista.</p>
 
@@ -93,11 +93,11 @@
 
 <p>Clicando em um Pokémon, será possível ver mais detalhes sobre ele. Além disso, caso você clique no botão de checkbox que existe no canto superior direito de cada Pokémon, este será salvo na lista de Favoritos, que fica guardada no local storage do usuário.</p>
 
-![Tela Inicial da Aplicação](src/imagens/wallpaper/favorite-details.gif)
+![Tela Inicial da Aplicação](src/imagens/wallpaper/README/favorite-details.gif)
 
 <li><h4>Detalhes do Pokémon</h4></li>
 
-![Tela Inicial da Aplicação](src/imagens/wallpaper/detalhes-do-pokemon.gif)
+![Tela Inicial da Aplicação](src/imagens/wallpaper/README/detalhes-do-pokemon.gif)
 
 <p>Esta página está interligada a todos os Pokémon que são exibidos na tela. Ao clicar em um deles, o usuário é direcionado para esta página que possui todos os detalhes do mesmo, tais como nome, tipo, número, altura, peso, experiência base, habilidades, estatísticas (HP, ataque, defesa, ataque e defesa especiais e velocidade), outras formas (como alola, galar, gigantamax, mega evolução, etc.) e uma lista com todos os movimentos que aquele Pokémon pode aprender.</p>
 
@@ -105,7 +105,7 @@
 
 <li><h4>Favoritos</h4></li> 
 
-![Tela Inicial da Aplicação](src/imagens/wallpaper/favoritos.gif)
+![Tela Inicial da Aplicação](src/imagens/wallpaper/README/favoritos.gif)
 
 <p>Todos os Pokémon que o usuário adicionou como favoritos serão disponibilizados nesta página, sendo estes buscados no local storage do seu navegador.</p>
 
@@ -118,13 +118,13 @@
 
 <li><h4>Meu Time</h4></li>
 
-![Tela Inicial da Aplicação](src/imagens/wallpaper/team.gif)
+![Tela Inicial da Aplicação](src/imagens/wallpaper/README/team.gif)
 
 <p>Nesta página são disponibilizados todos os Pokémon que o usuário escolheu para compor seu time, encontrados no local storage do navegador do mesmo. Assim como na página de Favoritos, existe um mecanismo de confirmação para cada Pokémon que compõe o time, onde é preciso confirmar se o usuário realmente deseja removê-lo. Além disso, todos os Pokémon que se encontram nesta lista possuem uma cor de fundo diferente ao serem exibidos nos mecanismos de busca.</p>
 
 <li><h4>Movimentos</h4></li>
 
-![Tela Inicial da Aplicação](src/imagens/wallpaper/busca-move-all.gif)
+![Tela Inicial da Aplicação](src/imagens/wallpaper/README/busca-move-all.gif)
 
 <p>Ao acessar a página em questão, são listados todos os movimentos por ordem alfabética. Caso o usuário tenha interesse ou necessidade em uma busca mais específica, ele pode navegar entre as outras abas de busca e pesquisar Movimentos pelo nome ou tipo:</p>
 
@@ -132,13 +132,13 @@
 
 <li>Nome</li>
 
-![Tela Inicial da Aplicação](src/imagens/wallpaper/busca-move-nome.png)
+![Tela Inicial da Aplicação](src/imagens/wallpaper/README/busca-move-nome.png)
 
 <p>O usuário poderá inserir no input de busca um nome ou parte de um nome, caso não se lembre dele por completo. Caso seja encontrado apenas um movimento que satisfaça a busca, o usuário será encaminhado para a tela de detalhes deste movimento. Caso contrário, todos os movimentos relacionados serão exibidos em uma lista.</p>
 
 <li>Tipo</li>
 
-![Tela Inicial da Aplicação](src/imagens/wallpaper/busca-move-tipo.gif)
+![Tela Inicial da Aplicação](src/imagens/wallpaper/README/busca-move-tipo.gif)
 
 <p>Diferente da busca por tipo que existe para os Pokémon, o usuário só pode buscar um movimento por um único tipo específico, visto que não é possível que um movimento possua mais de um tipo.</p>
 
@@ -146,7 +146,7 @@
 
 <li><h4>Detalhes do Movimento</h4></li>
 
-![Tela Inicial da Aplicação](src/imagens/wallpaper/detalhes-do-movimento.gif)
+![Tela Inicial da Aplicação](src/imagens/wallpaper/README/detalhes-do-movimento.gif)
 
 <p>Esta página está interligada a todos os Movimentos que são exibidos na tela. Ao clicar em um deles, o usuário é direcionado para esta página página que possui todos os detalhes do mesmo, como nome, id, precisão (caso exista), classe de dano, poder, PP, prioridade, alvo, uma descrição em espanhol e outra em inglês e uma lista com todos os Pokémon que podem aprender o movimento.</p>
 
