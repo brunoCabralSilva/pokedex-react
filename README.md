@@ -63,7 +63,9 @@
 <p>Além destes links, existem mais dois que direcionam o usuário para fora da aplicação, sendo o primeiro ("Sobre o autor") referente ao endereço do perfil Github do autor e o segundo ("Site Oficial) um encaminhamento para o site oficial de Pokémon.
 </p>
 
-<li><h4>Buscar</h4></li> 
+<li><h4>Buscar</h4></li>
+
+![Tela Inicial da Aplicação](src/imagens/wallpaper/busca.gif)
 
 <p>Ao acessar a página em questão, são listados todos pokémon por ordem numérica, sendo todos eles divididos em paginações como já foi dito (20 por página). Caso o usuário tenha interesse ou necessidade em uma busca mais específica, ele pode navegar entre as outras abas de busca e pesquisar Pokémon por nome, número, geração ou tipo:</p>
 
@@ -86,13 +88,17 @@
 
 <p>Clicando em um Pokémon, será possível ver mais detalhes sobre ele. Além disso, caso você clique no botão de checkbox que existe no canto superior direito de cada Pokémon, este será salvo na lista de Favoritos, que fica guardada no local storage do usuário.</p>
 
-<li><h4>Detalhes do Pokémon</h4></li> 
+<li><h4>Detalhes do Pokémon</h4></li>
+
+![Tela Inicial da Aplicação](src/imagens/wallpaper/detalhes-do-pokemon.gif)
 
 <p>Esta página está interligada a todos os Pokémon que são exibidos na tela. Ao clicar em um deles, o usuário é direcionado para esta página que possui todos os detalhes do mesmo, tais como nome, tipo, número, altura, peso, experiência base, habilidades, estatísticas (HP, ataque, defesa, ataque e defesa especiais e velocidade), outras formas (como alola, galar, gigantamax, mega evolução, etc.) e uma lista com todos os movimentos que aquele Pokémon pode aprender.</p>
 
 <p>Para a exibição das estatísticas do Pokémon foi criado um gráfico com o auxílio do "React Charts", onde o tamanho de cada barra de estatística corresponde a sua porcentagem ante a maior das estatísticas que o Pokémon possui.</p>
 
 <li><h4>Favoritos</h4></li> 
+
+![Tela Inicial da Aplicação](src/imagens/wallpaper/favoritos.gif)
 
 <p>Todos os Pokémon que o usuário adicionou como favoritos serão disponibilizados nesta página, sendo estes buscados no local storage do seu navegador.</p>
 
@@ -103,11 +109,15 @@
 <p>Por fim, existe um mecanismo de confirmação para cada Pokémon favoritado, onde é preciso confirmar se o usuário realmente deseja removê-lo dos favoritos. Desta forma, as chances de remover um Pokémon por acidente diminuem bruscamente.
 </p>
 
-<li><h4>Meu Time</h4></li> 
+<li><h4>Meu Time</h4></li>
+
+![Tela Inicial da Aplicação](src/imagens/wallpaper/team.gif)
 
 <p>Nesta página são disponibilizados todos os Pokémon que o usuário escolheu para compor seu time, encontrados no local storage do navegador do mesmo. Assim como na página de Favoritos, existe um mecanismo de confirmação para cada Pokémon que compõe o time, onde é preciso confirmar se o usuário realmente deseja removê-lo. Além disso, todos os Pokémon que se encontram nesta lista possuem uma cor de fundo diferente ao serem exibidos nos mecanismos de busca.</p>
 
-<li><h4>Movimentos</h4></li> 
+<li><h4>Movimentos</h4></li>
+
+![Tela Inicial da Aplicação](src/imagens/wallpaper/movimentos.gif)
 
 <p>Ao acessar a página em questão, são listados todos os movimentos por ordem alfabética. Caso o usuário tenha interesse ou necessidade em uma busca mais específica, ele pode navegar entre as outras abas de busca e pesquisar Movimentos pelo nome ou tipo:</p>
 
@@ -123,7 +133,9 @@
 
 </ul>
 
-<li><h4>Detalhes do Movimento</h4></li> 
+<li><h4>Detalhes do Movimento</h4></li>
+
+![Tela Inicial da Aplicação](src/imagens/wallpaper/detalhes-do-movimento.gif)
 
 <p>Esta página está interligada a todos os Movimentos que são exibidos na tela. Ao clicar em um deles, o usuário é direcionado para esta página página que possui todos os detalhes do mesmo, como nome, id, precisão (caso exista), classe de dano, poder, PP, prioridade, alvo, uma descrição em espanhol e outra em inglês e uma lista com todos os Pokémon que podem aprender o movimento.</p>
 
