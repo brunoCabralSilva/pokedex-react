@@ -4,7 +4,7 @@
 
 <h3 align="center">https://brunocabralsilva.github.io/pokedex-react/</h3>
 
-![Tela Inicial da Aplicação](front/src/imagens/wallpaper/presentation.png)
+![Tela Inicial da Aplicação](src/imagens/wallpaper/presentation.png)
 
 <h2> Índice</h2>
 
