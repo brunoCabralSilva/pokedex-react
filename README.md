@@ -22,7 +22,7 @@
 
 <p>Os jogos são geralmente lançados em pares, sendo que cada um contém pequenas variações em relação ao outro. Enquanto a série principal consiste em RPGs, os spin-off abrangem outros gêneros, como RPG de ação, quebra-cabeça e jogos virtuais para animais de estimação.</p>
 
-<p>A partir de 24 de novembro de 2017, mais de 300 milhões de jogos de Pokémon foram vendidos em todo o mundo, em 76 títulos.[1] Isso faz de Pokémon a segunda franquia de jogos eletrônicos mais vendidas, atrás da própria franquia da Nintendo Mario.</p>
+<p>A partir de 24 de novembro de 2017, mais de 300 milhões de jogos de Pokémon foram vendidos em todo o mundo, em 76 títulos. Isso faz de Pokémon a segunda franquia de jogos eletrônicos mais vendidas, atrás da própria franquia da Nintendo Mario.</p>
 
 <p>Diante do sucesso de Pokémon no universo dos games, desenhos e filmes, somado à paixão que o Desenvolvedor deste projeto possui pela franquia, foi utilizada a API <a href="https://pokeapi.co/" target="_blank" >PokeApi</a> para desenvolver uma aplicação em React que disponibiliza diversas informações sobre o mundo Pokémon, das quais serão melhor abordadas adiante. </p>
 
@@ -103,15 +103,12 @@
 
 * `Context API`
 * `Componentização`
-* `Uso do Local Storage para salvar e buscar dados do usuário`
-* `Rotas`
-* `Recursividade (toda a aplicação é recursiva para qualquer tamanho de tela)`
-* `Estilização com Tailwind CSS`
-* `React Icons`
-* `React Charts`
-* `Muuuuita Assincronicidade`
-* `Como o projeto foi feito com componentes funcionais, foram utilizados muitos hooks, dentre os quais destaco o useState, useEffect, useContext, useHistory e useParams`
-* `Conceitos de UI para uma melhor experiência e interação visual do usuário com a aplicação`
+* `Local Storage`
+* `Recursividade (para qualquer tamanho de tela)`
+* `Assincronicidade`
+* `Componentização funcional`
+* `Hooks (useState, useEffect, useContext, useHistory e useParams)`
+* `Experiência e interação visual do usuário`
 
 <h2 id="pessoas-envolvidas">Desenvolvedores e demais contribuidores</h2>
 
