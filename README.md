@@ -65,7 +65,7 @@
 
 <li><h4>Buscar</h4></li>
 
-![Tela Inicial da Aplicação](src/imagens/wallpaper/busca.gif)
+![Tela Inicial da Aplicação](src/imagens/wallpaper/busca-all.png)
 
 <p>Ao acessar a página em questão, são listados todos pokémon por ordem numérica, sendo todos eles divididos em paginações como já foi dito (20 por página). Caso o usuário tenha interesse ou necessidade em uma busca mais específica, ele pode navegar entre as outras abas de busca e pesquisar Pokémon por nome, número, geração ou tipo:</p>
 
@@ -73,9 +73,13 @@
 
 <li><strong>Nome ou Número</strong></li>
 
+![Tela Inicial da Aplicação](src/imagens/wallpaper/busca-nome.png)
+
 <p>O usuário poderá inserir no input de busca um nome, número ou até mesmo trecho ou parte de um nome, caso não se lembre dele por completo. Caso seja encontrado apenas um Pokémon que satisfaça a busca, o usuário será encaminhado para a tela de detalhes deste Pokémon. Caso contrário, todos os Pokémon relacionados serão exibidos em uma lista.</p>
 
 <li><strong>Geração</strong></li>
+
+![Tela Inicial da Aplicação](src/imagens/wallpaper/busca-geração.png)
 
 <p>Há um seletor disponibilizado onde é possível escolher uma das gerações existentes e ter acesso apenas aos Pokémon que pertencem a mesma.</p>
 
