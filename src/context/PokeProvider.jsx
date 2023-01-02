@@ -211,7 +211,6 @@ export default function PokeProvider({ children }) {
           queryByPage(firstPage + 15, list, setListDisplayed);
           setFirstPage(firstPage + 15);
         }
-        window.location.href ='#init';
       }}
     >
       { firstPage + 15}
