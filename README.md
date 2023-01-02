@@ -85,6 +85,8 @@
 
 <li><strong>Tipo</strong></li>
 
+![Tela Inicial da Aplicação](src/imagens/wallpaper/busca-tipo.gif)
+
 <p>O usuário pode buscar Pokémon por um ou dois tipos. Caso o mesmo tente selecionar três, um Pop-pup é exibido na tela informando que não existem Pokémon com três tipos ao mesmo tempo. Caso seja encontrado apenas um Pokémon que satisfaça a busca, o usuário será encaminhado para a tela de detalhes deste Pokémon. Caso contrário, todos os Pokémon relacionados serão exibidos em uma lista.</p>
 
 </ul>
