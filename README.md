@@ -64,7 +64,7 @@
 <ul>
 <li>Nome ou Número</li>
 
-<p>O usuário poderá inserir no input de busca um nome, número ou até mesmo trecho ou parte de um nome, caso não se lembre dele todo.</p>
+<p>O usuário poderá inserir no input de busca um nome, número ou até mesmo trecho ou parte de um nome, caso não se lembre dele por completo.</p>
 
 <li>Geração</li>
 
@@ -89,9 +89,11 @@
 
 <p>Todos os Pokémon que o usuário adicionou como favoritos serão disponibilizados nesta página, divididos assim como as demais listas entre paginações onde são exibidos 20 Pokémon por página.</p>
 <p>Dentre estes Pokémon, o usuário poderá clicar no botão "Adicionar ao time" ou "Remover do time" para escolher quais Pokémon farão parte do seu time principal de seis Pokémon. Enquanto ele navega por esta página, haverá um botão no canto inferior direito que, ao ser clicado, exibe uma barra lateral com todos os Pokémon que foram adicionados ao time.</p>
+
 <p>
 Caso o usuário tente adicionar mais de seis Pokémon ao time, é exibido um Pop-up na tela informando que esta ação não é possível.
 </p>
+
 <p>Por fim, existe um mecanismo de confirmação para cada Pokémon favoritado, onde é preciso confirmar se o usuário realmente deseja removê-lo dos favoritos. Desta forma, as chances de remover um Pokémon por acidente diminuem bruscamente.
 </p>
 
@@ -101,26 +103,23 @@ Caso o usuário tente adicionar mais de seis Pokémon ao time, é exibido um Pop
 
 <li><h4>Movimentos</h4></li> 
 
-<p> </p>
+<p>Ao acessar a página em questão, são listados todos os movimentos por ordem numérica, sendo todos eles divididos em paginações (20 por página). Caso o usuário tenha interesse ou necessidade em uma busca mais específica, ele pode navegar entre as outras abas de busca e pesquisar Movimentos pelo nome ou tipo:</p>
+
+<ul>
+<li>Nome</li>
+
+<p>O usuário poderá inserir no input de busca um nome ou parte de um nome, caso não se lembre dele por completo.</p>
+
+<li>Tipo</li>
+
+<p>Diferente da busca por tipo que existe para os Pokémon, o usuário só pode buscar um movimento por um tipo específico, visto que não é possível que este possua dois.</p>
+
+</ul>
 
 <li><h4>Detalhes do Movimento</h4></li> 
 
-<p> </p>
-
-<ul>
-<li>Todos os Movimentos</li>
-<li>Nome ou Número</li>
-<li>Tipo</li>
-</ul>
-
-<li><h4>Sobre o Autor</h4></li> 
-
-<p> </p>
-
-<li><h4>Site Oficial</h4></li> 
-
-<p> </p>
-
+<p>Esta página está interligada a todos os Movimentos que são exibidos na tela. Ao clicar em um deles, o usuário é direcionado para uma página com todos os detalhes do mesmo, como nome, id, Precisão (caso existe), classe de dano,  Poder, PP, prioridade, alvo, uma descrição em espanhol e outra em inglês e uma lista com todos os Pokémon que podem aprender o movimento.</p>
+</br>
 </ol>
 
 <h2 id="tecnologias-utilizadas">Tecnologias utilizadas</h2>
