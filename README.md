@@ -45,6 +45,8 @@
 
 <li><h4>Menu</h4></li>
 
+![Tela Inicial da Aplicação](src/imagens/wallpaper/menu.gif)
+
 <p>Durante toda a interação do usuário com a aplicação, um ícone referente ao menu fica disponível no canto superior direito da tela. Por meio dele, o usuário possui acesso a todas as páginas principais da aplicação, sendo elas:</p>
 
 <ul>
