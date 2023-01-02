@@ -119,7 +119,6 @@ Caso o usuário tente adicionar mais de seis Pokémon ao time, é exibido um Pop
 <li><h4>Detalhes do Movimento</h4></li> 
 
 <p>Esta página está interligada a todos os Movimentos que são exibidos na tela. Ao clicar em um deles, o usuário é direcionado para uma página com todos os detalhes do mesmo, como nome, id, Precisão (caso existe), classe de dano,  Poder, PP, prioridade, alvo, uma descrição em espanhol e outra em inglês e uma lista com todos os Pokémon que podem aprender o movimento.</p>
-</br>
 </ol>
 
 <h2 id="tecnologias-utilizadas">Tecnologias utilizadas</h2>
