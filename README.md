@@ -39,6 +39,8 @@
 <ol>
 <li><h4>Home</h4></li> 
 
+![Tela Inicial da Aplicação](src/imagens/wallpaper/home.gif)
+
 <p>É a página inicial, onde as principais funcionalidades da aplicação são apresentadas de maneira resumida. Ao clicar em uma das opções oferecias, o usuário é direcionado para a respectiva página, seja ela a de busca, favoritos, time ou movimentos.</p>
 
 <li><h4>Menu</h4></li>
