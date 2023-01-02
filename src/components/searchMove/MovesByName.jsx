@@ -1,26 +1,45 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { useHistory, Link } from 'react-router-dom';
-import { getMove } from '../../fetchs';
 import contexto from '../../context';
+import Guide from '../Guide';
+import Loading from '../Loading';
 
 export default function MovesByName() {
   const [localName, setLocalName] = useState([]);
-  const [dataFounded, setDataFounded] = useState([]);
   const history = useHistory();
   const context = useContext(contexto);
-  const { listAllMoves, letraMaiuscula } = context;
+  const {
+    listAllMoves, letraMaiuscula, listOfAll, 
+    setListOfAll, allListDisplayed, setAllListDisplayed, NUMBERBYPAGE,queryMorePokemon,
+   } = context;
+
+   useEffect(() => {
+    setListOfAll([]);
+    setAllListDisplayed([]);
+  }, []);
 
   const getByNameNumber = async () => {
       try {
         const found = listAllMoves.filter((move) => move.name.includes(localName.toLowerCase()));
         if (found.length === 1) {
-          setDataFounded([]);
+          setListOfAll([]);
 
           history.push(`/moves/${found[0].name}`);
         } else if (found.length === 0) {
           global.alert("Não foi possível encontrar este Pokémon! Reveja o número ou nome inserido ou tente novamente mais tarde!");
         } else {
-          setDataFounded(found);
+          setListOfAll(found);
+          let last = [];
+        if (found.length <= 20) {
+          for (let i = 0; i < found.length; i += 1) {
+            last.push(found[i]);
+          }
+        } else {
+          for (let i = 0; i < NUMBERBYPAGE; i += 1) {
+            last.push(found[i]);
+          }
+        }
+        queryMorePokemon(last, setAllListDisplayed);
         }
     } catch(error) {
       global.alert("Não foi possível encontrar este Pokémon! Reveja o número ou nome inserido ou tente novamente mais tarde!");
@@ -63,16 +82,25 @@ export default function MovesByName() {
           </div>
           <div>
           {
-          dataFounded.length > 0 &&
+          listOfAll.length > 0 &&
           <div>
             <div className="w-full flex justify-center px-1 my-1 sm:my-0">
               <p className="pt-14 pb-10 text-marinho w-full text-3xl h-full flex flex-col sm:flex-row items-center sm:p-0 sm:py-14 text-left">
-                { `Total de Movimentos encontrados relacionados à pesquisa: ${dataFounded.length} ` }
+                { `Total de Movimentos encontrados relacionados à pesquisa: ${listOfAll.length} ` }
               </p>
           </div>
-            <div className="lg:px-5 pr-5 lg:pl-0 pb-5 w-full grid grid-cols-1 sm2:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-              { 
-                dataFounded.map((move, index) => (
+          {
+            listOfAll.length > 20 &&
+              <Guide
+                list={listAllMoves}
+                listDisplayed={setAllListDisplayed}
+                position="top"
+              />
+          }
+          <div className="lg:px-5 pr-5 lg:pl-0 pb-5 w-full grid grid-cols-1 sm2:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+            { 
+              allListDisplayed.length > 0 ?
+                allListDisplayed.map((move, index) => (
                   <Link
                     to={`/moves/${move.name}`}
                     type="button"
@@ -81,8 +109,17 @@ export default function MovesByName() {
                     { letraMaiuscula(move.name) }
                   </Link>
                 ))
-              }
-            </div>
+              : <div className="h-50vh"><Loading /></div>
+            }
+          </div>
+          {
+            listOfAll.length > 20 &&
+              <Guide
+                list={listAllMoves}
+                listDisplayed={setAllListDisplayed}
+                position="top"
+              />
+          }
           </div>
         }
           </div>

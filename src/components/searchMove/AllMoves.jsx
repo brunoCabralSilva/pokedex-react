@@ -2,34 +2,17 @@ import React, { useEffect, useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import contexto from '../../context';
 import { getGeneralist } from '../../fetchs';
+import Guide from '../Guide';
+import Loading from '../Loading';
 
 export default function AllMoves() {
   const [finish, setFinish] = useState(0);
   const context = useContext(contexto);
   const {
     listAllMoves, setListAllMoves,
-    listMovesDisplayed, setListMovesDisplayed,
-    firstPositionLitMove, setFirstPositionLitMove,
+    listMovesDisplayed, setListMovesDisplayed, setFirstPositionLitMove,
     letraMaiuscula,
   } = context;
-
-  const displayedMoves = async (use) => {
-    if (listMovesDisplayed.length + 20 > listAllMoves.length) {
-      let last = [];
-      for (let i = firstPositionLitMove; i < listAllMoves.length - listMovesDisplayed.length; i += 1) {
-        last.push(listAllMoves[i]);
-      }
-      queryMoveDetails(last);
-      setFinish(true);
-    } else {
-      let last = [];
-      for (let i = firstPositionLitMove; i < firstPositionLitMove + 20; i += 1) {
-        last.push(listAllMoves[i]);
-      }
-      setFirstPositionLitMove(firstPositionLitMove + 20);
-      queryMoveDetails(last);
-    } 
-  };
 
   useEffect(() => {
     const seedListMoves = async () => {
@@ -80,9 +63,17 @@ export default function AllMoves() {
           Explore o quanto quiser e divirta-se!
         </p>
       </div>
+      {
+        listAllMoves.length > 0 &&
+          <Guide
+            list={listAllMoves}
+            listDisplayed={setListMovesDisplayed}
+            position="top"
+          />
+      }
       <div className="w-9/12 flex flex-row items-left justify-center">
         {
-          listMovesDisplayed.length > 0 &&
+          listMovesDisplayed.length > 0 ?
           <div className="lg:px-5 pr-5 lg:pl-0 pb-5 w-full grid grid-cols-1 sm2:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
             { 
               listMovesDisplayed.map((move, index) => (
@@ -96,28 +87,17 @@ export default function AllMoves() {
             ))
             }
           </div>
+          : <div className="h-50vh"><Loading /></div>
         }
       </div>
-      <div className="w-9/12">
-        <button
-          type="button"
-          className={`px-1 w-full ${ finish && 'hidden' }`}
-          onClick={ displayedMoves }
-        >
-          <div className="bg-anil/80 text-black text-xl p-4 w-full h-full bg-anil font-bold border-2 border-anil hover:border-2 hover:border-marinho transition-colors duration-500">
-            Mais Movimentos
-          </div>
-        </button>
-        <button
-          type="button"
-          className="p-1 w-full mb-1"
-          onClick={ () => window.scrollTo(0, 0) }
-        >
-          <div className="bg-anil/80 text-black text-xl p-4 w-full h-full bg-anil font-bold border-2 border-anil hover:border-2 hover:border-marinho transition-colors duration-500">
-            Voltar ao Topo
-          </div>
-        </button>
-      </div>
+      {
+        listAllMoves.length > 0 &&
+          <Guide
+            list={listAllMoves}
+            listDisplayed={setListMovesDisplayed}
+            position="bottom"
+          />
+      }
     </div>
   );
   }

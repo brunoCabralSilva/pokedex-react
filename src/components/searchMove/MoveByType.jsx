@@ -37,14 +37,6 @@ export default function MovesByType() {
     setTypeMove('');
   };
 
-  const returnColorType = (name) => {
-    switch(name) {
-      case 'ghost':
-        return 'hover:bg-ghost/90 bg-ghost text-white';
-      default: return 'bg-white text-marinho hover:text-white bg-marinho';
-    }
-  };
-
   return (
     <div className={`flex flex-col items-center w-full ${hiddeTypes && 'min-h-70vh'}`}>
       <div className="w-9/12">
