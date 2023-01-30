@@ -4,6 +4,9 @@ module.exports = {
     "./src/**/*.{js,jsx,ts,tsx}",
   ],
   theme: {
+    maxWidth: {
+      'xl': '1500px',
+    },
     minHeight: {
       '75vh': '75vh',
       '70vh': '70vh',
@@ -51,7 +54,7 @@ module.exports = {
         '45deg': '-45deg',
       },
       spacing: {
-        '100': '32rem',
+        '100': '33rem',
         '110': '35rem',
         '68': '17.5rem',
         '1%': '2%',

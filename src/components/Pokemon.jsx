@@ -52,7 +52,7 @@ export default function Pokemon (props) {
     if(type === 'moves') {
       setAltura("h-64 sm1:h-72 sm2:h-96 sm3:h-100 sm:h-56 md:h-48 md2:h-60 lg:h-80 2xl:h-96");
     } else if(type === 'team') {
-      setAltura("h-54 sm1:h-60 sm2:h-80 sm3:h-96 sm:h-44 md:h-44 md2:h-60 lg:h-80 2xl:h-110");
+      setAltura("h-54 sm1:h-60 sm2:h-80 sm3:h-96 sm:h-44 md:h-44 md2:h-60 lg:h-80 2xl:h-96");
     } else {
     setAltura("h-68 sm1:h-72 sm2:h-80 sm3:h-96 sm:h-40 md:h-48 md2:h-60 lg:h-60 2xl:h-80");
     }
@@ -81,8 +81,9 @@ export default function Pokemon (props) {
         <p className="text-marinho absolute bottom-0 w-full text-center pb-2 pt-4 font-bold bg-gradient-to-t from-anil via-anil/60 to-anil/10">{ messageAdd }</p>
         <img
           src={Object.values(searchByName.sprites.other)[2].front_default} 
-          className={`w-11/12 sm:w-full rounded-lg p-5`} alt={name}
+          className={`${type === "team"? "xl:w-10/12 w-11/12": "w-11/12 xl:w-11/12 sm:w-full"} rounded-lg p-5`} alt={name}
         />
+        
       </div>
     );
   };

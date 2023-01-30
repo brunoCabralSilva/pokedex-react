@@ -31,12 +31,12 @@ export default function Search() {
     <div className="w-full flex flex-col items-center min-h-screen">
       <Nav />
       <Header name="Movimentos" />
-      <FilterMoves />
-      <div className="flex flex-row items-left justify-center">
-        <div className="w-full h-full">
-          { returnSearch() }
-        </div>
-      </div>
+          <div className="flex flex-row items-left justify-center xl:items-center xl:flex xl:flex-col w-full">
+            <FilterMoves className="w-full h-full xl:max-w-xl" />
+            <div className="w-full h-full xl:max-w-xl bg-white">
+              { returnSearch() }
+            </div>
+          </div>
       <Footer />
     </div>
   );

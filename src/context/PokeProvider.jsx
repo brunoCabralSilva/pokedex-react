@@ -118,128 +118,6 @@ export default function PokeProvider({ children }) {
     }
   };
 
-  const returnFivePages = (list, setListDisplayed) => {
-    const largura = window.screen.width;
-    let pages = [];
-    let numberButtons = 0;
-    if (largura >= 450) {
-      numberButtons = 6;
-    } else if (largura < 280) {
-      numberButtons = 1;
-    } else {
-      numberButtons = 2;
-    }
-    let allPages = Math.round(list.length/20);
-    const pagesByNUMBEROFPAGES = list.length/NUMBERBYPAGE;
-    const roundNUMBEROFPAGES = Math.round(list.length/20);
-    if (pagesByNUMBEROFPAGES > roundNUMBEROFPAGES) {
-      allPages = roundNUMBEROFPAGES + 1;
-    }
-    let totalPages = firstPage;
-    if (allPages < 6) {
-      numberButtons = allPages;
-      totalPages = 1;
-    }
-
-    const spanItem = <div className={`${largura < 330 ? 'px-0' : 'px-2 py-1 border'}  mx-1`}>...</div>;
-
-    for (let i = 0; i < numberButtons ; i += 1 ) {
-      pages.push(
-        <button
-          key={i}
-          type="button"
-          className={`px-2 py-1 border mx-1 ${valueButton === totalPages + i && 'border-2 border-marinho'}`}
-          onClick={ () => {
-            setValueButton(totalPages + i);
-            if (totalPages + i > (allPages- 5)) {
-              queryByPage(totalPages + i, list, setListDisplayed);
-              setFirstPage(allPages- 5);
-            } else {
-              queryByPage(totalPages + i, list, setListDisplayed);
-              setFirstPage(totalPages + i);
-            }
-          }}
-        >
-          { totalPages + i}
-        </button>
-      );
-    }
-
-    const elementFirst = <button
-    className={`px-2 py-1 border mr-1 sm:mx-1 ${valueButton === 1 && 'border-2 border-marinho'}`}
-      onClick={ () => {
-          setValueButton(1);
-          queryByPage(1, list, setListDisplayed);
-          setFirstPage(1);
-        }
-      }
-    >1</button>;
-
-    const elementLast = <button
-    className={`px-2 py-1 border ml-1 sm:mx-1 ${valueButton === allPages && 'border-2 border-marinho'}`}
-      onClick={ () => {
-        setValueButton(allPages);
-        queryByPage(allPages, list, setListDisplayed);
-        setFirstPage(Math.round(list.length/20 - 5));
-      }
-    }
-      >{allPages}</button>;
-    
-    const elementPrevious = <button
-     className={`px-2 py-1 border mr-1 sm:mx-1 ${valueButton === firstPage - 15 && 'border-2 border-marinho'}`}
-      onClick={ () => {
-        if (firstPage - 15 < 0) {
-          setFirstPage(firstPage - 15);
-          queryByPage(1, list, setListDisplayed);
-        } else {
-          queryByPage(firstPage - 15, list, setListDisplayed);
-          setFirstPage(firstPage - 15);
-        }
-      }}
-    >
-      { firstPage - 15}
-    </button>;
-
-    const elementNext = <button
-      className={`px-2 py-1 border ml-1 sm:mx-1 ${valueButton === firstPage + 15 && 'border-2 border-marinho'}`}
-      onClick={ () => {
-        setValueButton(firstPage + 15);
-        if (firstPage + 15 > (allPages- 5)) {
-          setFirstPage(allPages- 5);
-          queryByPage(allPages- 5, list, setListDisplayed);
-        } else {
-          queryByPage(firstPage + 15, list, setListDisplayed);
-          setFirstPage(firstPage + 15);
-        }
-      }}
-    >
-      { firstPage + 15}
-    </button>;
-
-    let concludePage = [];
-    if (firstPage > 20 && firstPage + 15 < allPages) {
-      concludePage = [elementPrevious, spanItem, ...pages, spanItem, elementNext];
-    } else if (firstPage > 3 && firstPage < 20 && firstPage + 15 < allPages) {
-        concludePage = [elementFirst, spanItem, ...pages, spanItem, elementNext];
-    } else if (firstPage + 15 < allPages) {
-      concludePage = [...pages, spanItem, elementNext];
-    } else if (firstPage > 20 && firstPage + 15 > allPages - 5 && firstPage < allPages - 5) {
-      concludePage = [elementPrevious, spanItem, ...pages, spanItem, elementLast];
-    } else if (Math.round(list.length/20 <= 6)) {
-      concludePage = [...pages];
-    } else if (allPages <= 10 && firstPage + 6 > allPages) {
-      concludePage = [elementFirst, spanItem, ...pages];
-    } else if (firstPage + 5 >= allPages) {
-      concludePage = [elementFirst, spanItem, ...pages];
-    } else if (firstPage + 15 > allPages && allPages < 15 && firstPage + 5 > allPages - 5) {
-      concludePage = [...pages, spanItem, elementLast];
-    } else if (firstPage + 15 > allPages && allPages < 15 ) {
-      concludePage = [...pages, spanItem, elementLast];
-    } else {
-      concludePage = [elementPrevious, spanItem, ...pages];
-    } return (concludePage);
-  };
-
   const previousPage = () => {
     if (firstPage - 1 <= 0) {
       setFirstPage(1);
@@ -248,14 +126,14 @@ export default function PokeProvider({ children }) {
     }
   };
 
-  const nextPage = (list) => {
-    if (firstPage + 1 > (Math.round(list.length/20)- 5)) {
-      setFirstPage(Math.round(list.length/20)- 5);
+  const nextPage = (list, number) => {
+    if (firstPage + 1 > (Math.round(list.length/20)- number)) {
+      setFirstPage(Math.round(list.length/20)- number);
     }
     else {
       setFirstPage(firstPage + 1);
     }
-  };
+  }; 
 
   return(
     <contexto.Provider value={{
@@ -285,7 +163,6 @@ export default function PokeProvider({ children }) {
       addFavorite,
       numberPokemon,
       queryByPage,
-      returnFivePages,
       nextPage,
       previousPage,
       valueButton, setValueButton,

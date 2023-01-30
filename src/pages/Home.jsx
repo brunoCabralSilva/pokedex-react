@@ -27,76 +27,78 @@ export default function Home() {
         <Header />
       </div>
       <div className="w-full h-7vh bg-white" />
-      <div className="w-full bg-white">
-        <div className="flex flex-col sm:flex-row mx-3 sm:mx-14 mb-14 border hover:border-4 border-anil transition-all rounded">
-          <img
-            src={ require('../imagens/wallpaper/001.jpg') }
-            className="w-full sm:w-2/5 rounded-l object-cover"
-            alt="treinador pokémon"
-          />
-          <div className="px-5 sm:pl-10 w-full sm:w-1/2 flex flex-col justify-center items-center sm:items-start pb-10 sm:pb-0 text-marinho">
-            <p className="py-10 sm:text-lg text-center sm:text-left">
-              Explore o mundo dos Pokémon, tendo como guia um mecanismo de busca avançado, onde é possível buscar pelo nome, número, geração ou tipo.
-            </p>
-            <button
-              className="rounded px-5 py-3 bg-anil font-bold border-2 border-anil hover:border-2 hover:border-marinho transition-colors duration-500"
-              onClick={ () => { history.push('/search') } }
-            >
-              Mais
-            </button>
-          </div>
-        </div>
-        <div className="flex flex-col-reverse sm:flex-row justify-end mx-3 sm:mx-14 mb-14 border hover:border-4 border-anil rounded">
-          <div className="px-5 sm:pr-10 w-full sm:w-5/12 flex flex-col justify-center items-center sm:items-end pb-10 sm:pb-0 text-marinho">
-              <p className="py-10 sm:text-lg text-center sm:text-right">
-                Tenha uma lista de Pokémon favoritos, onde você poderá adicioná-los e removê-los da maneira que achar melhor.
+      <div className="xl:items-center xl:flex xl:flex-col w-full">
+        <div className="xl:max-w-xl w-full bg-white ">
+          <div className="flex flex-col sm:flex-row mx-3 sm:mx-14 mb-14 border hover:border-4 border-anil transition-all rounded">
+            <img
+              src={ require('../imagens/wallpaper/001.jpg') }
+              className="w-full sm:w-2/5 rounded-l object-cover"
+              alt="treinador pokémon"
+            />
+            <div className="px-5 sm:pl-10 w-full sm:w-1/2 flex flex-col justify-center items-center sm:items-start pb-10 sm:pb-0 text-marinho">
+              <p className="py-10 sm:text-lg text-center sm:text-left">
+                Explore o mundo dos Pokémon, tendo como guia um mecanismo de busca avançado, onde é possível buscar pelo nome, número, geração ou tipo.
               </p>
               <button
                 className="rounded px-5 py-3 bg-anil font-bold border-2 border-anil hover:border-2 hover:border-marinho transition-colors duration-500"
-                onClick={ () => { history.push('/favorites') } }
+                onClick={ () => { history.push('/search') } }
               >
                 Mais
               </button>
+            </div>
           </div>
-          <img
-            src={ require('../imagens/wallpaper/002.jpg') }
-            className="col-span-2 w-full sm:w-1/2 rounded-r object-cover"
-            alt="snorlax"
-          />
-        </div>
-        <div className="flex flex-col sm:flex-row mx-3 sm:mx-14 mb-14 border hover:border-4 border-anil rounded">
-          <img
-            src={ require('../imagens/wallpaper/003.jpg') }
-            className="col-span-2 w-full sm:w-2/5 rounded-l"
-            alt=""
-          />
-          <div className="px-5 sm:pl-10 w-full sm:w-1/2 flex flex-col justify-center items-center sm:items-start pb-10 sm:pb-0 text-marinho">
-            <p className="py-10 sm:text-lg text-center sm:text-left">
-              Crie o seu time escolhendo dentre os seus Pokémon favoritos quais os que lhe acompanharão na sua jornada!
-            </p>
-            <button
-              className="rounded px-5 py-3 bg-anil font-bold border-2 border-anil hover:border-2 hover:border-marinho transition-colors duration-500"
-              onClick={ () => { history.push('/team') } }
-            >
-              Mais
-            </button>
+          <div className="flex flex-col-reverse sm:flex-row justify-end mx-3 sm:mx-14 mb-14 border hover:border-4 border-anil rounded">
+            <div className="px-5 sm:pr-10 w-full sm:w-5/12 flex flex-col justify-center items-center sm:items-end pb-10 sm:pb-0 text-marinho">
+                <p className="py-10 sm:text-lg text-center sm:text-right">
+                  Tenha uma lista de Pokémon favoritos, onde você poderá adicioná-los e removê-los da maneira que achar melhor.
+                </p>
+                <button
+                  className="rounded px-5 py-3 bg-anil font-bold border-2 border-anil hover:border-2 hover:border-marinho transition-colors duration-500"
+                  onClick={ () => { history.push('/favorites') } }
+                >
+                  Mais
+                </button>
+            </div>
+            <img
+              src={ require('../imagens/wallpaper/002.jpg') }
+              className="col-span-2 w-full sm:w-1/2 rounded-r object-cover"
+              alt="snorlax"
+            />
           </div>
-        </div>
-        <div className="flex flex-col-reverse sm:flex-row justify-end mx-3 sm:mx-14 mb-14 border hover:border-4 border-anil rounded">
-          <div className="px-5 sm:pr-10 w-full sm:w-5/12 flex flex-col justify-center items-center sm:items-end pb-10 sm:pb-0 text-marinho">
-            <p className="py-10 sm:text-lg text-center sm:text-right">Explore todos os movimentos existentes dos Pokémon, podendo listar todos eles de forma alfabética ou pesquisar por Movimentos pertencentes a algum tipo específico.</p>
-            <button
-              className="rounded px-5 py-3 bg-anil font-bold border-2 border-anil hover:border-2 hover:border-marinho transition-colors duration-500"
-              onClick={ () => { history.push('/moves') } }
-            >
-              Mais
-            </button>
+          <div className="flex flex-col sm:flex-row mx-3 sm:mx-14 mb-14 border hover:border-4 border-anil rounded">
+            <img
+              src={ require('../imagens/wallpaper/003.jpg') }
+              className="col-span-2 w-full sm:w-2/5 rounded-l"
+              alt=""
+            />
+            <div className="px-5 sm:pl-10 w-full sm:w-1/2 flex flex-col justify-center items-center sm:items-start pb-10 sm:pb-0 text-marinho">
+              <p className="py-10 sm:text-lg text-center sm:text-left">
+                Crie o seu time escolhendo dentre os seus Pokémon favoritos quais os que lhe acompanharão na sua jornada!
+              </p>
+              <button
+                className="rounded px-5 py-3 bg-anil font-bold border-2 border-anil hover:border-2 hover:border-marinho transition-colors duration-500"
+                onClick={ () => { history.push('/team') } }
+              >
+                Mais
+              </button>
+            </div>
           </div>
-          <img
-            src={ require('../imagens/wallpaper/004.jpg') }
-            className="col-span-2 w-full sm:w-1/2 rounded-r object-contain bg-anil"
-            alt=""
-          />
+          <div className="flex flex-col-reverse sm:flex-row justify-end mx-3 sm:mx-14 mb-14 border hover:border-4 border-anil rounded">
+            <div className="px-5 sm:pr-10 w-full sm:w-5/12 flex flex-col justify-center items-center sm:items-end pb-10 sm:pb-0 text-marinho">
+              <p className="py-10 sm:text-lg text-center sm:text-right">Explore todos os movimentos existentes dos Pokémon, podendo listar todos eles de forma alfabética ou pesquisar por Movimentos pertencentes a algum tipo específico.</p>
+              <button
+                className="rounded px-5 py-3 bg-anil font-bold border-2 border-anil hover:border-2 hover:border-marinho transition-colors duration-500"
+                onClick={ () => { history.push('/moves') } }
+              >
+                Mais
+              </button>
+            </div>
+            <img
+              src={ require('../imagens/wallpaper/004.jpg') }
+              className="col-span-2 w-full sm:w-1/2 rounded-r object-contain bg-anil"
+              alt=""
+            />
+          </div>
         </div>
       </div>
       <Footer />

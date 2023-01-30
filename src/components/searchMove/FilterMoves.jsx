@@ -5,7 +5,8 @@ export default function FilterMoves() {
   const context = useContext(contexto);
   const { searchMove, setSearchMove } = context;
   return (
-    <form className="justify-between lg:flex-nowrap flex flex-col items-center sm:px-0 pb-4 sm:pb-0 w-full">
+    <div className="items-center flex flex-col w-full">
+      <form className="xl:max-w-xl justify-between lg:flex-nowrap flex flex-col items-center sm:px-0 pb-4 sm:pb-0 w-full">
       <div className="grid gap-1 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 px-2 sm:px-1 pb-4 sm:pb-0 w-full font-bold mt-1">
         <button
           type="button"
@@ -59,6 +60,7 @@ export default function FilterMoves() {
           <span className="my-4">Movimentos por Tipo</span>
         </button>
       </div>
-     </form>
+      </form>
+    </div>
     );
   }

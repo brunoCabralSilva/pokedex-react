@@ -118,7 +118,6 @@ export default function MovesByType() {
               to={`/moves/${move.name}`}
               type="button"
               key={ index }
-              // ${AllDataTypes(messageTypesMove).class}
               className={`h-24 flex flex-col items-center  justify-center font-bold border-2 ${AllDataTypes(messageTypesMove).class} rounded-2xl transition-colors duration-500 text-center hover:border-marinho`}>
               { letraMaiuscula(move.name) }
               <img src={require(`../../imagens/types/${messageTypesMove}.png`)} alt={messageTypesMove} className="rounded-b-xl w-10" />

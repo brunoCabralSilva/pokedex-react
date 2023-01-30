@@ -33,11 +33,9 @@ export default function Search() {
       <Nav />
       <Header name="Busca" />
       <Filter search={ search } />
-      <div className="flex flex-row items-left justify-center">
         <div className="w-full h-full">
           { returnSearch() }
         </div>
-      </div>
       <Footer />
     </div>
   );
