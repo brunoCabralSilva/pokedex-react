@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from 'react';
 import Filter from '../components/searchPokemon/FilterPokemon';
 import contexto from '../context';
-import NameNumber from '../components/searchPokemon/NameNumber';
+import Name from '../components/searchPokemon/Name';
 import Type from '../components/searchPokemon/Type';
 import Generation from '../components/searchPokemon/Generation';
 import AllPokemon from '../components/searchPokemon/AllPokemon';
@@ -18,7 +18,7 @@ export default function Search() {
   const returnSearch = () => {
     switch (search) {
       case 'NAME_NUMBER':
-        return <NameNumber />;
+        return <Name />;
       case 'TYPE':
         return <Type />;
       case 'GENERATION': 

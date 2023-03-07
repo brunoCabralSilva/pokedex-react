@@ -40,7 +40,7 @@ function Filter({ search }) {
                   />
               </div>
             }
-            <span className="my-4">Nome ou Número</span>
+            <span className="my-4">Nome</span>
           </button>
           <button
             type="button"

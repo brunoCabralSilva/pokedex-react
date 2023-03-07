@@ -72,14 +72,14 @@ export default function NameNumber() {
     <div className="flex flex-col items-center">
       <div className="w-9/12">
         <p className="mt-8 sm:mt-20 text-4xl sm:text-left pb-5 w-full bg-gradient-to-b">
-          Pesquisando por Nome ou Número
+          Pesquisando por Nome
         </p>
         <p className="pt-5">
-          Abaixo é possível pesquisar um Pokémon por nome ou número.
+          Abaixo é possível pesquisar um Pokémon por nome.
           Você também utilizar as outras abas acima para pesquisar Pokémon por geração ou tipo, ou ainda listar todos os pokémon por ordem numérica. 
         </p>
         <p className="pt-2">
-          Digite a seguir um nome ou número válido de um Pokémon. Caso este Pokémon seja encontrado, você será direcionado para a página de detalhes dele.
+          Digite a seguir um nome ou um trecho de nome válidos de um Pokémon. Caso este Pokémon seja encontrado, você será direcionado para a página de detalhes dele.
         </p>
         <p className="pt-2 pb-10">  
           Explore o quanto quiser e divirta-se!
@@ -91,7 +91,7 @@ export default function NameNumber() {
             type="text"
             className="border-2 border-marinho p-2 my-2 sm:mr-2 ml-0 w-11/12 sm:w-9/12 text-center"
             value={localNameNumber}
-            placeholder={`Digite o Nome ou o Nº do Pokémon:`}
+            placeholder={`Digite o Nome do Pokémon:`}
             onChange={(e) => setLocalNameNumber(e.target.value) }
           />
           <button
