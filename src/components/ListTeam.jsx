@@ -37,7 +37,7 @@ export default function ListTeam({ list, setList }) {
           />
         </button>
       </div>
-      <div className={`${showMenu ? '' : 'hidden'} fixed top-0 right-0 w-full sm:w-2/5 md:2/5 lg:w-3/12 lg1:w-1/5 bg-marinho/80 h-screen z-30 border-l-2 border-marinho flex flex-col items-center justify-center`}>
+      <div className={`${showMenu ? '' : 'hidden'} fixed top-5 right-0 w-full sm:w-2/5 md:2/5 lg:w-3/12 lg1:w-1/5 bg-marinho/80 h-screen z-30 border-l-2 border-marinho flex flex-col items-center justify-center`}>
         <div className="w-full flex flex-col items-center justify-center text-marinho text-lg">
           { list.length === 0 && JSON.parse(localStorage.getItem('teams'))
             ? <p className="font-bold text-xl text-white py-2 flex flex-col items-center w-9/12 my-2 px-4 text-center">
@@ -58,7 +58,7 @@ export default function ListTeam({ list, setList }) {
                   className="w-20vw sm:w-5vw py-5 pt-10"
                 />
               </p>
-            : <p className="font-bold text-xl text-white py-2">
+            : <p className="font-bold text-xl text-white p-2">
                 <span className="pr-2">Seu Time</span>
                 <span>{`( ${list.length === 0 && JSON.parse(localStorage.getItem('teams')) ? JSON.parse(localStorage.getItem('teams')).length : list.length } / 6 )`}</span>
               </p>

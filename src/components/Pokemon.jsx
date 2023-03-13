@@ -5,7 +5,6 @@ import { getByName }  from '../fetchs';
 import Loading from './Loading';
 
 export default function Pokemon (props) {
-  const [altura, setAltura] = useState('');
   const [type1, setType1] = useState('');
   const [type2, setType2] = useState('');
   const [messageAdd, setMessageAdd] = useState('');
@@ -49,13 +48,6 @@ export default function Pokemon (props) {
     setType1('');
     setType2('');
     search();
-    if(type === 'moves') {
-      setAltura("h-64 sm1:h-72 sm2:h-96 sm3:h-100 sm:h-56 md:h-48 md2:h-60 lg:h-80 2xl:h-96");
-    } else if(type === 'team') {
-      setAltura("h-54 sm1:h-60 sm2:h-80 sm3:h-96 sm:h-44 md:h-44 md2:h-60 lg:h-80 2xl:h-96");
-    } else {
-    setAltura("h-68 sm1:h-72 sm2:h-80 sm3:h-96 sm:h-40 md:h-48 md2:h-60 lg:h-60 2xl:h-80");
-    }
   }, []);
 
   useEffect(() => {
@@ -158,7 +150,7 @@ export default function Pokemon (props) {
     >
       { 
       loadingPokemon ? 
-      <div className={`flex items-center justify-center text-marinho relative bottom-0 w-full text-center pb-2 pt-4 font-bold bg-gradient-to-t ${altura} from-anil via-anil/60 to-anil/10`}>
+      <div className={`flex items-center justify-center text-marinho relative bottom-0 w-full text-center pb-2 pt-4 font-bold bg-gradient-to-t from-anil via-anil/60 to-anil/10`}>
         <img
           src={require('../imagens/all/001.png')}
           alt="opacity 0"
@@ -182,7 +174,7 @@ export default function Pokemon (props) {
       { 
       Object.values(searchByName).length === 0
       ? <div
-          className="w-full flex flex-col relative items-center justify-center transition duration-500 h-68 sm1:h-72 sm2:h-80 sm3:h-96 sm:h-40 md:h-48 md2:h-60 lg:h-60 2xl:h-80"
+          className="w-full flex flex-col relative items-center justify-center transition duration-500 h-full"
         >
           <img
             src={require('../imagens/all/001.png')}
@@ -254,12 +246,12 @@ export default function Pokemon (props) {
           to={`/pokemon/${id}`}
           className="w-full flex flex-col relative items-center justify-center  transition duration-500"
         >
-        <div className={`w-full ${altura} bg-gradient-to-t from-anil via-anil/60 to-anil/10 flex items-center relative`}>
+        <div className={`w-full h-full bg-gradient-to-t from-anil via-anil/60 to-anil/10 flex items-center relative`}>
         {
           Object.values(searchByName.sprites.other)[2].front_default
             ? retornaImagem(searchByName.name)
             : 
-            <div className="relative w-full h-68 sm1:h-72 sm2:h-80 sm3:h-96 sm:h-40 md:h-48 md2:h-60 lg:h-60 2xl:h-80 flex items-center justify-center">
+            <div className="relative w-full flex items-center justify-center">
               <img
                 src={require('../imagens/all/001.png')}
                 alt="opacity 0"
